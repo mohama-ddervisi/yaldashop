@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
+const path = require("path");
+
 const productRoutes = require("./routes/productRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
@@ -9,8 +11,6 @@ const adminProductRoutes = require("./routes/adminProductRoutes");
 const discountRoutes = require("./routes/discountRoutes");
 const checkoutRoutes = require("./routes/checkoutRoutes");
 const authRoutes = require("./routes/authRoutes");
-const path = require("path");
-const app = express();
 
 app.use((req, res, next) => {
     console.log("REQUEST:", req.method, req.url);
