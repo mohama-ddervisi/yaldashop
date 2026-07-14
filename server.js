@@ -44,7 +44,8 @@ app.get("/", (req, res) => {
 });
 
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
 app.use((err, req, res, next) => {
     console.error("GLOBAL ERROR:");
     console.error(err);
@@ -54,6 +55,14 @@ app.use((err, req, res, next) => {
         message: err.message
     });
 });
+
+if (process.env.VERCEL !== "1") {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+}
+
+module.exports = app;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
