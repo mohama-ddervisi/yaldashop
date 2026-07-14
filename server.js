@@ -9,7 +9,7 @@ const adminProductRoutes = require("./routes/adminProductRoutes");
 const discountRoutes = require("./routes/discountRoutes");
 const checkoutRoutes = require("./routes/checkoutRoutes");
 const authRoutes = require("./routes/authRoutes");
-
+const path = require("path");
 const app = express();
 
 app.use((req, res, next) => {
@@ -27,6 +27,8 @@ app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use("/auth", authRoutes);
+const path = require("path");
+
 app.use("/admin/products", (req, res, next) => {
     console.log("SERVER:", req.method, req.url);
     next();
@@ -37,10 +39,7 @@ app.use("/admin/products", adminProductRoutes);
 app.use("/discounts", discountRoutes);
 app.use("/checkout", checkoutRoutes);
 
-app.get("/", (req, res) => {
-  console.log("Home route visited");
-  res.send("Yalda Shop Server Works!");
-});
+
 
 const PORT = 3000;
 app.use((err, req, res, next) => {
