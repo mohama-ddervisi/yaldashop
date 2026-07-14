@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>ورود | Yalda Shop</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/css/login.css">
+
+</head>
+
+<body>
+
+<section class="login-page">
+
+    <div class="login-card">
+
+        <div class="login-logo">
+
+            <h1>YALDA</h1>
+
+            <span>SHOP</span>
+
+        </div>
+
+        <h2>
+
+            ورود به حساب کاربری
+
+        </h2>
+
+        <p>
+
+            برای ادامه وارد حساب خود شوید.
+
+        </p>
+
+        <form id="login-form">
+
+            <div class="input-group">
+
+                <label>
+
+                    شماره موبایل یا ایمیل
+
+                </label>
+
+                <input
+                    id="login-username"
+                    type="text"
+                    placeholder="0912... یا example@gmail.com"
+                    required>
+
+            </div>
+
+          <div class="input-group">
+
+    <label>
+
+        رمز عبور
+
+    </label>
+
+    <div class="password-box">
+
+        <input
+            id="login-password"
+            type="password"
+            placeholder="********"
+            required>
+
+        <button
+            type="button"
+            id="toggle-password"
+            class="toggle-password">
+
+            👁
+
+        </button>
+
+    </div>
+
+</div>
+
+            <button
+                class="login-btn"
+                type="submit">
+
+                ورود
+
+            </button>
+
+        </form>
+
+        <div class="login-footer">
+
+            حساب کاربری ندارید؟
+
+            <a href="/register.html">
+
+                ثبت نام
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div id="toast">
+
+    <span id="toast-message"></span>
+
+</div>
+
+<script src="/js/common.js"></script>
+
+<script src="/js/login.js"></script>
+
+<script src="/js/auth.js"></script>
+
+</body>
+
+</html>

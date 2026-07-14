@@ -1,0 +1,205 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:tahoma,sans-serif;
+}
+
+body{
+
+    background:#f5f7fb;
+
+    direction:rtl;
+
+}
+
+.page{
+
+    width:min(95%,1400px);
+
+    margin:40px auto;
+
+}
+
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.page-header h1{
+
+    font-size:2.2rem;
+
+}
+
+.page-header button{
+
+    background:#111;
+
+    color:#fff;
+
+    border:none;
+
+    padding:14px 24px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.table-box{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#111;
+
+    color:#fff;
+
+}
+
+th{
+
+    padding:18px;
+
+}
+
+td{
+
+    padding:18px;
+
+    text-align:center;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+.modal.active{
+
+    display:flex;
+
+}
+
+.modal-content{
+
+    width:min(550px,95%);
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:30px;
+
+}
+
+#discount-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+#discount-form input,
+#discount-form select{
+
+    padding:14px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+}
+
+#discount-form button{
+
+    background:#111;
+
+    color:white;
+
+    border:none;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+@media(max-width:768px){
+
+.page-header{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.page-header button{
+
+    width:100%;
+
+}
+
+.table-box{
+
+    overflow:auto;
+
+}
+
+table{
+
+    min-width:800px;
+
+}
+
+}

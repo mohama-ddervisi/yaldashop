@@ -1,0 +1,397 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:tahoma,sans-serif;
+}
+
+body{
+
+    background:#f5f7fb;
+
+    direction:rtl;
+
+    color:#222;
+
+}
+
+.checkout-container{
+
+    width:min(95%,1400px);
+
+    margin:40px auto;
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:30px;
+
+    align-items:start;
+
+}
+
+/* ===========================
+        LEFT
+=========================== */
+
+.checkout-form{
+
+    background:#fff;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.checkout-form h2{
+
+    margin-bottom:25px;
+
+    font-size:28px;
+
+}
+
+#checkout-form{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:18px;
+
+}
+
+#checkout-form input{
+
+    width:100%;
+
+    padding:16px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+    transition:.25s;
+
+}
+
+#checkout-form textarea{
+
+    grid-column:1/3;
+
+    width:100%;
+
+    min-height:120px;
+
+    resize:vertical;
+
+    padding:16px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+}
+
+#checkout-form input:focus,
+#checkout-form textarea:focus{
+
+    border-color:#111;
+
+}
+
+/* ===========================
+        RIGHT
+=========================== */
+
+.checkout-sidebar{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    position:sticky;
+
+    top:30px;
+
+}
+
+.checkout-sidebar h2{
+
+    margin-bottom:20px;
+
+}
+
+.discount-box{
+
+    display:flex;
+
+    gap:10px;
+
+    margin:25px 0;
+
+}
+
+.discount-box input{
+
+    flex:1;
+
+    padding:14px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+}
+
+.discount-box button{
+
+    background:#111;
+
+    color:white;
+
+    border:none;
+
+    padding:0 22px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.price-box{
+
+    margin:25px 0;
+
+}
+
+.price-box p,
+
+.price-box h3{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:18px;
+
+}
+
+.price-box h3{
+
+    padding-top:18px;
+
+    border-top:1px solid #ddd;
+
+}
+
+#submit-order{
+
+    width:100%;
+
+    background:#d97706;
+
+    color:white;
+
+    border:none;
+
+    padding:18px;
+
+    border-radius:12px;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#submit-order:hover{
+
+    background:#b45309;
+
+}
+
+/* ===========================
+        CART ITEMS
+=========================== */
+
+#cart-items{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.cart-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding-bottom:15px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.cart-item img{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:12px;
+
+    object-fit:cover;
+
+}
+
+.cart-info{
+
+    flex:1;
+
+}
+
+.cart-name{
+
+    font-weight:bold;
+
+    margin-bottom:8px;
+
+}
+
+.cart-price{
+
+    color:#666;
+
+}
+
+/* ===========================
+        TABLET
+=========================== */
+
+@media(max-width:992px){
+
+.checkout-container{
+
+    grid-template-columns:1fr;
+
+}
+
+.checkout-sidebar{
+
+    position:static;
+
+}
+
+}
+
+/* ===========================
+        MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+body{
+
+    padding:15px;
+
+}
+
+.checkout-container{
+
+    width:100%;
+
+    margin:0;
+
+}
+
+.checkout-form{
+
+    padding:22px;
+
+}
+
+.checkout-sidebar{
+
+    padding:22px;
+
+}
+
+#checkout-form{
+
+    grid-template-columns:1fr;
+
+}
+
+#checkout-form textarea{
+
+    grid-column:auto;
+
+}
+
+.discount-box{
+
+    flex-direction:column;
+
+}
+
+.discount-box button{
+
+    width:100%;
+
+    height:50px;
+
+}
+
+}
+
+/* ===========================
+      SMALL MOBILE
+=========================== */
+
+@media(max-width:480px){
+
+.checkout-form h2,
+
+.checkout-sidebar h2{
+
+    font-size:22px;
+
+}
+
+#submit-order{
+
+    font-size:16px;
+
+}
+
+.cart-item img{
+
+    width:60px;
+
+    height:60px;
+
+}
+
+}

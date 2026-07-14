@@ -1,0 +1,263 @@
+body{
+
+    background:#f7f7f7;
+
+}
+
+.order-header{
+
+    height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 30px;
+
+    background:#fff;
+
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+
+}
+
+.order-page{
+
+    max-width:900px;
+
+    margin:40px auto;
+
+    padding:20px;
+
+}
+
+.order-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+
+}.order-info{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:25px;
+
+}
+
+.order-summary{
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+font-size:.95rem;
+
+}
+
+.order-summary p{
+
+margin:0;
+
+}
+.section-title{
+
+margin:25px 0 15px;
+
+font-size:1rem;
+
+font-weight:bold;
+
+}
+
+.products-list{
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.product-row{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+background:#fff;
+
+padding:15px;
+
+border-radius:16px;
+
+box-shadow:0 6px 18px rgba(0,0,0,.05);
+
+}
+
+.product-image{
+
+width:75px;
+
+height:75px;
+
+object-fit:cover;
+
+border-radius:14px;
+
+}
+
+.product-info{
+
+flex:1;
+
+}
+
+.product-info h4{
+
+margin-bottom:8px;
+
+font-size:.95rem;
+
+}
+
+.product-info p{
+
+font-size:.85rem;
+
+color:#666;
+
+margin:4px 0;
+
+}
+
+.receiver-box{
+
+background:#fff;
+
+padding:20px;
+
+border-radius:18px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.05);
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+margin-top:15px;
+
+}
+
+.order-total{
+
+margin-top:25px;
+
+background:#111;
+
+color:#fff;
+
+padding:18px 20px;
+
+border-radius:18px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+font-size:1rem;
+
+font-weight:bold;
+
+}
+.order-timeline{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+margin-bottom:30px;
+
+}
+
+.timeline-item{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+gap:8px;
+
+font-size:.72rem;
+
+color:#999;
+
+width:70px;
+
+}
+
+.circle{
+
+width:20px;
+
+height:20px;
+
+border-radius:50%;
+
+background:#ddd;
+
+}
+
+.timeline-item.active{
+
+color:#111;
+
+font-weight:bold;
+
+}
+
+.timeline-item.active .circle{
+
+background:#111;
+
+}
+
+.line{
+
+height:3px;
+
+flex:1;
+
+background:#ddd;
+
+margin:0 8px;
+
+}
+
+.line.active{
+
+background:#111;
+
+}

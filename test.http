@@ -1,0 +1,8 @@
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+    "fullName":"محمد احمدی",
+    "phone":"09123456789",
+    "address":"تهران"
+}

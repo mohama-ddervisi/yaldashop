@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>تکمیل سفارش</title>
+
+    <link rel="stylesheet" href="/css/checkout.css">
+
+</head>
+
+<body>
+
+<div class="checkout-container">
+
+    <div class="checkout-form">
+
+        <h2>اطلاعات گیرنده</h2>
+
+        <form id="checkout-form">
+
+            <input
+                id="fullName"
+                type="text"
+                name="fullName"
+                placeholder="نام و نام خانوادگی">
+
+            <input
+                id="phone"
+                type="text"
+                name="phone"
+                placeholder="شماره موبایل">
+
+            <input
+                id="province"
+                type="text"
+                name="province"
+                placeholder="استان">
+
+            <input
+                id="city"
+                type="text"
+                name="city"
+                placeholder="شهر">
+
+            <textarea
+               id="address"
+                name="address"
+                placeholder="آدرس کامل"></textarea>
+
+            <input
+                id="postalCode"
+                type="text"
+                name="postalCode"
+                placeholder="کدپستی">
+
+            <textarea
+                 id="note"
+                name="description"
+                placeholder="توضیحات سفارش (اختیاری)"></textarea>
+
+        </form>
+
+    </div>
+
+    <div class="checkout-sidebar">
+
+        <h2>خلاصه سفارش</h2>
+
+        <div id="cart-items">
+
+        </div>
+
+        <div class="discount-box">
+
+            <input
+                id="discount-code"
+                type="text"
+                placeholder="کد تخفیف">
+
+            <button id="apply-discount">
+
+                اعمال
+
+            </button>
+
+        </div>
+
+        <div class="price-box">
+
+            <p>
+
+                جمع خرید
+
+                <span id="subtotal">
+
+                    ۰ تومان
+
+                </span>
+
+            </p>
+
+            <p>
+
+                تخفیف
+
+                <span id="discount">
+
+                    ۰ تومان
+
+                </span>
+
+            </p>
+
+            <h3>
+
+                قابل پرداخت
+
+                <span id="total">
+
+                    ۰ تومان
+
+                </span>
+
+            </h3>
+
+        </div>
+
+        <button id="submit-order">
+
+            ثبت سفارش
+
+        </button>
+
+    </div>
+
+</div>
+
+<script src="/js/checkout.js"></script>
+
+</body>
+
+</html>

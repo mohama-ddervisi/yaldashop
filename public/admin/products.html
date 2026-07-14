@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>مدیریت محصولات</title>
+
+<link rel="stylesheet" href="products.css">
+
+</head>
+
+<body>
+
+<div class="page">
+
+<header class="page-header">
+
+<h1>مدیریت محصولات</h1>
+
+<button id="add-product">
+➕ افزودن محصول
+</button>
+
+</header>
+
+
+<section class="top-bar">
+
+<input
+type="text"
+id="search"
+placeholder="جستجوی محصول...">
+
+<select id="category-filter">
+
+<option value="">همه دسته بندی ها</option>
+
+</select>
+
+</section>
+
+
+<section class="cards">
+
+<div class="card">
+
+<h3>کل محصولات</h3>
+
+<p id="total-products">0</p>
+
+</div>
+
+<div class="card">
+
+<h3>موجودی کل</h3>
+
+<p id="total-stock">0</p>
+
+</div>
+
+<div class="card">
+
+<h3>کم موجود</h3>
+
+<p id="low-stock">0</p>
+
+</div>
+
+<div class="card">
+
+<h3>غیرفعال</h3>
+
+<p id="inactive-products">0</p>
+
+</div>
+
+</section>
+
+
+<section class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>عکس</th>
+
+<th>نام</th>
+
+<th>دسته</th>
+
+<th>قیمت</th>
+
+<th>موجودی</th>
+
+<th>فروش</th>
+
+<th>وضعیت</th>
+
+<th>عملیات</th>
+
+</tr>
+
+</thead>
+
+<tbody id="products-table">
+
+</tbody>
+
+</table>
+
+</section>
+
+</div>
+<!-- Product Modal -->
+
+<div id="product-modal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2 id="modal-title">
+
+                افزودن محصول
+
+            </h2>
+
+            <button id="close-modal">
+
+                ✕
+
+            </button>
+
+        </div>
+
+       <form id="product-form">
+
+    <div class="grid">
+
+        <div class="field">
+            <label>نام محصول</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                required>
+        </div>
+
+        <div class="field">
+            <label>برند</label>
+            <input
+                type="text"
+                id="brand"
+                name="brand">
+        </div>
+
+        <div class="field">
+            <label>قیمت</label>
+            <input
+                type="number"
+                id="price"
+                name="price"
+                required>
+        </div>
+
+        <div class="field">
+            <label>قیمت قبل تخفیف</label>
+            <input
+                type="number"
+                id="oldPrice"
+                name="oldPrice">
+        </div>
+
+        <div class="field">
+            <label>درصد تخفیف</label>
+            <input
+                type="number"
+                id="discount"
+                name="discount">
+        </div>
+
+        <div class="field">
+            <label>موجودی</label>
+            <input
+                type="number"
+                id="stock"
+                name="stock"
+                required>
+        </div>
+
+        <div class="field">
+            <label>دسته بندی</label>
+            <select id="category" name="category">
+
+    <option value="ظروف پذیرایی">ظروف پذیرایی</option>
+
+    <option value="لیوان و فنجان">لیوان و فنجان</option>
+
+    <option value="قاشق و چنگال">قاشق و چنگال</option>
+
+    <option value="لوازم پخت و پز">لوازم پخت و پز</option>
+
+    <option value="ظروف نگهداری">ظروف نگهداری</option>
+
+    <option value="لوازم آشپزخانه">لوازم آشپزخانه</option>
+
+    <option value="سایر محصولات">سایر محصولات</option>
+
+</select>
+        </div>
+
+        <div class="field">
+            <label>ویژگی اول</label>
+            <input
+                type="text"
+                id="feature1"
+                name="feature1">
+        </div>
+
+        <div class="field">
+            <label>ویژگی دوم</label>
+            <input
+                type="text"
+                id="feature2"
+                name="feature2">
+        </div>
+
+    </div>
+
+    <div class="field">
+
+        <label>توضیحات</label>
+
+        <textarea
+            id="description"
+            name="description"
+            rows="5"></textarea>
+
+    </div>
+<div class="field">
+
+    <label>تصاویر فعلی</label>
+
+    <div
+        id="current-images"
+        class="current-images">
+
+    </div>
+
+</div>
+    <div class="field">
+
+        <label>تصاویر محصول</label>
+
+        <input
+            type="file"
+            id="images"
+            name="images"
+            accept="image/*"
+            multiple>
+
+        <small>
+            حداکثر ۵ تصویر انتخاب کنید.
+        </small>
+
+        <div
+            id="image-preview"
+            class="image-preview">
+        </div>
+
+    </div>
+
+    <div class="switch">
+
+        <label for="isActive">
+            فعال باشد
+        </label>
+
+        <input
+            type="checkbox"
+            id="isActive"
+            name="isActive"
+            checked>
+
+    </div>
+
+    <button
+        class="save-btn"
+        type="submit">
+
+        ذخیره محصول
+
+    </button>
+
+</form>
+    </div>
+
+</div>
+<script src="products.js"></script>
+
+</body>
+
+</html>

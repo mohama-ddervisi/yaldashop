@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yalda Shop</title>
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="product-header">
+
+    <a href="/" class="product-logo">
+
+        YaldaShop
+
+    </a>
+
+    <div class="product-header-icons">
+
+      <a href="/wishlist.html" id="wishlist-btn" class="header-icon">
+
+    <img
+        id="wishlist-icon"
+        src="/images/heart-regular-full.svg"
+        alt="wishlist"
+    >
+
+    <span id="wishlist-count">
+
+        0
+
+    </span>
+
+</a>
+
+        <a href="/cart.html" class="header-icon cart-icon">
+
+            <img
+                src="/images/shopping-cart-1135-svgrepo-com.svg"
+                alt="cart"
+            >
+<span id="cart-count">
+
+0
+
+</span>
+
+        </a>
+
+    </div>
+
+</header>
+ <main class="product-page">
+
+    <div class="product-wrapper">
+
+     <!-- گالری -->
+
+<div class="product-gallery">
+
+    <div class="gallery-main">
+
+        <img
+            id="main-image"
+            src=""
+            alt=""
+        >
+
+    </div>
+
+    <div class="gallery-thumbs">
+
+        <img id="thumb-1" class="active" src="">
+
+        <img id="thumb-2" src="">
+
+        <img id="thumb-3" src="">
+
+        <img id="thumb-4" src="">
+        
+         <img id="thumb-5" src="">
+
+    </div>
+
+</div>
+
+        <!-- اطلاعات -->
+
+        <div class="product-info">
+
+            <span
+                id="product-brand"
+                class="product-brand"
+            >
+            </span>
+
+            <h1 id="product-name">
+
+            </h1>
+
+            <p
+                id="product-description"
+                class="product-description"
+            >
+            </p>
+
+            <div
+                id="product-price"
+                class="product-price"
+            >
+            </div>
+
+            <div
+                id="product-stock"
+                class="product-stock"
+            >
+            </div>
+
+          <div class="quantity-box">
+
+    <button id="minus-btn">
+
+        −
+
+    </button>
+
+    <span id="quantity">
+
+        1
+
+    </span>
+
+    <button id="plus-btn">
+
+        +
+
+    </button>
+
+</div>
+
+<button class="add-cart-btn">
+
+    افزودن به سبد خرید
+
+</button>
+
+        </div>
+
+    </div>
+
+</main>
+<div id="toast">
+
+    <span id="toast-message">
+
+    </span>
+
+</div>
+
+<script src="/js/cart-utils.js"></script>
+<script src="/js/wishlist-utils.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/product.js"></script>
+<script src="/js/auth.js"></script>
+
+</body>
+</html>

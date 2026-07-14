@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>داشبورد مدیریت</title>
+
+    <link rel="stylesheet" href="/css/dashboard.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <h1>داشبورد مدیریت</h1>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>💰 فروش کل</h3>
+                <p id="total-sales">0</p>
+            </div>
+
+            <div class="card">
+                <h3>🛒 سفارش‌ها</h3>
+                <p id="total-orders">0</p>
+            </div>
+
+            <div class="card">
+                <h3>📦 محصولات</h3>
+                <p id="total-products">0</p>
+            </div>
+
+            <div class="card">
+                <h3>👥 مشتری‌ها</h3>
+                <p id="total-customers">0</p>
+            </div>
+
+            <div class="card">
+                <h3>⚠️ موجودی کم</h3>
+                <p id="low-stock">0</p>
+            </div>
+
+        </div>
+
+        <div class="table-box">
+
+            <h2>آخرین سفارش‌ها</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>مشتری</th>
+
+                        <th>موبایل</th>
+
+                        <th>مبلغ</th>
+
+                        <th>وضعیت</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="latest-orders">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+<div class="dashboard-bottom">
+
+    <div class="panel">
+
+        <h2>⚠️ محصولات کم موجود</h2>
+
+        <div id="low-stock-products"></div>
+
+    </div>
+
+    <div class="panel">
+
+        <h2>🏆 پرفروش‌ترین محصولات</h2>
+
+        <div id="top-products"></div>
+
+    </div>
+
+</div>
+    <script src="/js/dashboard.js"></script>
+
+</body>
+
+</html>

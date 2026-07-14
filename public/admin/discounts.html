@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>مدیریت کدهای تخفیف</title>
+
+    <link rel="stylesheet" href="discounts.css">
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <header class="page-header">
+
+        <h1>🎟 مدیریت کدهای تخفیف</h1>
+
+        <button id="add-discount">
+
+            + افزودن کد
+
+        </button>
+
+    </header>
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>کد</th>
+
+                    <th>نوع</th>
+
+                    <th>مقدار</th>
+
+                    <th>حداقل خرید</th>
+
+                    <th>استفاده</th>
+
+                    <th>وضعیت</th>
+
+                    <th>عملیات</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="discounts-table">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div id="discount-modal" class="modal">
+
+    <div class="modal-content">
+
+        <h2>افزودن کد تخفیف</h2>
+
+        <form id="discount-form">
+
+            <input
+                type="text"
+                name="code"
+                placeholder="کد تخفیف"
+                required>
+
+            <select name="type">
+
+                <option value="percent">
+
+                    درصدی
+
+                </option>
+
+                <option value="fixed">
+
+                    مبلغ ثابت
+
+                </option>
+
+            </select>
+
+            <input
+                type="number"
+                name="value"
+                placeholder="مقدار"
+                required>
+
+            <input
+                type="number"
+                name="minPurchase"
+                placeholder="حداقل خرید">
+
+            <input
+                type="number"
+                name="maxDiscount"
+                placeholder="سقف تخفیف">
+
+            <input
+                type="number"
+                name="usageLimit"
+                placeholder="حداکثر استفاده">
+
+            <input
+                type="date"
+                name="expiresAt">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="isActive"
+                    checked>
+
+                فعال
+
+            </label>
+
+            <button type="submit">
+
+                ذخیره
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="discounts.js"></script>
+
+</body>
+
+</html>
