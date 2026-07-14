@@ -4,18 +4,24 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 
-// اگر پوشه uploads وجود نداشت بساز
-if (!fs.existsSync("uploads")) {
-    fs.mkdirSync("uploads");
+/// فقط روی سیستم لوکال پوشه uploads ساخته شود
+if (process.env.VERCEL !== "1") {
+    if (!fs.existsSync("uploads")) {
+        fs.mkdirSync("uploads");
+    }
 }
 
 const storage = multer.diskStorage({
 
     destination: (req, file, cb) => {
 
-        cb(null, "uploads");
+    if (process.env.VERCEL === "1") {
+        return cb(new Error("آپلود فایل روی نسخه نمایشی غیرفعال است."));
+    }
 
-    },
+    cb(null, "uploads");
+
+},
 
     filename: (req, file, cb) => {
 
