@@ -28,7 +28,7 @@ app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use("/auth", authRoutes);
-const path = require("path");
+//const path = require("path");
 
 app.use("/admin/products", (req, res, next) => {
     console.log("SERVER:", req.method, req.url);
@@ -39,7 +39,9 @@ app.use("/admin/products", adminProductRoutes);
 
 app.use("/discounts", discountRoutes);
 app.use("/checkout", checkoutRoutes);
-
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/public/index.html");
+});
 
 
 const PORT = 3000;
