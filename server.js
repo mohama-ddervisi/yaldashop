@@ -63,6 +63,3 @@ if (process.env.VERCEL !== "1") {
 }
 
 module.exports = app;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
