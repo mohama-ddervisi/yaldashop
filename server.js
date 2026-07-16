@@ -23,12 +23,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-//app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static("uploads"));
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use("/auth", authRoutes);
-//const path = require("path");
+const path = require("path");
 
 app.use("/admin/products", (req, res, next) => {
     console.log("SERVER:", req.method, req.url);
@@ -62,4 +62,4 @@ if (process.env.VERCEL !== "1") {
     });
 }
 
-module.exports = app;
+module.exports = app; 
