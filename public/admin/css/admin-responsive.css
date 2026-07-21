@@ -1,0 +1,106 @@
+/* ============================= */
+/* Tablet */
+/* ============================= */
+
+@media (max-width:1024px){
+
+    .sidebar{
+        width:220px;
+    }
+
+    .content{
+        padding:35px;
+    }
+
+}
+
+
+/* ============================= */
+/* Mobile */
+/* ============================= */
+
+@media (max-width:768px){
+
+    .layout{
+        display:block;
+    }
+
+    .sidebar{
+
+        width:100%;
+        background:white;
+        color:#111827;
+        padding:20px;
+        box-shadow:none;
+        border-bottom:1px solid #e5e7eb;
+
+    }
+
+    .logo{
+
+        text-align:center;
+        margin-bottom:20px;
+
+    }
+
+    .logo p{
+
+        display:none;
+
+    }
+
+    .sidebar nav{
+
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:15px;
+
+    }
+
+    .sidebar nav a{
+
+        background:#f3f6fb;
+        color:#111827;
+
+        padding:18px;
+
+        text-align:center;
+
+        border-radius:16px;
+
+        font-size:16px;
+
+        font-weight:bold;
+
+    }
+
+    .sidebar nav a:hover{
+
+        background:#2563eb;
+        color:white;
+
+        transform:none;
+
+    }
+
+    .content{
+
+        padding:25px 20px;
+
+    }
+
+    .content h1{
+
+        font-size:28px;
+        text-align:center;
+
+    }
+
+    .content p{
+
+        text-align:center;
+        font-size:16px;
+
+    }
+
+}

@@ -14,7 +14,8 @@ if (process.env.VERCEL !== "1") {
 const storage = multer.diskStorage({
 
     destination: (req, file, cb) => {
-
+   console.log("VERCEL =", process.env.VERCEL);
+    console.log("Saving file to uploads");
     if (process.env.VERCEL === "1") {
         return cb(new Error("آپلود فایل روی نسخه نمایشی غیرفعال است."));
     }

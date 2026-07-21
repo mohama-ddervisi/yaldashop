@@ -590,13 +590,14 @@ border:solid 1px rgb(0, 0, 0);
 
         height:42px;
 
-        background:rgba(255, 255, 255, 0.618);
+        background:rgba(255, 255, 255, 0);
 
-        color:black;
+        color:rgb(242, 242, 242);
 
         border:none;
 
         border-radius:10px;
+        border: solid 1px #ffffff;
 
         font-size:14px;
     }
@@ -1006,7 +1007,9 @@ border:solid 1px rgb(0, 0, 0);
     background:#fff;
 
     border-radius:22px;
+overflow-x:auto;
 
+    scroll-behavior:smooth;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -1337,14 +1340,14 @@ border:solid 1px rgb(0, 0, 0);
 @media(max-width:768px){
 
     .features{
-max-width: 395px;
+
         display:grid;
 
         grid-template-columns:1fr 1fr;
 
         gap:20px;
 
-        padding:20px;
+        padding:30px;
     }
 
     .feature-divider{
@@ -2182,11 +2185,13 @@ height:58px;
 
 border:none;
 
+border: solid 2px #000;
+
 border-radius:16px;
 
-background:#111;
+background:#11111100;
 
-color:#fff;
+color:#000000;
 
 font-size:1rem;
 
@@ -2200,11 +2205,11 @@ transition:.3s;
 
 .add-cart-btn:hover{
 
-background:#000;
+background:#66ffe3;
 
 transform:translateY(-3px);
 
-box-shadow:0 20px 40px rgba(0,0,0,.15);
+box-shadow:0 20px 40px rgba(176, 255, 250, 0.15);
 
 }
 .gallery-thumbs{
@@ -3319,5 +3324,93 @@ width:100%;
 color:#e53935;
 
 border:2px solid #e53935;
+
+}
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+.categories{
+
+    transition:.45s;
+
+}
+
+.categories.focused{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 50px rgba(0,0,0,.12);
+
+    border-radius:28px;
+
+}
+.category-guide{
+
+    width:fit-content;
+
+    margin:0 auto 18px;
+
+    padding:12px 22px;
+
+    background:#111;
+
+    color:#fff;
+
+    border-radius:50px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    opacity:0;
+
+    transform:translateY(-15px);
+
+    transition:.45s;
+
+    pointer-events:none;
+
+}
+
+.category-guide.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+/* ---------- Highlight ---------- */
+
+.categories.focused .category-item{
+
+    animation:categoryPulse .7s ease;
+
+}
+
+@keyframes categoryPulse{
+
+    0%{
+
+        transform:scale(.92);
+
+    }
+
+    50%{
+
+        transform:scale(1.06);
+
+        box-shadow:0 12px 30px rgba(0,0,0,.12);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
 
 }

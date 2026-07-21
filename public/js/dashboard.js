@@ -101,6 +101,10 @@ data.topProducts.forEach(product => {
     `;
 
 });
+renderSalesChart(
+    data.chart.labels,
+    data.chart.sales
+);
     }
 
     catch (err) {
@@ -108,6 +112,61 @@ data.topProducts.forEach(product => {
         console.error(err);
 
     }
+
+}
+function renderSalesChart(labels, sales){
+
+    const ctx = document
+        .getElementById("salesChart")
+        .getContext("2d");
+
+    new Chart(ctx,{
+
+        type:"line",
+
+        data:{
+
+            labels,
+
+            datasets:[{
+
+                label:"فروش",
+
+                data:sales,
+
+                borderWidth:3,
+
+                tension:.35,
+
+                fill:true
+
+            }]
+
+        },
+
+      options:{
+
+    responsive:true,
+
+    maintainAspectRatio:false,
+
+    aspectRatio:2,
+
+    plugins:{
+        legend:{
+            display:false
+        }
+    },
+
+    scales:{
+        y:{
+            beginAtZero:true
+        }
+    }
+
+}
+
+    });
 
 }
 

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>مدیریت کاربران</title>
+
+<link rel="stylesheet" href="/css/users.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>👥 مدیریت کاربران</h1>
+
+<div class="search-box">
+
+<input
+id="search"
+type="text"
+placeholder="جستجوی نام، موبایل یا ایمیل">
+
+</div>
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>نام</th>
+
+<th>موبایل</th>
+
+<th>ایمیل</th>
+
+<th>سفارش</th>
+
+<th>مجموع خرید</th>
+
+<th>عضویت</th>
+
+<th>عملیات</th>
+
+</tr>
+
+</thead>
+
+<tbody id="users-body"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<div class="modal" id="modal">
+
+<div class="modal-content">
+
+<span id="close">&times;</span>
+
+<div id="modal-body"></div>
+
+</div>
+
+</div>
+
+<script src="/js/users.js"></script>
+
+</body>
+
+</html>

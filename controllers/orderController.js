@@ -172,27 +172,20 @@ await prisma.$transaction(async (tx) => {
 console.log("REQ USER =", req.user);
   order = await tx.order.create({
 
-    data: {
+   data: {
 
-        fullName,
+    fullName,
+    phone,
+    province,
+    city,
+    address,
+    postalCode,
+    note,
+    total: finalTotal,
 
-        phone,
+    userId: req.user?.id ?? null
 
-        province,
-
-        city,
-
-        address,
-
-        postalCode,
-
-        note,
-
-        total: finalTotal,
-
-        userId: req.user.id
-
-    }
+}
 
 });
 

@@ -8,69 +8,52 @@ datasource db {
 }
 
 model Product {
-  id          Int      @id @default(autoincrement())
+  id          Int            @id @default(autoincrement())
   name        String
   description String?
   price       Float
-  createdAt   DateTime @default(now())
+  createdAt   DateTime       @default(now())
   brand       String?
   category    String
-
-  image String? // فعلاً نگه می‌داریم
-
-  slug String @unique
-
-  stock Int @default(0)
-
-  updatedAt DateTime @updatedAt
-
-  discount Int?
-
-  feature1 String?
-
-  feature2 String?
-
-  oldPrice Float?
-
-  isActive Boolean @default(true)
-
-  soldCount Int @default(0)
-
-  orderItems OrderItem[]
-
-  images ProductImage[]
+  image       String?
+  slug        String         @unique
+  stock       Int            @default(0)
+  updatedAt   DateTime       @updatedAt
+  discount    Int?
+  feature1    String?
+  feature2    String?
+  oldPrice    Float?
+  isActive    Boolean        @default(true)
+  soldCount   Int            @default(0)
+  orderItems  OrderItem[]
+  images      ProductImage[]
 }
 
 model ProductImage {
-  id Int @id @default(autoincrement())
-
-  image String
-
-  sort Int @default(0)
-
+  id        Int     @id @default(autoincrement())
+  image     String
+  sort      Int     @default(0)
   productId Int
-
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
 model Order {
-  id         Int         @id @default(autoincrement())
-  fullName   String
-  phone      String
-  address    String
-  total      Int
-  status     String      @default("pending")
-  createdAt  DateTime    @default(now())
-  items      OrderItem[]
-  province   String?
-  city       String?
-  postalCode String?
-  note       String?
-  userId Int?
-
-user User? @relation(fields: [userId], references: [id])
-trackingCode String?
-shippingCompany String?
+  id              Int         @id @default(autoincrement())
+  fullName        String
+  phone           String
+  address         String
+  total           Int
+  status          String      @default("pending")
+  createdAt       DateTime    @default(now())
+  province        String?
+  city            String?
+  postalCode      String?
+  note            String?
+  userId          Int?
+  trackingCode    String?
+  shippingCompany String?
+  user            User?       @relation(fields: [userId], references: [id])
+  items           OrderItem[]
 }
 
 model OrderItem {
@@ -84,45 +67,27 @@ model OrderItem {
 }
 
 model Discount {
-  id Int @id @default(autoincrement())
-
-  code String @unique
-
-  type String
-
-  value Float
-
+  id          Int       @id @default(autoincrement())
+  code        String    @unique
+  type        String
+  value       Float
   minPurchase Float?
-
   maxDiscount Float?
-
-  usageLimit Int?
-
-  usedCount Int @default(0)
-
-  expiresAt DateTime?
-
-  isActive Boolean @default(true)
-
-  createdAt DateTime @default(now())
+  usageLimit  Int?
+  usedCount   Int       @default(0)
+  expiresAt   DateTime?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
 }
 
 model User {
-  id Int @id @default(autoincrement())
-
-  fullName String
-
-  phone String @unique
-
-  email String? @unique
-
-  password String
-
-  role String @default("user")
-
+  id        Int      @id @default(autoincrement())
+  fullName  String
+  phone     String   @unique
+  email     String?  @unique
+  password  String
+  role      String   @default("user")
   createdAt DateTime @default(now())
-
   updatedAt DateTime @updatedAt
-
-  orders Order[]
+  orders    Order[]
 }

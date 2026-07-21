@@ -3,93 +3,127 @@ const prisma = require("../lib/prisma");
 async function getDashboardStats(req, res) {
     try {
 
-        const totalSales = await prisma.order.aggregate({
-            _sum: {
-                total: true
+     const [
+    totalSales,
+    totalOrders,
+    totalProducts,
+    totalCustomers,
+    lowStock,
+    lowStockProducts,
+    topProducts,
+    latestOrders
+] = await Promise.all([
+
+    prisma.order.aggregate({
+        _sum: {
+            total: true
+        }
+    }),
+
+    prisma.order.count(),
+
+    prisma.product.count(),
+
+    prisma.order.groupBy({
+        by: ["phone"]
+    }),
+
+    prisma.product.count({
+        where: {
+            stock: {
+                lte: 5
             }
-        });
+        }
+    }),
 
-        const totalOrders = await prisma.order.count();
-
-        const totalProducts = await prisma.product.count();
-
-        const totalCustomers = await prisma.order.groupBy({
-            by: ["phone"]
-        });
-
-        const lowStock = await prisma.product.count({
-            where: {
-                stock: {
-                    lte: 5
-                }
+    prisma.product.findMany({
+        where: {
+            stock: {
+                lte: 5
             }
-        });
+        },
+        orderBy: {
+            stock: "asc"
+        },
+        select: {
+            id: true,
+            name: true,
+            stock: true,
+            image: true
+        }
+    }),
 
-        const lowStockProducts =
-await prisma.product.findMany({
+    prisma.product.findMany({
+        take: 5,
+        orderBy: {
+            soldCount: "desc"
+        },
+        select: {
+            id: true,
+            name: true,
+            soldCount: true,
+            image: true
+        }
+    }),
 
-    where:{
+    prisma.order.findMany({
+        take: 5,
+        orderBy: {
+            createdAt: "desc"
+        },
+        select: {
+            id: true,
+            fullName: true,
+            phone: true,
+            total: true,
+            createdAt: true
+        }
+    })
 
-        stock:{
+]);
+       
+const chart = {
+    labels: [],
+    sales: []
+};
 
-            lte:5
+for (let i = 6; i >= 0; i--) {
+
+    const start = new Date();
+    start.setHours(0, 0, 0, 0);
+    start.setDate(start.getDate() - i);
+
+    const end = new Date(start);
+    end.setDate(end.getDate() + 1);
+
+    const result = await prisma.order.aggregate({
+
+        _sum: {
+            total: true
+        },
+
+        where: {
+
+            createdAt: {
+
+                gte: start,
+                lt: end
+
+            }
 
         }
 
-    },
+    });
 
-    select:{
+    chart.labels.push(
+        start.toLocaleDateString("fa-IR", {
+            weekday: "short"
+        })
+    );
 
-        id:true,
+    chart.sales.push(result._sum.total || 0);
 
-        name:true,
-
-        stock:true,
-
-        image:true
-
-    },
-
-    orderBy:{
-
-        stock:"asc"
-
-    }
-
-});
-
-const topProducts =
-await prisma.product.findMany({
-
-    orderBy:{
-
-        soldCount:"desc"
-
-    },
-
-    take:5,
-
-    select:{
-
-        id:true,
-
-        name:true,
-
-        soldCount:true,
-
-        image:true
-
-    }
-
-});
-
-        const latestOrders = await prisma.order.findMany({
-            orderBy: {
-                createdAt: "desc"
-            },
-            take: 5
-        });
-
+}
         res.json({
             
             success: true,
@@ -105,6 +139,9 @@ await prisma.product.findMany({
             lowStock,
 
             latestOrders,
+            
+            chart,
+
 lowStockProducts,
 
 topProducts

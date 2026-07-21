@@ -41,15 +41,19 @@ async function getProducts(req, res) {
             ];
         }
 
-        const products = await prisma.product.findMany({
-            where,
-            include: {
-                images: true
-            },
-            orderBy: {
-                id: "desc"
-            }
-        });
+      console.time("products");
+
+const products = await prisma.product.findMany({
+    where,
+    include: {
+        images: true
+    },
+    orderBy: {
+        id: "desc"
+    }
+});
+
+console.timeEnd("products");
 
         res.json({
             success: true,

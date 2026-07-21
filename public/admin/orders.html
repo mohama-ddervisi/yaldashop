@@ -5,42 +5,98 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>سفارش‌های من</title>
+<title>مدیریت سفارش‌ها</title>
 
 <link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/orders.css">
+
+<link rel="stylesheet" href="/admin/orders.css">
 
 </head>
 
 <body>
 
-<header class="orders-header">
+<div class="orders-page">
 
-<a href="/profile.html">
+<h1>مدیریت سفارش‌ها</h1>
 
-←
+<div class="stats">
 
-</a>
+<div class="card">
 
-<h2>
+<h3>تعداد سفارش‌ها</h3>
 
-سفارش‌های من
+<p id="orders-count">0</p>
 
-</h2>
+</div>
 
-</header>
+<div class="card">
 
-<section
-id="orders-container"
-class="orders-container">
+<h3>مجموع فروش</h3>
 
-</section>
+<p id="orders-total">0 تومان</p>
 
-<script src="/js/common.js"></script>
-<script src="/js/orders.js"></script>
+</div>
+
+</div>
+<div class="search-box">
+
+    <input
+        type="text"
+        id="search-order"
+        placeholder="جستجو بر اساس شماره سفارش، نام یا موبایل...">
+
+</div>
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>شماره</th>
+
+<th>مشتری</th>
+
+<th>موبایل</th>
+
+<th>مبلغ</th>
+
+<th>وضعیت</th>
+
+<th>تاریخ</th>
+
+<th>عملیات</th>
+
+</tr>
+
+</thead>
+
+<tbody id="orders-body">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<div id="order-modal" class="modal">
+
+<div class="modal-content">
+
+<span id="close-modal">&times;</span>
+
+<div id="modal-body"></div>
+
+</div>
+
+</div>
+
+<script src="/admin/orders.js"></script>
 
 </body>
 

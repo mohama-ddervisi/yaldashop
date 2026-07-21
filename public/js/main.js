@@ -248,3 +248,46 @@ closeMenu();
 
 });
 });
+const showcaseBtn = document.querySelector(".showcase-btn");
+const categories = document.getElementById("categories");
+
+let isAnimating = false;
+
+showcaseBtn.addEventListener("click", () => {
+
+    if (isAnimating) return;
+
+    isAnimating = true;
+
+    categories.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    setTimeout(() => {
+
+        // رفتن تا انتهای اسکرول
+        categories.scrollTo({
+            left: categories.scrollWidth,
+            behavior: "smooth"
+        });
+
+        setTimeout(() => {
+
+            // برگشت به اول
+            categories.scrollTo({
+                left: 0,
+                behavior: "smooth"
+            });
+
+            setTimeout(() => {
+
+                isAnimating = false;
+
+            }, 900);
+
+        }, 1200);
+
+    }, 700);
+
+});

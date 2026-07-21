@@ -2,54 +2,48 @@
 <html lang="fa" dir="rtl">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1.0">
-
-    <title>جزئیات سفارش</title>
+    <title>پیگیری سفارش</title>
 
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/order.css">
-
 </head>
 
 <body>
 
-<header class="order-header">
+    <div class="order-wrapper">
 
-    <a href="/orders.html" class="back-btn">
+        <header class="order-header">
 
-        ←
+            <a href="/orders.html" class="back-btn" aria-label="بازگشت">
 
-    </a>
+                ←
 
-    <h2>
+            </a>
 
-        جزئیات سفارش
+            <h2>پیگیری سفارش</h2>
 
-    </h2>
+        </header>
 
-</header>
+        <main class="order-page">
 
-<main class="order-page">
+            <div id="order-container"></div>
 
-    <div id="order-container">
+        </main>
 
     </div>
 
-</main>
+    <div id="toast">
 
-<div id="toast">
+        <span id="toast-message"></span>
 
-    <span id="toast-message"></span>
+    </div>
 
-</div>
-
-<script src="/js/common.js"></script>
-<script src="/js/auth.js"></script>
-<script src="/js/order.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/order.js"></script>
 
 </body>
 

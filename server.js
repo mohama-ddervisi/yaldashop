@@ -1,3 +1,4 @@
+
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
@@ -11,6 +12,7 @@ const adminProductRoutes = require("./routes/adminProductRoutes");
 const discountRoutes = require("./routes/discountRoutes");
 const checkoutRoutes = require("./routes/checkoutRoutes");
 const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
 const app = express();
 
 app.use((req, res, next) => {
@@ -28,13 +30,15 @@ app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
 const path = require("path");
 
 app.use("/admin/products", (req, res, next) => {
     console.log("SERVER:", req.method, req.url);
     next();
 });
-
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 app.use("/admin/products", adminProductRoutes);
 
 app.use("/discounts", discountRoutes);
@@ -55,7 +59,14 @@ app.use((err, req, res, next) => {
         message: err.message
     });
 });
+app.get("/admin", (req, res) => {
+    res.render("admin/dashboard");
+});
 
+app.get("/admin", (req, res) => {
+    console.log("ADMIN ROUTE HIT");
+    res.render("admin/dashboard");
+});
 if (process.env.VERCEL !== "1") {
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);

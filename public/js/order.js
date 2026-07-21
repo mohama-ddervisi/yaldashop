@@ -85,59 +85,27 @@ container.innerHTML = `
 <div class="order-card">
 <div class="order-timeline">
 
-<div class="timeline-item ${currentStep>=1?"active":""}">
+    <div class="timeline-track"></div>
 
-<div class="circle"></div>
+    <div class="timeline-item ${currentStep>=1?"active":""}">
+        <div class="circle">1</div>
+        <span>ثبت سفارش</span>
+    </div>
 
-<span>
+    <div class="timeline-item ${currentStep>=2?"active":""}">
+        <div class="circle">2</div>
+        <span>تایید</span>
+    </div>
 
-ثبت سفارش
+    <div class="timeline-item ${currentStep>=3?"active":""}">
+        <div class="circle">3</div>
+        <span>ارسال</span>
+    </div>
 
-</span>
-
-</div>
-
-<div class="line ${currentStep>=2?"active":""}"></div>
-
-<div class="timeline-item ${currentStep>=2?"active":""}">
-
-<div class="circle"></div>
-
-<span>
-
-تایید
-
-</span>
-
-</div>
-
-<div class="line ${currentStep>=3?"active":""}"></div>
-
-<div class="timeline-item ${currentStep>=3?"active":""}">
-
-<div class="circle"></div>
-
-<span>
-
-ارسال
-
-</span>
-
-</div>
-
-<div class="line ${currentStep>=4?"active":""}"></div>
-
-<div class="timeline-item ${currentStep>=4?"active":""}">
-
-<div class="circle"></div>
-
-<span>
-
-تحویل
-
-</span>
-
-</div>
+    <div class="timeline-item ${currentStep>=4?"active":""}">
+        <div class="circle">4</div>
+        <span>تحویل</span>
+    </div>
 
 </div>
 <div class="order-info">
