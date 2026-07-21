@@ -10,111 +10,108 @@
     rel="stylesheet"
     href="/css/style.css"
   >
+  <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
   <header class="header">
 
-  <div class="nav">
+    <div class="nav">
 
-    <!-- left icons -->
-    <div class="nav-left">
-      <div class="profile-box">
+        <!-- Left Icons -->
+        <div class="nav-left">
 
-    <a
-        href="/login.html"
-        id="profile-link"
-        class="icon">
+            <div class="profile-box">
+                <a href="/login.html" id="profile-link" class="icon">
+                    <img
+                        id="profile-icon"
+                        src="/images/circle-user-regular-full.svg"
+                        class="icon-image">
+                </a>
+            </div>
 
-        <img
-            id="profile-icon"
-            src="/images/circle-user-regular-full.svg"
-            class="icon-image">
+            <a href="/wishlist.html" class="icon">
+                <img
+                    src="/images/heart-regular-full.svg"
+                    class="icon-image">
 
-    </a>
+                <span id="wishlist-count">0</span>
+            </a>
 
-   
+            <a href="/cart.html" class="icon cart">
+                <img
+                    src="/images/shopping-cart-1135-svgrepo-com.svg"
+                    alt="Cart"
+                    class="icon-image">
 
-</div>
-      </span>
-      
-     <a href="/wishlist.html" class="icon">
+                <span id="cart-count">0</span>
+            </a>
 
-    <img
-        src="/images/heart-regular-full.svg"
-        class="icon-image">
+        </div>
+        <!-- End nav-left -->
 
-    <span id="wishlist-count">
-        0
-    </span>
 
-</a>
-    <a href="/cart.html" class="icon cart">
+        <!-- Search -->
+        <div class="nav-search">
 
-    <img
-        src="/images/shopping-cart-1135-svgrepo-com.svg"
-        alt="Cart"
-        class="icon-image"
-    >
+            <span class="search-icon">
+                <img
+                    src="/images/sistrix-brands-solid-full.svg"
+                    class="icon-image">
+            </span>
 
-    <span id="cart-count">
-        0
-    </span>
+            <input
+                type="text"
+                class="search-input"
+                placeholder="جستجوی محصولات...">
 
-</a>
+            <div class="search-results"></div>
 
-    <!-- search -->
-  <div class="nav-search">
+        </div>
 
-    <span class="search-icon">
 
-        <img
-            src="/images/sistrix-brands-solid-full.svg"
-            class="icon-image"
-        >
+        <!-- Logo -->
+        <div class="logo">
+            <h1>YALDA</h1>
+            <span>SHOP</span>
+        </div>
 
-    </span>
 
-    <input
-        type="text"
-        class="search-input"
-        placeholder="جستجوی محصولات..."
-    >
+        <!-- Mobile Bell -->
+        <a href="#" class="mobile-bell icon">
+            <img
+                src="/images/bell-svgrepo-com.svg"
+                class="icon-image">
+        </a>
 
-    <div class="search-results"></div>
 
-</div>
-    <!-- logo -->
-    <div class="logo">
-      <h1>YALDA</h1>
-      <span>SHOP</span>
+        <!-- Desktop Menu -->
+        <nav class="menu">
+            <a href="#">فروشگاه</a>
+            <a href="#">دسته‌بندی‌ها</a>
+            <a href="#">درباره ما</a>
+            <a href="#">تماس</a>
+        </nav>
+
+
+        <!-- Mobile Hamburger -->
+        <div class="hamburgers">
+
+            <label class="hamburger">
+
+                <input
+                    id="menu-toggle"
+                    type="checkbox">
+
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+
+            </label>
+
+        </div>
+
     </div>
-
-    <!-- menu -->
-    <nav class="menu">
-      <a href="#">فروشگاه</a>
-      <a href="#">دسته‌بندی‌ها</a>
-      <a href="#">درباره ما</a>
-      <a href="#">تماس</a>
-    </nav>
-
-    <!-- mobile -->
-  <div class="hamburgers">
-
-    <label class="hamburger">
-
-        <input
-            id="menu-toggle"
-            type="checkbox">
-
-        <span class="bar"></span>
-
-        <span class="bar"></span>
-
-        <span class="bar"></span>
-
-    </label>
-
-</div>
 
 </header>
 <div class="mobile-overlay"></div>
@@ -450,7 +447,7 @@
     </p>
 
     <div class="socials">
-        ...
+      
     </div>
 
 </div>
@@ -590,6 +587,34 @@
     </div>
 
 </div>
+<nav class="bottom-nav">
+
+    <a href="/" class="bottom-nav-item active">
+        <img src="/images/home-svgrepo-com.svg" class="bottom-nav-icon">
+        <span>خانه</span>
+    </a>
+
+    <a href="/products" class="bottom-nav-item">
+        <img src="/images/heart-regular-full.svg" class="bottom-nav-icon">
+        <span>فروشگاه</span>
+    </a>
+
+    <a href="#" class="bottom-nav-item">
+        <img src="/images/sistrix-brands-solid-full.svg" class="bottom-nav-icon">
+          <span>جستجو</span>
+    </a>
+
+    <a href="/wishlist" class="bottom-nav-item">
+        <img src="/images/cart-large-svgrepo-com.svg" class="bottom-nav-icon">
+        <span>علاقه‌مندی</span>
+    </a>
+
+    <a href="/profile" class="bottom-nav-item">
+        <img src="/images/circle-user-regular-full.svg" class="bottom-nav-icon">
+         <span>حساب</span>
+    </a>
+
+</nav>
 
 <script src="./js/main.js"></script>
 
