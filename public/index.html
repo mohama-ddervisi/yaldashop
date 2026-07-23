@@ -22,7 +22,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         <div class="nav-left">
 
             <div class="profile-box">
-                <a href="/login.html" id="profile-link" class="icon">
+               <a href="/login.html" id="header-profile-link" class="icon">
                     <img
                         id="profile-icon"
                         src="/images/circle-user-regular-full.svg"
@@ -51,23 +51,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         <!-- End nav-left -->
 
 
-        <!-- Search -->
-        <div class="nav-search">
-
-            <span class="search-icon">
-                <img
-                    src="/images/sistrix-brands-solid-full.svg"
-                    class="icon-image">
-            </span>
-
-            <input
-                type="text"
-                class="search-input"
-                placeholder="جستجوی محصولات...">
-
-            <div class="search-results"></div>
-
-        </div>
+     
 
 
         <!-- Logo -->
@@ -210,11 +194,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     </div>
 
 </section>
-<div class="category-guide">
 
-    👇 یکی از دسته‌بندی‌های زیر را انتخاب کنید
-
-</div>
 <div class="categories" id="categories">
 
     <div class="category-item" data-category="all">
@@ -587,34 +567,60 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     </div>
 
 </div>
-<nav class="bottom-nav">
 
-    <a href="/" class="bottom-nav-item active">
-        <img src="/images/home-svgrepo-com.svg" class="bottom-nav-icon">
-        <span>خانه</span>
+
+  <nav class="bottom-nav">
+
+    <!-- خانه -->
+    <a href="products.html?category=all" class="bottom-nav-item active">
+        <img src="/images/smart-home-angle-svgrepo-com.svg" class="bottom-nav-icon">
+        <span>محصولات</span>
     </a>
 
-    <a href="/products" class="bottom-nav-item">
-        <img src="/images/heart-regular-full.svg" class="bottom-nav-icon">
+    <!-- فروشگاه -->
+    <a href="cart.html" class="bottom-nav-item">
+        <img src="/images/cart-large-svgrepo-com.svg" class="bottom-nav-icon">
         <span>فروشگاه</span>
     </a>
 
-    <a href="#" class="bottom-nav-item">
-        <img src="/images/sistrix-brands-solid-full.svg" class="bottom-nav-icon">
-          <span>جستجو</span>
-    </a>
+    <!-- جستجو -->
+<a href="#" id="search-btn" class="bottom-nav-item">
 
-    <a href="/wishlist" class="bottom-nav-item">
-        <img src="/images/cart-large-svgrepo-com.svg" class="bottom-nav-icon">
+    <img src="/images/sistrix-brands-solid-full.svg"
+         class="bottom-nav-icon">
+
+    <span>جستجو</span>
+
+</a>
+
+    <!-- علاقه‌مندی -->
+    <a href="wishlist.html" class="bottom-nav-item">
+        <img src="/images/heart-regular-full.svg" class="bottom-nav-icon">
         <span>علاقه‌مندی</span>
     </a>
 
-    <a href="/profile" class="bottom-nav-item">
+    <!-- حساب -->
+    <a href="#" id="profile-link" class="bottom-nav-item">
         <img src="/images/circle-user-regular-full.svg" class="bottom-nav-icon">
-         <span>حساب</span>
+        <span>حساب</span>
     </a>
 
+
+
 </nav>
+<div id="search-overlay" class="search-overlay"></div>
+
+<div id="search-box" class="search-box">
+
+    <input
+        type="text"
+        class="search-input"
+        placeholder="جستجوی محصولات..."
+        autocomplete="off">
+
+    <div class="search-results"></div>
+
+</div>
 
 <script src="./js/main.js"></script>
 
@@ -622,7 +628,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <script src="/js/common.js"></script>
 
-<script src="/js/product.js"></script>
+
 
 <script src="/js/wishlist-utils.js"></script>
 <script src="/js/auth.js"></script>

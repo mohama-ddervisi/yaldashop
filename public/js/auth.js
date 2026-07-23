@@ -116,3 +116,14 @@ logoutButton?.addEventListener("click",()=>{
     logout();
 
 });
+document.querySelectorAll("#profile-link, #header-profile-link").forEach(link => {
+
+    link.addEventListener("click", (e) => {
+
+        e.preventDefault();
+
+        openProfileSheet();
+
+    });
+
+});

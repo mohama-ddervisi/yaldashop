@@ -109,10 +109,14 @@ let products = [...allProducts];
 
         }
 
-        const container =
-        document.getElementById("products-container");
+       const container =
+document.getElementById("products-container");
 
-        container.innerHTML = "";
+if(!container){
+    return;
+}
+
+container.innerHTML = "";
 
         const productsCount =
 document.getElementById("products-count");
@@ -255,7 +259,7 @@ if(icon){
     ? "/images/heart-suit-svgrepo-com.svg"
 
     : "/images/heart-regular-full.svg";
-    
+
 icon.classList.remove("pop");
 
 void icon.offsetWidth;

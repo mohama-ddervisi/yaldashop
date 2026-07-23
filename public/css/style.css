@@ -368,6 +368,8 @@ MOBILE MENU
 
     gap:15px;
 
+    margin-bottom: 100px;
+
 }
 
 .mobile-icons a{
@@ -3248,7 +3250,7 @@ width:100%;
 
     right:0;
 
-    bottom:-100%;
+   margin-bottom: 60px;
 
     background:#fff;
 
@@ -3267,6 +3269,18 @@ width:100%;
 .profile-sheet.active{
 
     bottom:0;
+
+}
+.profile-sheet{
+
+    transform: translateY(110%);
+    transition: transform .55s cubic-bezier(0.16,1,0.3,1);
+
+}
+
+.profile-sheet.active{
+
+    transform: translateY(0);
 
 }
 
@@ -3471,7 +3485,7 @@ body{
     position:fixed;
     left:0;
     right:0;
-    bottom:-11px;
+    bottom:-4px;
 
     width:100%;
     height:70px;
@@ -3518,4 +3532,239 @@ body{
 .bottom-nav-item:hover{
     color:#111;
 }
+.search-overlay{
+
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.35);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:1000;
+
+}
+
+.search-overlay.active{
+
+    opacity:1;
+    visibility:visible;
+
+}
+
+.search-box{
+
+    position:fixed;
+    top:-100%;
+    left:50%;
+    transform:translateX(-50%);
+    width:92%;
+    max-width:430px;
+    
+    padding:20px;
+    border-radius:0 0 20px 20px;
+    transition:.4s cubic-bezier(.16,1,.3,1);
+    z-index:1001;
+
+}
+
+.search-box.active{
+
+    top:0;
+
+}
+
+.search-box input{
+
+    width:100%;
+    height:48px;
+    border:none;
+    outline:none;
+    border-radius:22px;
+
+    background:#ffffffbc url("/images/sistrix-brands-solid-full.svg") no-repeat;
+
+    background-position:right 15px center;
+
+    background-size:18px;
+
+    padding:0 45px 0 16px;
+
+    font-size:15px;
+
+}
+.search-results{
+
+    margin-top:12px;
+    max-height:320px;
+    overflow-y:auto;
+    display:none;
+
+}
+
+.search-item{
+
+    padding:14px;
+    cursor:pointer;
+    border-bottom:1px solid #eee;
+
+}
+
+.search-item:hover{
+
+    background:#f8f8f8;
+
+}
+
+.search-empty{
+
+    padding:14px;
+    text-align:center;
+    color:#888;
+
+}
+
+
+.search-name{
+
+    font-size:1.35rem;
+
+    font-weight:700;
+
+    color:#222;
+
+}
+
+.search-results{
+    position:absolute;
+    top:115%;
+    left:0;
+    width:100%;
+
+    background:#ffffffef;
+
+    border-radius:2.4rem;
+
+    overflow:hidden;
+    overflow-y:auto;
+
+    max-height:55vh;
+
+    box-shadow:
+    0 1rem 3rem rgba(255, 255, 255, 0.12);
+
+    border:.08rem solid #ececec;
+
+    opacity:0;
+    transform:translateY(-1rem);
+    pointer-events:none;
+
+    transition:.28s ease;
+
+    z-index:9999;
+}
+
+.search-item{
+    display:flex;
+    align-items:center;
+
+    gap:1rem;
+
+    padding:1rem 1.2rem;
+
+    text-decoration:none;
+
+    border-bottom:.08rem solid #f3f3f3;
+
+    transition:.25s;
+}
+
+.search-item:last-child{
+    border-bottom:none;
+}
+
+.search-item:hover{
+
+    background:#faf8f5;
+
+    transform:translateX(-.3rem);
+
+}
+.search-item img{
+
+    width:4.2rem;
+    height:4.2rem;
+
+    border-radius:1rem;
+
+    object-fit:cover;
+
+    flex-shrink:0;
+
+    border:.08rem solid #eee;
+
+}
+.search-info{
+
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:.35rem;
+
+}
+.search-title{
+
+    font-size:1rem;
+
+    font-weight:700;
+
+    color:#222;
+
+    line-height:1.4;
+
+}
+.search-brand{
+
+    font-size:.82rem;
+
+    color:#999;
+
+}
+.search-price{
+
+    font-size:.95rem;
+
+    font-weight:800;
+
+    color:#111;
+
+}
+.search-empty{
+
+    padding:2rem;
+
+    text-align:center;
+
+    color:#999;
+
+    font-size:.95rem;
+
+}
+.search-results{
+
+    -ms-overflow-style: none;   /* IE و Edge قدیمی */
+
+    scrollbar-width: none;      /* Firefox */
+
+}
+
+.search-results::-webkit-scrollbar{
+
+    display: none;              /* Chrome, Safari, Edge */
+
+}
+
+
+
 }

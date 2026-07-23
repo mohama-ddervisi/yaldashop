@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تایید شماره | Yalda Shop</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/login.css">
+
+</head>
+
+<body>
+
+<section class="login-page">
+
+    <div class="login-card">
+
+        <div class="login-logo">
+
+            <h1>YALDA</h1>
+
+            <span>SHOP</span>
+
+        </div>
+
+        <h2>تایید شماره موبایل</h2>
+
+        <p>
+
+            کد 4 رقمی ارسال شده به
+
+            <br>
+
+            <strong id="phone-text"></strong>
+
+        </p>
+
+        <form id="verify-form">
+
+            <div class="input-group">
+
+    <label>
+
+        کد تایید
+
+    </label>
+
+    <div class="otp-boxes">
+
+        <input class="otp-input" maxlength="1" inputmode="numeric">
+        <input class="otp-input" maxlength="1" inputmode="numeric">
+        <input class="otp-input" maxlength="1" inputmode="numeric">
+        <input class="otp-input" maxlength="1" inputmode="numeric">
+
+    </div>
+
+</div>
+
+            <button
+                class="login-btn"
+                type="submit">
+
+                تایید
+
+            </button>
+
+        </form>
+
+       
+
+            <div class="login-footer">
+
+    <button
+        id="resend-code"
+        type="button"
+        disabled>
+
+        ارسال مجدد کد
+
+    </button>
+
+    <span id="countdown">
+
+        01:00
+
+    </span>
+
+</div>
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+const phone = params.get("phone");
+
+document.getElementById("phone-text").textContent = phone || "";
+
+const inputs = document.querySelectorAll(".otp-input");
+
+inputs.forEach((input,index)=>{
+
+    input.addEventListener("input",()=>{
+
+        input.value=input.value.replace(/\D/g,"");
+
+        if(input.value && index<inputs.length-1){
+
+            inputs[index+1].focus();
+
+        }
+
+        checkCode();
+
+    });
+
+    input.addEventListener("keydown",(e)=>{
+
+        if(e.key==="Backspace" && !input.value && index>0){
+
+            inputs[index-1].focus();
+
+        }
+
+    });
+
+});
+
+document.addEventListener("paste",(e)=>{
+
+    e.preventDefault();
+
+    const paste=e.clipboardData
+        .getData("text")
+        .replace(/\D/g,"")
+        .slice(0,4);
+
+    paste.split("").forEach((char,index)=>{
+
+        if(inputs[index]){
+
+            inputs[index].value=char;
+
+        }
+
+    });
+
+    checkCode();
+
+});
+
+function checkCode(){
+
+    const code=[...inputs]
+        .map(i=>i.value)
+        .join("");
+
+    if(code.length===4){
+
+        verifyCode(code);
+
+    }
+
+}
+
+async function verifyCode(code){
+
+    console.log("OTP :",code);
+
+    // اینجا بعداً API صدا زده می‌شود.
+
+}
+
+let seconds = 60;
+
+let timer = null;
+
+const resendBtn = document.getElementById("resend-code");
+
+const countdown = document.getElementById("countdown");
+
+function startTimer() {
+
+    clearInterval(timer);
+
+    let expiresAt = Number(localStorage.getItem("otpExpiresAt"));
+
+if (!expiresAt) {
+
+    expiresAt = Date.now() + 60000;
+
+    localStorage.setItem("otpExpiresAt", expiresAt);
+
+}
+
+seconds = Math.max(
+    0,
+    Math.ceil((expiresAt - Date.now()) / 1000)
+);
+
+    resendBtn.disabled = true;
+
+    countdown.style.display = "block";
+
+    updateCountdown();
+
+    timer = setInterval(() => {
+
+        seconds = Math.max(
+    0,
+    Math.ceil(
+        (Number(localStorage.getItem("otpExpiresAt")) - Date.now()) / 1000
+    )
+);
+
+        updateCountdown();
+
+        if (seconds <= 0) {
+
+            clearInterval(timer);
+
+            localStorage.removeItem("otpExpiresAt");
+
+            resendBtn.disabled = false;
+
+            countdown.style.display = "none";
+
+        }
+
+    }, 1000);
+
+}
+
+function updateCountdown() {
+
+    const minute = String(Math.floor(seconds / 60)).padStart(2, "0");
+
+    const second = String(seconds % 60).padStart(2, "0");
+
+    countdown.textContent = `${minute}:${second}`;
+
+}
+
+startTimer();
+
+resendBtn.addEventListener("click", async () => {
+
+    resendBtn.disabled = true;
+
+     console.log(phone);
+
+    try {
+
+        const response = await fetch("/auth/send-code", {
+
+            method: "POST",
+
+            headers: {
+
+                "Content-Type": "application/json"
+
+            },
+
+            body: JSON.stringify({
+
+                phone
+
+            })
+
+        });
+
+      const data = await response.json();
+
+if (!data.success) {
+
+    alert(data.message);
+
+    resendBtn.disabled = false;
+
+    return;
+
+}
+
+showToast("کد جدید ارسال شد.");
+
+localStorage.setItem(
+    "otpExpiresAt",
+    Date.now() + 60000
+);
+
+startTimer();
+
+    }
+
+    catch (error) {
+
+    console.error(error);
+
+    alert("خطا در ارتباط با سرور");
+
+    resendBtn.disabled = false;
+
+}
+
+});
+</script>
+</body>
+
+</html>

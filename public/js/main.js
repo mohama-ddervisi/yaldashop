@@ -8,19 +8,32 @@ document.querySelector(".search-results");
 
 async function initSearch(){
 
-    if(!searchInput || !resultsBox) return;
+    console.log("1");
 
-    const response =
-    await fetch("/products");
+    if(!searchInput || !resultsBox){
+        console.log("2");
+        return;
+    }
 
-    allProducts =
-    await response.json();
+    console.log("3");
+
+    const response = await fetch("/products");
+
+    console.log("4", response.status);
+
+    const data = await response.json();
+
+    console.log("5", data);
+
+    allProducts = data.products || [];
+
+    console.log("6", allProducts);
 
 }
 
 initSearch();
 
-searchInput.addEventListener("input",()=>{
+searchInput?.addEventListener("input", () => {
 
     const value =
     searchInput.value
@@ -31,7 +44,15 @@ searchInput.addEventListener("input",()=>{
 
     if(value === ""){
 
-        resultsBox.style.display = "none";
+      resultsBox.style.opacity = "0";
+resultsBox.style.transform = "translateY(-1rem)";
+resultsBox.style.pointerEvents = "none";
+
+setTimeout(() => {
+
+    resultsBox.style.display = "none";
+
+},280);
 
         return;
 
@@ -68,7 +89,7 @@ searchInput.addEventListener("input",()=>{
         </div>
         `;
 
-        resultsBox.style.display="block";
+     
 
         return;
 
@@ -76,21 +97,53 @@ searchInput.addEventListener("input",()=>{
 
     result.forEach(product=>{
 
-        resultsBox.innerHTML +=
+     resultsBox.innerHTML += `
 
-        `
-        <div
-        class="search-item"
-        data-slug="${product.slug}">
+<div
+class="search-item"
+data-slug="${product.slug}">
 
-            ${product.name}
+<img
+src="${product.image || "/images/nop.jpg"}"
+alt="${product.name}">
 
-        </div>
-        `;
+<div class="search-info">
 
+<div class="search-name">
+
+${product.name}
+
+</div>
+
+<div class="search-brand">
+
+${product.brand || "YALDA SHOP"}
+
+</div>
+
+<div class="search-price">
+
+${Number(product.price).toLocaleString("en-US")} تومان
+
+</div>
+
+</div>
+
+</div>
+
+
+`;
     });
 
-    resultsBox.style.display="block";
+resultsBox.style.display = "block";
+
+requestAnimationFrame(() => {
+
+    resultsBox.style.opacity = "1";
+    resultsBox.style.transform = "translateY(0)";
+    resultsBox.style.pointerEvents = "auto";
+
+});
 
 });
 resultsBox.addEventListener("click",(e)=>{
@@ -117,7 +170,7 @@ document.addEventListener("click",(e)=>{
     }
 
 });
-searchInput.addEventListener("keydown",(e)=>{
+searchInput?.addEventListener("keydown",(e)=>{
 
     if(e.key === "Escape"){
 
@@ -126,7 +179,8 @@ searchInput.addEventListener("keydown",(e)=>{
     }
 
 });
-searchInput.addEventListener("keydown",(e)=>{
+
+searchInput?.addEventListener("keydown",(e)=>{
 
     if(e.key === "Enter"){
 
@@ -289,5 +343,27 @@ showcaseBtn.addEventListener("click", () => {
         }, 1200);
 
     }, 700);
+
+});
+
+const searchBtn = document.getElementById("search-btn");
+const searchOverlay = document.getElementById("search-overlay");
+const searchBox = document.getElementById("search-box");
+
+searchBtn?.addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    searchOverlay.classList.add("active");
+    searchBox.classList.add("active");
+
+    document.querySelector(".search-input")?.focus();
+
+});
+
+searchOverlay?.addEventListener("click", () => {
+
+    searchOverlay.classList.remove("active");
+    searchBox.classList.remove("active");
 
 });

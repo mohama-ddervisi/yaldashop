@@ -4,6 +4,10 @@ const prisma = require("../lib/prisma");
 
 const bcrypt = require("bcrypt");
 
+function generateCode() {
+    return Math.floor(1000 + Math.random() * 9000).toString();
+}
+
 async function register(req, res){
 
     try{
@@ -234,10 +238,155 @@ const user = await prisma.user.findFirst({
     }
 
 }
+
+async function sendCode(req, res) {
+
+     console.log("=== sendCode called ===");
+  
+    try {
+console.log("STEP 1");
+
+        const { phone } = req.body;
+
+        console.log("STEP 2", phone);
+
+        if (!/^09\d{9}$/.test(phone)) {
+
+            return res.status(400).json({
+                success: false,
+                message: "شماره موبایل معتبر نیست."
+            });
+
+        }
+
+        const code = generateCode();
+
+        console.log("STEP 3", code);
+
+        const expiresAt = new Date(Date.now() + 2 * 60 * 1000);
+
+        console.log("STEP 4");
+
+        await prisma.verificationCode.create ({ 
+
+            
+
+            data: {
+
+                phone,
+
+                code,
+
+                expiresAt
+
+            }
+
+        });
+console.log("STEP 5");
+        console.log("========== OTP ==========");
+        console.log("PHONE:", phone);
+        console.log("CODE :", code);
+        console.log("=========================");
+
+        res.json({
+
+            success: true,
+
+            message: "کد تایید ارسال شد."
+
+        });
+
+    }
+
+    catch (error) {
+
+      console.error("SEND CODE ERROR:");
+        console.error(error);
+
+        return res.status(500).json({
+            success: false,
+            message: "خطای سرور"
+        });
+
+    }
+
+}
+async function verifyCode(req, res) {
+
+    try {
+
+        const { phone, code } = req.body;
+
+        if (!phone || !code) {
+
+            return res.status(400).json({
+                success: false,
+                message: "اطلاعات ناقص است."
+            });
+
+        }
+const verification =
+    await prisma.verificationCode.findFirst({
+
+        where: {
+
+            phone,
+            code,
+            used: false
+
+        },
+
+        orderBy: {
+
+            createdAt: "desc"
+
+        }
+
+    });
+    if (!verification) {
+
+    return res.status(400).json({
+
+        success: false,
+        message: "کد تایید صحیح نیست."
+
+    });
+
+}
+if (verification.expiresAt < new Date()) {
+
+    return res.status(400).json({
+
+        success: false,
+        message: "کد منقضی شده است."
+
+    });
+
+}
+console.log(verification);
+
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        return res.status(500).json({
+            success: false,
+            message: "خطای سرور"
+        });
+
+    }
+
+}
 module.exports = {
 
     register,
 
-    login
+    login,
+
+    sendCode,
+
+    verifyCode
 
 };

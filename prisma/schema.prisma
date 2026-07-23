@@ -91,3 +91,14 @@ model User {
   updatedAt DateTime @updatedAt
   orders    Order[]
 }
+
+model VerificationCode {
+  id        Int      @id @default(autoincrement())
+  phone     String
+  code      String
+  used      Boolean  @default(false)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([phone])
+}

@@ -1,76 +1,58 @@
-const form =
-document.getElementById("login-form");
+const form = document.getElementById("login-form");
 
-form.addEventListener("submit", async (e)=>{
+form.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
-    const username =
-document.getElementById("login-username")
-.value.trim();
+    const phone = document
+        .getElementById("phone-number")
+        .value
+        .trim();
 
-const body = {
+    if (!/^09\d{9}$/.test(phone)) {
 
-    phone: username,
+        showToast("شماره موبایل معتبر نیست.");
 
-    password:
-    document.getElementById("login-password").value
+        return;
 
-};
+    }
 
-    try{
+    try {
 
-        const response =
-        await fetch("/auth/login",{
+        const response = await fetch("/auth/send-code", {
 
-            method:"POST",
+            method: "POST",
 
-            headers:{
-                "Content-Type":"application/json"
+            headers: {
+
+                "Content-Type": "application/json"
+
             },
 
-            body:JSON.stringify(body)
+            body: JSON.stringify({
+
+                phone
+
+            })
 
         });
 
-        const data =
-        await response.json();
+        const data = await response.json();
 
-        if(!data.success){
+        if (!data.success) {
 
             showToast(data.message);
 
             return;
 
         }
-
-        localStorage.setItem(
-
-            "token",
-
-            data.token
-
-        );
-
-        localStorage.setItem(
-
-            "user",
-
-            JSON.stringify(data.user)
-
-        );
-
-        showToast("ورود با موفقیت انجام شد.");
-
-        setTimeout(()=>{
-
-            window.location.href="/";
-
-        },1000);
+console.log("Redirect URL:", `/verify.html?phone=${phone}`);
+        window.location.href =
+            `/verify.html?phone=${phone}`;
 
     }
 
-    catch(error){
+    catch (error) {
 
         console.error(error);
 
