@@ -1,3 +1,5 @@
+console.log("AUTH CONTROLLER LOADED");
+
 const jwt = require("jsonwebtoken");
 
 const prisma = require("../lib/prisma");
@@ -244,6 +246,7 @@ async function sendCode(req, res) {
      console.log("=== sendCode called ===");
   
     try {
+        
 console.log("STEP 1");
 
         const { phone } = req.body;
@@ -313,6 +316,11 @@ console.log("STEP 5");
 }
 async function verifyCode(req, res) {
 
+      console.log("========== VERIFY HIT ==========");
+    console.log("BODY:", req.body);
+
+   
+    // بقیه کد فعلاً اجرا نشود
     try {
 
         const { phone, code } = req.body;
@@ -353,6 +361,10 @@ const verification =
     });
 
 }
+console.log("NOW:", new Date());
+console.log("EXPIRES:", verification.expiresAt);
+console.log("DIFF(ms):", verification.expiresAt - new Date());
+
 if (verification.expiresAt < new Date()) {
 
     return res.status(400).json({
@@ -365,19 +377,64 @@ if (verification.expiresAt < new Date()) {
 }
 console.log(verification);
 
+let user = await prisma.user.findUnique({
+    where: {
+        phone
+    }
+});
 
+if (!user) {
+    user = await prisma.user.create({
+        data: {
+            phone,
+            fullName: null,
+            password: null
+        }
+    });
+}
+
+await prisma.verificationCode.update({
+    where: {
+        id: verification.id
+    },
+    data: {
+        used: true
+    }
+});
+
+const token = jwt.sign(
+    {
+        id: user.id,
+        role: user.role
+    },
+    process.env.JWT_SECRET,
+    {
+        expiresIn: "7d"
+    }
+);
+
+return res.json({
+    success: true,
+    token,
+    user: {
+        id: user.id,
+        fullName: user.fullName,
+        phone: user.phone,
+        role: user.role
+    }
+});
 
     } catch (error) {
 
-        console.error(error);
+    console.error("VERIFY ERROR:");
+    console.error(error);
 
-        return res.status(500).json({
-            success: false,
-            message: "خطای سرور"
-        });
+    return res.status(500).json({
+        success: false,
+        message: "خطای سرور"
+    });
 
-    }
-
+}
 }
 module.exports = {
 

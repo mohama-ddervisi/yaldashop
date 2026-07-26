@@ -1,8 +1,12 @@
 const form = document.getElementById("login-form");
 
+console.log("login.js loaded");
+
 form.addEventListener("submit", async (e) => {
 
     e.preventDefault();
+
+    console.log("submit clicked");
 
     const phone = document
         .getElementById("phone-number")
@@ -18,7 +22,7 @@ form.addEventListener("submit", async (e) => {
     }
 
     try {
-
+console.log("sending request...");
         const response = await fetch("/auth/send-code", {
 
             method: "POST",
@@ -47,6 +51,9 @@ form.addEventListener("submit", async (e) => {
 
         }
 console.log("Redirect URL:", `/verify.html?phone=${phone}`);
+
+console.log("PHONE =", phone);
+console.log("REDIRECT =", `/verify.html?phone=${phone}`);
         window.location.href =
             `/verify.html?phone=${phone}`;
 

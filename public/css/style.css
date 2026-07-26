@@ -3768,3 +3768,80 @@ body{
 
 
 }
+
+.mobile-bell,
+.bell-icon {
+    position: relative;
+}
+
+.bell-dot {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+    background-color: #e53935;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+.bell-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 260px;
+    max-height: 320px;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+    text-align: right;
+}
+
+.bell-empty {
+    padding: 16px;
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+}
+
+.bell-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.bell-item:last-child {
+    border-bottom: none;
+}
+
+.bell-item-img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.bell-item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.bell-item-name {
+    font-size: 13px;
+    color: #222;
+}
+
+.bell-item-discount {
+    font-size: 12px;
+    color: #e53935;
+}
+.bell-item {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}

@@ -103,6 +103,10 @@ const params = new URLSearchParams(window.location.search);
 
 const phone = params.get("phone");
 
+console.log("URL =", window.location.href);
+console.log("SEARCH =", window.location.search);
+console.log("PHONE =", phone);
+
 document.getElementById("phone-text").textContent = phone || "";
 
 const inputs = document.querySelectorAll(".otp-input");
@@ -172,11 +176,69 @@ function checkCode(){
 
 }
 
-async function verifyCode(code){
+async function verifyCode(code) {
 
-    console.log("OTP :",code);
+    try {
+console.log({
+    phone,
+    code
+});
+console.log("Sending:", {
+    phone,
+    code
+});
+console.log("================================");
+console.log("VERIFY REQUEST");
+console.log({ phone, code });
+        const response = await fetch("/auth/verify-code", {
 
-    // اینجا بعداً API صدا زده می‌شود.
+            method: "POST",
+
+            headers: {
+
+                "Content-Type": "application/json"
+
+            },
+
+            body: JSON.stringify({
+
+                phone,
+
+                code
+
+            })
+
+        });
+
+        const data = await response.json();
+
+        if (!data.success) {
+
+            alert(data.message);
+
+            inputs.forEach(input => input.value = "");
+
+            inputs[0].focus();
+
+            return;
+
+        }
+
+        localStorage.setItem("token", data.token);
+
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        window.location.href = "/";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("خطا در ارتباط با سرور");
+
+    }
 
 }
 
@@ -290,7 +352,7 @@ if (!data.success) {
 
 }
 
-showToast("کد جدید ارسال شد.");
+alert("کد جدید ارسال شد.");
 
 localStorage.setItem(
     "otpExpiresAt",

@@ -1,8 +1,28 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+const http = require("http");
+const { Server } = require("socket.io");
 
 const app = express();
+
+const server = http.createServer(app);
+
+const io = new Server(server, {
+    cors: {
+        origin: "*"
+    }
+});
+
+app.set("io", io);
+
+io.on("connection", (socket) => {
+    console.log("SOCKET CONNECTED:", socket.id);
+
+    socket.on("disconnect", () => {
+        console.log("SOCKET DISCONNECTED:", socket.id);
+    });
+});
 
 app.use((req, res, next) => {
     console.log("REQUEST:", req.method, req.url);
@@ -66,9 +86,9 @@ app.get("/admin", (req, res) => {
     res.render("admin/dashboard");
 });
 if (process.env.VERCEL !== "1") {
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
     });
 }
 
-module.exports = app; 
+module.exports = app;

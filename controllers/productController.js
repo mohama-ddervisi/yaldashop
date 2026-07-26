@@ -126,6 +126,10 @@ console.log("CREATE PRODUCT START");
 
         } = req.body;
 
+const oldProduct = await prisma.product.findUnique({
+            where: { id }
+        });
+
         const product = await prisma.product.update({
 
             
@@ -200,6 +204,23 @@ if (req.files?.length) {
     });
 
 }
+const hadDiscountBefore = oldProduct?.discount && oldProduct.discount > 0;
+        const hasDiscountNow = product.discount && product.discount > 0;
+
+        if (!hadDiscountBefore && hasDiscountNow) {
+
+            const io = req.app.get("io");
+
+            io.emit("newDiscount", {
+                productId: product.id,
+                name: product.name,
+                discount: product.discount,
+                image: product.image,
+                slug: product.slug
+            });
+
+        }
+        
         res.json({
 
             success: true,
@@ -327,6 +348,19 @@ if (req.files?.length) {
     });
 
 }
+if (product.discount && product.discount > 0) {
+
+            const io = req.app.get("io");
+
+            io.emit("newDiscount", {
+                productId: product.id,
+                name: product.name,
+                discount: product.discount ,
+                image: product.image,
+                slug: product.slug
+            });
+
+        }
         res.json({
 
             success: true,
