@@ -79,7 +79,7 @@ console.log(data.products);
     catch (err) {
 
         console.error(err);
-
+     alert("خطا در ارتباط با سرور: " + err.message);
     }
 
 }

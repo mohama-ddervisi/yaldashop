@@ -76,5 +76,29 @@ const upload = multer({
     }
 
 });
+const fileFilter = (req, file, cb) => {
+    const allowed = [
+        "image/png",
+        "image/jpeg",
+        "image/jpg",
+        "image/webp",
+        "image/svg+xml",
+        "image/heic",
+        "image/heif"
+    ];
+    if (allowed.includes(file.mimetype)) {
+        cb(null, true);
+    } else {
+        cb(new Error("فرمت فایل مجاز نیست: " + file.mimetype));
+    }
+};
+
+const upload = multer({
+    storage,
+    fileFilter,
+    limits: {
+        fileSize: 15 * 1024 * 1024   // به ۱۵ مگابایت افزایش بده
+    }
+});
 
 module.exports = upload;

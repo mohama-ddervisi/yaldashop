@@ -36,6 +36,7 @@ const adminProductRoutes = require("./routes/adminProductRoutes");
 const discountRoutes = require("./routes/discountRoutes");
 const checkoutRoutes = require("./routes/checkoutRoutes");
 const authRoutes = require("./routes/authRoutes");
+const contactRoutes = require("./routes/contactRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 
@@ -50,6 +51,7 @@ app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use("/auth", authRoutes);
+app.use("/contact", contactRoutes);
 app.use("/users", userRoutes);
 const path = require("path");
 
@@ -85,10 +87,56 @@ app.get("/admin", (req, res) => {
     console.log("ADMIN ROUTE HIT");
     res.render("admin/dashboard");
 });
+
+app.get("/admin/messages", async (req, res) => {
+
+    try {
+
+        const prisma = require("./lib/prisma");
+
+        const messages = await prisma.contactMessage.findMany({
+
+            orderBy: {
+                createdAt: "desc"
+            }
+
+        });
+
+        res.render("admin/messages", { messages });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+        res.status(500).send("خطا در بارگذاری پیام‌ها");
+
+    }
+
+});
+
 if (process.env.VERCEL !== "1") {
     server.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
     });
 }
+const multer = require("multer");
 
+app.use((err, req, res, next) => {
+    console.error("GLOBAL ERROR:", err);
+
+    if (err instanceof multer.MulterError) {
+        return res.status(400).json({
+            success: false,
+            message: err.code === "LIMIT_FILE_SIZE"
+                ? "حجم عکس بیش از حد مجاز است."
+                : err.message
+        });
+    }
+
+    res.status(500).json({
+        success: false,
+        message: err.message || "خطای ناشناخته"
+    });
+});
 module.exports = app;

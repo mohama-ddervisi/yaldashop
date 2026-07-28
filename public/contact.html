@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تماس با ما | Yalda Shop</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<header class="header">
+
+    <div class="nav">
+
+        <div class="nav-left">
+
+            <div class="profile-box">
+                <a href="/login.html" id="header-profile-link" class="icon">
+                    <img id="profile-icon" src="/images/circle-user-regular-full.svg" class="icon-image">
+                </a>
+            </div>
+
+            <a href="/wishlist.html" class="icon">
+                <img src="/images/heart-regular-full.svg" class="icon-image">
+                <span id="wishlist-count">0</span>
+            </a>
+
+            <a href="/cart.html" class="icon cart">
+                <img src="/images/shopping-cart-1135-svgrepo-com.svg" alt="Cart" class="icon-image">
+                <span id="cart-count">0</span>
+            </a>
+
+        </div>
+
+        <div class="logo">
+            <h1>YALDA</h1>
+            <span>SHOP</span>
+        </div>
+
+        <a href="#" class="mobile-bell icon">
+            <img src="/images/bell-svgrepo-com.svg" class="icon-image">
+        </a>
+
+        <nav class="menu">
+            <a href="/">خانه</a>
+            <a href="/products.html?category=all">فروشگاه</a>
+            <a href="/about.html">درباره ما</a>
+            <a href="/contact.html">تماس</a>
+        </nav>
+
+        <div class="hamburgers">
+            <label class="hamburger">
+                <input id="menu-toggle" type="checkbox">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </label>
+        </div>
+
+    </div>
+
+</header>
+<div class="mobile-overlay"></div>
+
+<aside class="mobile-menu">
+
+    <div class="mobile-header">
+        <h2>YALDA SHOP</h2>
+        <button class="mobile-close" id="mobile-close">✕</button>
+    </div>
+
+    <nav class="mobile-nav">
+        <a href="/">
+            <img src="/images/home-page-svgrepo-com.svg">
+            <span>خانه</span>
+        </a>
+        <a href="/products.html">
+            <img src="/images/store-bag-svgrepo-com.svg">
+            <span>فروشگاه</span>
+        </a>
+        <a href="#">
+            <img src="/images/category-svgrepo-com.svg">
+            <span>دسته بندی ها</span>
+        </a>
+        <a href="/about.html">
+            <img src="/images/about-svgrepo-com.svg">
+            <span>درباره ما</span>
+        </a>
+        <a href="/contact.html">
+            <img src="/images/internet-connection-contact-svgrepo-com.svg">
+            <span>تماس با ما</span>
+        </a>
+    </nav>
+
+    <div class="mobile-icons">
+        <a href="#">پروفایل</a>
+        <a href="#">علاقه مندی</a>
+        <a href="/cart.html">سبد خرید</a>
+    </div>
+
+</aside>
+
+<!-- ===== محتوای اصلی صفحه تماس ===== -->
+<section class="contact-page">
+
+    <div class="contact-hero">
+        <h1>تماس با ما</h1>
+        <p>خوشحال می‌شویم پاسخگوی سوالات و پیشنهادات شما باشیم</p>
+    </div>
+
+    <div class="contact-wrapper">
+
+        <div class="contact-info">
+
+            <div class="contact-info-item">
+                <img src="/images/internet-connection-contact-svgrepo-com.svg" alt="تلفن">
+                <div>
+                    <h4>تلفن تماس</h4>
+                    <p dir="ltr">021 22 45 67</p>
+                </div>
+            </div>
+
+            <div class="contact-info-item">
+                <img src="/images/support-svgrepo-com.svg" alt="ایمیل">
+                <div>
+                    <h4>ایمیل</h4>
+                    <p dir="ltr">info@yaldashop.ir</p>
+                </div>
+            </div>
+
+            <div class="contact-info-item">
+                <img src="/images/instagram-svgrepo-com (1).svg" alt="اینستاگرام">
+                <div>
+                    <h4>اینستاگرام</h4>
+                    <p><a href="https://www.instagram.com/yalda.shop0267?igsh=MWlxMThseGE1OWs1bw%3D%3D&utm_source=qr" target="_blank">yalda.shop0267@</a></p>
+                </div>
+            </div>
+
+        </div>
+
+        <form class="contact-form" id="contact-form">
+
+            <div id="contact-alert" class="contact-alert"></div>
+
+            <label for="contact-name">نام و نام‌خانوادگی</label>
+            <input type="text" id="contact-name" name="fullName" required>
+
+            <label for="contact-phone">شماره موبایل</label>
+            <input type="tel" id="contact-phone" name="phone" required>
+
+            <label for="contact-message">پیام شما</label>
+            <textarea id="contact-message" name="message" rows="5" required></textarea>
+
+            <button type="submit" id="contact-submit-btn">ارسال پیام</button>
+
+        </form>
+
+    </div>
+
+</section>
+<!-- ===== پایان محتوای اصلی ===== -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-col footer-brand">
+            <img src="/images/logo.jpg" alt="YALDA SHOP" class="footer-logo">
+            <p>ارائه بهترین کالکشن‌های ظروف و اکسسوری منزل</p>
+            <div class="socials"></div>
+        </div>
+
+        <div class="footer-col">
+            <h4>دسترسی سریع</h4>
+            <a href="/">خانه</a>
+            <a href="/products.html?category=all">فروشگاه</a>
+            <a href="#">دسته‌بندی‌ها</a>
+            <a href="/about.html">درباره ما</a>
+            <a href="/contact.html">تماس با ما</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>راهنمای مشتری</h4>
+            <a href="#">سوالات متداول</a>
+            <a href="#">حریم خصوصی</a>
+            <a href="#">شرایط و قوانین</a>
+            <a href="#">پیگیری سفارش</a>
+            <a href="#">پشتیبانی</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>اطلاعات تماس</h4>
+            <p>021 22 45 67</p>
+            <p>info@yaldashop.ir</p>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/yalda.shop0267?igsh=MWlxMThseGE1OWs1bw%3D%3D&utm_source=qr">
+                    <img src="/images/instagram-svgrepo-com (1).svg" alt="instagram">
+                </a>
+                <a href="@yaldashoping">
+                    <img src="/images/telegram-svgrepo-com (1).svg" alt="telegram">
+                </a>
+                <a href="+98 938 402 0267">
+                    <img src="/images/whatsapp-svgrepo-com (1).svg" alt="whatsapp">
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom"></div>
+
+</footer>
+
+<div id="profile-overlay" class="profile-overlay"></div>
+
+<div id="profile-sheet" class="profile-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+        <div class="sheet-avatar">
+            <img src="/images/circle-user-regular-full.svg" class="icon-image">
+        </div>
+        <h3 id="sheet-name">مهمان</h3>
+        <p id="sheet-email"></p>
+    </div>
+    <div class="sheet-links">
+        <a href="/profile.html">حساب کاربری</a>
+        <a href="/orders.html">سفارش‌های من</a>
+        <a href="/wishlist.html">علاقه‌مندی‌ها</a>
+        <button id="sheet-logout">خروج از حساب</button>
+    </div>
+</div>
+
+<nav class="bottom-nav">
+    <a href="products.html?category=all" class="bottom-nav-item">
+        <img src="/images/smart-home-angle-svgrepo-com.svg" class="bottom-nav-icon">
+        <span>محصولات</span>
+    </a>
+    <a href="cart.html" class="bottom-nav-item">
+        <img src="/images/cart-large-svgrepo-com.svg" class="bottom-nav-icon">
+        <span>فروشگاه</span>
+    </a>
+    <a href="#" id="search-btn" class="bottom-nav-item">
+        <img src="/images/sistrix-brands-solid-full.svg" class="bottom-nav-icon">
+        <span>جستجو</span>
+    </a>
+    <a href="wishlist.html" class="bottom-nav-item">
+        <img src="/images/heart-regular-full.svg" class="bottom-nav-icon">
+        <span>علاقه‌مندی</span>
+    </a>
+    <a href="#" id="profile-link" class="bottom-nav-item">
+        <img src="/images/circle-user-regular-full.svg" class="bottom-nav-icon">
+        <span>حساب</span>
+    </a>
+</nav>
+
+<div id="search-overlay" class="search-overlay"></div>
+<div id="search-box" class="search-box">
+    <input type="text" class="search-input" placeholder="جستجوی محصولات..." autocomplete="off">
+    <div class="search-results"></div>
+</div>
+
+<script src="/js/main.js"></script>
+<script src="/js/cart-utils.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/wishlist-utils.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/notifications.js"></script>
+<script src="/js/contact.js"></script>
+
+</body>
+</html>

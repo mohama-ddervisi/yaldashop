@@ -102,3 +102,11 @@ model VerificationCode {
 
   @@index([phone])
 }
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  fullName  String
+  phone     String
+  message   String
+  seen      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
