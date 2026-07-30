@@ -347,7 +347,7 @@ heroIndex=0;
 
 updateHero();
 
-},4000);
+},9000);
 
 heroDots.forEach((dot,index)=>{
 
