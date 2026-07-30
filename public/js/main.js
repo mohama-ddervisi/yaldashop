@@ -1,202 +1,119 @@
 let allProducts = [];
 
-const searchInput =
-document.querySelector(".search-input");
-
-const resultsBox =
-document.querySelector(".search-results");
-
 async function initSearch(){
-
-    console.log("1");
-
-    if(!searchInput || !resultsBox){
-        console.log("2");
-        return;
-    }
-
-    console.log("3");
-
     const response = await fetch("/products");
-
-    console.log("4", response.status);
-
     const data = await response.json();
-
-    console.log("5", data);
-
     allProducts = data.products || [];
-
-    console.log("6", allProducts);
-
 }
 
 initSearch();
 
-searchInput?.addEventListener("input", () => {
-
-    const value =
-    searchInput.value
-    .trim()
-    .toLowerCase();
+function renderResults(resultsBox, value){
 
     resultsBox.innerHTML = "";
 
     if(value === ""){
+        resultsBox.style.opacity = "0";
+        resultsBox.style.transform = "translateY(-1rem)";
+        resultsBox.style.pointerEvents = "none";
 
-      resultsBox.style.opacity = "0";
-resultsBox.style.transform = "translateY(-1rem)";
-resultsBox.style.pointerEvents = "none";
-
-setTimeout(() => {
-
-    resultsBox.style.display = "none";
-
-},280);
+        setTimeout(() => {
+            resultsBox.style.display = "none";
+        }, 280);
 
         return;
-
     }
 
-    const result =
-    allProducts.filter(product=>{
-
+    const result = allProducts.filter(product=>{
         return(
-
-            product.name
-            .toLowerCase()
-            .includes(value)
-
+            product.name.toLowerCase().includes(value)
             ||
-
-            product.brand
-            .toLowerCase()
-            .includes(value)
-
+            product.brand.toLowerCase().includes(value)
         );
-
     });
 
     if(result.length === 0){
-
-        resultsBox.innerHTML =
-
-        `
+        resultsBox.innerHTML = `
         <div class="search-empty">
-
             محصولی یافت نشد
-
         </div>
         `;
+        resultsBox.style.display = "block";
 
-     
+        requestAnimationFrame(() => {
+            resultsBox.style.opacity = "1";
+            resultsBox.style.transform = "translateY(0)";
+            resultsBox.style.pointerEvents = "auto";
+        });
 
         return;
-
     }
 
     result.forEach(product=>{
-
-     resultsBox.innerHTML += `
-
-<div
-class="search-item"
-data-slug="${product.slug}">
-
-<img
-src="${product.image || "/images/nop.jpg"}"
-alt="${product.name}">
-
-<div class="search-info">
-
-<div class="search-name">
-
-${product.name}
-
-</div>
-
-<div class="search-brand">
-
-${product.brand || "YALDA SHOP"}
-
-</div>
-
-<div class="search-price">
-
-${Number(product.price).toLocaleString("en-US")} تومان
-
-</div>
-
-</div>
-
-</div>
-
-
-`;
+        resultsBox.innerHTML += `
+        <div class="search-item" data-slug="${product.slug}">
+            <img src="${product.image || "/images/nop.jpg"}" alt="${product.name}">
+            <div class="search-info">
+                <div class="search-name">${product.name}</div>
+                <div class="search-brand">${product.brand || "YALDA SHOP"}</div>
+                <div class="search-price">${Number(product.price).toLocaleString("en-US")} تومان</div>
+            </div>
+        </div>
+        `;
     });
 
-resultsBox.style.display = "block";
+    resultsBox.style.display = "block";
 
-requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+        resultsBox.style.opacity = "1";
+        resultsBox.style.transform = "translateY(0)";
+        resultsBox.style.pointerEvents = "auto";
+    });
+}
 
-    resultsBox.style.opacity = "1";
-    resultsBox.style.transform = "translateY(0)";
-    resultsBox.style.pointerEvents = "auto";
+document.querySelectorAll(".search-box").forEach(box => {
 
-});
+    const searchInput = box.querySelector(".search-input");
+    const resultsBox = box.querySelector(".search-results");
 
-});
-resultsBox.addEventListener("click",(e)=>{
+    if(!searchInput || !resultsBox) return;
 
-    const item =
-    e.target.closest(".search-item");
+    searchInput.addEventListener("input", () => {
+        const value = searchInput.value.trim().toLowerCase();
+        renderResults(resultsBox, value);
+    });
 
-    if(!item) return;
+    resultsBox.addEventListener("click",(e)=>{
+        const item = e.target.closest(".search-item");
+        if(!item) return;
+        window.location.href = `/product.html?slug=${item.dataset.slug}`;
+    });
 
-    window.location.href =
-    `/product.html?slug=${item.dataset.slug}`;
+    searchInput.addEventListener("keydown",(e)=>{
 
-});
-document.addEventListener("click",(e)=>{
-
-    if(
-
-        !e.target.closest(".search-box")
-
-    ){
-
-        resultsBox.style.display = "none";
-
-    }
-
-});
-searchInput?.addEventListener("keydown",(e)=>{
-
-    if(e.key === "Escape"){
-
-        resultsBox.style.display="none";
-
-    }
-
-});
-
-searchInput?.addEventListener("keydown",(e)=>{
-
-    if(e.key === "Enter"){
-
-        const value =
-        searchInput.value.trim();
-
-        if(value !== ""){
-
-            window.location.href =
-            `/products.html?q=${encodeURIComponent(value)}`;
-
+        if(e.key === "Escape"){
+            resultsBox.style.display = "none";
         }
 
-    }
+        if(e.key === "Enter"){
+            const value = searchInput.value.trim();
+            if(value !== ""){
+                window.location.href = `/products.html?q=${encodeURIComponent(value)}`;
+            }
+        }
+
+    });
 
 });
+
+document.addEventListener("click",(e)=>{
+    if(!e.target.closest(".search-box")){
+        document.querySelectorAll(".search-results").forEach(box=>{
+            box.style.display = "none";
+        });
+    }
+});
+
 const categoryItems =
 document.querySelectorAll(".category-item");
 

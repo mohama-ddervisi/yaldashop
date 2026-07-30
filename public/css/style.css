@@ -21,7 +21,7 @@
 /* NAV */
 .nav{
   position:relative;
-  max-width:1300px;
+  max-width:1400px;
   margin:auto;
   display:flex;
   align-items:center;
@@ -72,6 +72,7 @@
 /* SEARCH */
 /* SEARCH */
 .nav-search{
+  position:relative;
   flex:none;
   width:220px;
   display:flex;
@@ -222,8 +223,8 @@ background-color: #00000000;
 /* SHOWCASE */
 
 .showcase{
-    width:86%;
-    max-width:1700px;
+    width:90%;
+    max-width:1400px;
 
     height:340px;
 
@@ -648,7 +649,8 @@ border:solid 1px rgb(0, 0, 0);
 .logo{
     position:absolute;
     left:50%;
-    transform:translateX(-50%);
+    top:50%;
+    transform:translate(-50%,-50%);
     display:block;
 }
 
@@ -932,6 +934,9 @@ border:solid 1px rgb(0, 0, 0);
 /* FEATURES */
 
 .features{
+    max-width:1400px;
+    margin:0 auto;
+
 
     display:flex;
 
@@ -1115,7 +1120,7 @@ overflow-x:auto;
     font-weight:700;
 }
 .categories{
-    max-width:1272px;
+    max-width:1400px;
     margin:40px auto;
     padding:20px;
 
@@ -1446,7 +1451,7 @@ overflow-x:auto;
 
 .instagram-section{
 
-    max-width:1300px;
+    max-width:1400px;
     margin:70px auto;
     padding:0 20px;
 
@@ -1596,7 +1601,7 @@ overflow-x:auto;
 
 .footer{
 
-    background:#050505;
+    background:#2b2b2b;
 
     color:white;
 
@@ -1638,7 +1643,7 @@ overflow-x:auto;
 
     display:block;
 
-    color:#bdbdbd;
+    color:#cccccc;
 
     text-decoration:none;
 
@@ -1651,14 +1656,14 @@ overflow-x:auto;
 
 .footer-col a:hover{
 
-    color:white;
+    color:#c9a86a;
 }
 
 /* paragraphs */
 
 .footer-col p{
 
-    color:#bdbdbd;
+    color:#cccccc;
 
     margin-bottom:14px;
 
@@ -4202,4 +4207,223 @@ transform:scale(1.3);
 
 transition:opacity .45s ease;
 
+}
+
+/* ============ Tablet / Large Phone fix (769px - 1100px) ============ */
+/* این بلاک کاملاً جدا و اضافه‌ست، هیچ‌کدوم از قوانین موبایل (max-width:768px) رو دست نمی‌زنه */
+
+@media (min-width:769px) and (max-width:1100px){
+
+    .categories{
+        max-width:100%;
+        overflow-x:auto;
+        justify-content:flex-start;
+        padding:20px 25px;
+        gap:20px;
+        -webkit-overflow-scrolling:touch;
+        scroll-snap-type:x proximity;
+    }
+
+    .category-item{
+        min-width:85px;
+        flex-shrink:0;
+    }
+
+    .categories::-webkit-scrollbar{
+        height:5px;
+    }
+
+    .categories::-webkit-scrollbar-track{
+        background:#efefef;
+        border-radius:999px;
+    }
+
+    .categories::-webkit-scrollbar-thumb{
+        background:linear-gradient(90deg,#111,#666,#111);
+        border-radius:999px;
+    }
+
+}
+
+
+/* ============ FOOTER V2 (elegant) ============ */
+
+.footer-top-line{
+    max-width:1400px;
+    margin:0 auto;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #c9a86a,
+        transparent
+    );
+}
+
+.footer-brand-name{
+    font-size:34px;
+    font-weight:300;
+    letter-spacing:6px;
+    color:#fff;
+    margin-bottom:16px;
+}
+
+.footer-brand-name span{
+    color:#c9a86a;
+    font-weight:300;
+}
+
+.footer-socials-v2{
+    display:flex;
+    gap:14px;
+    margin-top:24px;
+}
+
+.footer-socials-v2 a{
+    width:42px;
+    height:42px;
+    border:1px solid rgba(201,168,106,.4);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.3s;
+    margin:0;
+}
+
+.footer-socials-v2 a:hover{
+    background:#c9a86a;
+    border-color:#c9a86a;
+    transform:translateY(-3px);
+}
+
+.footer-socials-v2 img{
+    width:18px;
+    height:18px;
+    object-fit:contain;
+}
+
+.trust-badge{
+    margin-top:20px;
+}
+
+.trust-badge img{
+    width:80px;
+    height:auto;
+    border-radius:8px;
+}
+
+@media(max-width:768px){
+
+    .footer-brand-name{
+        font-size:24px;
+        letter-spacing:4px;
+    }
+
+    .footer-socials-v2{
+        justify-content:center;
+        margin-top:14px;
+    }
+
+    .footer-socials-v2 a{
+        width:36px;
+        height:36px;
+    }
+
+    .trust-badge{
+        display:flex;
+        justify-content:center;
+        margin-top:14px;
+    }
+
+}
+
+
+/* Desktop-only search dropdown styling (nav-search) */
+@media(min-width:901px){
+
+  .nav-search .search-results{
+    position:absolute;
+    top:115%;
+    right:0;
+    left:auto;
+    width:320px;
+    max-height:400px;
+    overflow-y:auto;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+    border:1px solid #eee;
+    z-index:9999;
+  }
+
+  .nav-search .search-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 14px;
+    text-decoration:none;
+    border-bottom:1px solid #f2f2f2;
+    cursor:pointer;
+    transition:.2s;
+  }
+
+  .nav-search .search-item:last-child{
+    border-bottom:none;
+  }
+
+  .nav-search .search-item:hover{
+    background:#faf8f5;
+  }
+
+  .nav-search .search-item img{
+    width:50px;
+    height:50px;
+    border-radius:10px;
+    object-fit:cover;
+    flex-shrink:0;
+    border:1px solid #eee;
+  }
+
+  .nav-search .search-info{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+
+  .nav-search .search-name{
+    font-size:14px;
+    font-weight:700;
+    color:#222;
+  }
+
+  .nav-search .search-brand{
+    font-size:12px;
+    color:#999;
+  }
+
+  .nav-search .search-price{
+    font-size:13px;
+    font-weight:800;
+    color:#111;
+  }
+
+  .nav-search .search-empty{
+    padding:20px;
+    text-align:center;
+    color:#999;
+    font-size:14px;
+  }
+
+}
+
+
+.trust-badge{
+    margin-top:18px;
+}
+
+.trust-badge img{
+    width:80px;
+    height:auto;
+    border-radius:8px;
 }

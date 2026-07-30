@@ -40,7 +40,6 @@ const storage = multer.diskStorage({
 
 });
 
-
 const fileFilter = (req, file, cb) => {
     const allowed = [
         "image/png",
