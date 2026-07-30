@@ -367,3 +367,79 @@ searchOverlay?.addEventListener("click", () => {
     searchBox.classList.remove("active");
 
 });
+const heroSlides = [
+
+{
+image:"/images/category4.jpg",
+title:"ظرافت در جزئیات",
+desc:"بهترین ظروف و لوازم آشپزخانه برای یک زندگی مدرن"
+},
+
+{
+image:"/images/2026-07-30 06.18.10.jpg",
+title:"پذیرایی لوکس",
+desc:"خاص‌ترین سرویس‌های پذیرایی برای خانه شما"
+},
+
+{
+image:"/images/2026-06-26 03.20.47.jpg",
+title:"آشپزخانه‌ای مدرن",
+desc:"اکسسوری‌های زیبا برای نظم بیشتر"
+}
+
+];
+
+let heroIndex=0;
+
+const heroImg=document.getElementById("hero-image");
+const heroTitle=document.getElementById("hero-title");
+const heroDesc=document.getElementById("hero-desc");
+const heroDots=document.querySelectorAll(".hero-dot");
+
+function updateHero(){
+
+heroImg.style.opacity=0;
+
+setTimeout(()=>{
+
+heroImg.src=heroSlides[heroIndex].image;
+
+heroTitle.textContent=heroSlides[heroIndex].title;
+
+heroDesc.textContent=heroSlides[heroIndex].desc;
+
+heroImg.style.opacity=1;
+
+heroDots.forEach(dot=>dot.classList.remove("active"));
+
+heroDots[heroIndex].classList.add("active");
+
+},250);
+
+}
+
+setInterval(()=>{
+
+heroIndex++;
+
+if(heroIndex>=heroSlides.length){
+
+heroIndex=0;
+
+}
+
+updateHero();
+
+},2000);
+
+heroDots.forEach((dot,index)=>{
+
+dot.addEventListener("click",()=>{
+
+heroIndex=index;
+
+updateHero();
+
+});
+
+});

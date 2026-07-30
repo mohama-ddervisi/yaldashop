@@ -63,7 +63,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         </div>
 
 
-        <!-- Mobile Bell -->
+       <!-- Mobile Bell -->
         <a href="#" class="mobile-bell icon">
             <img
                 src="/images/bell-svgrepo-com.svg"
@@ -71,13 +71,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         </a>
 
 
-        <!-- Desktop Menu -->
-        <nav class="menu">
-            <a href="#">فروشگاه</a>
-            <a href="#">دسته‌بندی‌ها</a>
-            <a href="#">درباره ما</a>
-            <a href="#">تماس</a>
-        </nav>
+        <!-- Desktop Right Side: Search + Menu -->
+        <div class="nav-right">
+
+            <div class="nav-search">
+                <input type="text" id="nav-search-input" placeholder="جستجوی محصولات...">
+                <div class="search-results"></div>
+            </div>
+
+            <nav class="menu">
+                <a href="#">فروشگاه</a>
+                <a href="#">دسته‌بندی‌ها</a>
+                <a href="#">درباره ما</a>
+                <a href="#">تماس</a>
+            </nav>
+
+        </div>
 
 
         <!-- Mobile Hamburger -->
@@ -172,11 +181,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
     <div class="showcase-left">
 
-        <h1>
+        <h1 id="hero-title">
             ظرافت در جزئیات
         </h1>
 
-        <p>
+        <p id="hero-desc">
             بهترین ظروف و لوازم آشپزخانه برای یک زندگی مدرن
         </p>
 
@@ -188,10 +197,17 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
     <div class="showcase-right">
 
-        <img
-            src="/images/category4.jpg"
-            alt="hero"
-        >
+        <img id="hero-image"
+             src="/images/category4.jpg"
+             alt="hero">
+
+        <div class="hero-dots">
+
+            <span class="hero-dot active"></span>
+            <span class="hero-dot"></span>
+            <span class="hero-dot"></span>
+
+        </div>
 
     </div>
 
@@ -512,7 +528,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
        
     </div>
-
+<div class="footer-col footer-brand">
+    <img src="/images/logo.jpg" alt="YALDA SHOP" class="footer-logo">
+    <p>ارائه بهترین کالکشن‌های ظروف و اکسسوری منزل</p>
+    <div class="socials"></div>
+</div>
 </footer>
 <div id="profile-overlay" class="profile-overlay"></div>
 
