@@ -4504,3 +4504,22 @@ transition:opacity .45s ease;
     background:#111;
     color:#fff;
 }
+.back-page-btn{
+    position: fixed;
+
+    top: 5.8rem;      /* زیر هدر */
+    left: 1.2rem;
+
+    width: 2.8rem;
+    height: 2.8rem;
+
+    border-radius:50%;
+    border:none;
+
+    background:#fff;
+    color:#111;
+
+    box-shadow:0 .4rem 1.2rem rgba(0,0,0,.12);
+
+    z-index:900;
+}
