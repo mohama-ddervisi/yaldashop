@@ -548,7 +548,7 @@ async function deleteProduct(req, res) {
     }
 }
 
-        console.log(updated);
+        
 
         res.json({
 
