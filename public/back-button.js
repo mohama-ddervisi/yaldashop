@@ -7,7 +7,15 @@
 
     const btn = document.createElement("button");
 
-    btn.innerHTML = "✕";
+    backBtn.innerHTML = `
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+<path d="M15 18L9 12L15 6"
+stroke="currentColor"
+stroke-width="2.4"
+stroke-linecap="round"
+stroke-linejoin="round"/>
+</svg>
+`;
 
     btn.style.position = "fixed";
     btn.style.top = "20px";
