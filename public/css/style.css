@@ -4572,3 +4572,194 @@ transition:opacity .45s ease;
     }
 
 }
+/* ============ LUXURY PRODUCTS PAGE REDESIGN ============ */
+
+/* پس‌زمینه کلی صفحه */
+.products-page{
+    background:#fafaf8;
+    border-radius:24px;
+    padding:40px 30px;
+}
+
+/* بردکرامب */
+.products-breadcrumb a{
+    transition:.25s;
+}
+.products-breadcrumb a:hover{
+    color:#c9a86a;
+}
+
+/* عنوان صفحه */
+.products-header h1,
+.products-top h1{
+    position:relative;
+    display:inline-block;
+    letter-spacing:1px;
+}
+.products-header h1::after,
+.products-top h1::after{
+    content:"";
+    position:absolute;
+    bottom:-10px;
+    right:0;
+    width:60px;
+    height:3px;
+    background:linear-gradient(90deg,#c9a86a,transparent);
+    border-radius:10px;
+}
+
+/* دراپ‌داون مرتب‌سازی */
+.products-sort select{
+    border:1px solid #e5ddd0;
+    background:#fff;
+    font-weight:600;
+    transition:.25s;
+    cursor:pointer;
+}
+.products-sort select:hover,
+.products-sort select:focus{
+    border-color:#c9a86a;
+    box-shadow:0 0 0 3px rgba(201,168,106,.15);
+    outline:none;
+}
+
+/* ============ کارت محصول ============ */
+
+.lux-card{
+    border:1px solid transparent;
+    transition:transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s, border-color .4s;
+    animation:cardFadeUp .6s cubic-bezier(.16,1,.3,1) backwards;
+}
+
+/* انیمیشن ورود پلکانی برای ۱۲ کارت اول */
+.products-grid .lux-card:nth-child(1){animation-delay:.05s}
+.products-grid .lux-card:nth-child(2){animation-delay:.10s}
+.products-grid .lux-card:nth-child(3){animation-delay:.15s}
+.products-grid .lux-card:nth-child(4){animation-delay:.20s}
+.products-grid .lux-card:nth-child(5){animation-delay:.25s}
+.products-grid .lux-card:nth-child(6){animation-delay:.30s}
+.products-grid .lux-card:nth-child(7){animation-delay:.35s}
+.products-grid .lux-card:nth-child(8){animation-delay:.40s}
+.products-grid .lux-card:nth-child(9){animation-delay:.45s}
+.products-grid .lux-card:nth-child(10){animation-delay:.50s}
+.products-grid .lux-card:nth-child(11){animation-delay:.55s}
+.products-grid .lux-card:nth-child(12){animation-delay:.60s}
+
+@keyframes cardFadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.lux-card:hover{
+    transform:translateY(-10px);
+    border-color:rgba(201,168,106,.5);
+    box-shadow:0 30px 60px rgba(0,0,0,.15);
+}
+
+/* عکس محصول با زوم نرم روی هاور */
+.card-image{
+    overflow:hidden;
+    border-radius:22px;
+}
+.card-image img{
+    transition:transform .6s cubic-bezier(.16,1,.3,1);
+}
+.lux-card:hover .card-image img{
+    transform:scale(1.08);
+}
+
+/* بج تخفیف (حالت مستطیلی موجود) */
+.sale-badge{
+    background:linear-gradient(135deg,#ff4d5d,#e0344a);
+    box-shadow:0 8px 20px rgba(255,77,93,.35);
+}
+
+/* بج جدید */
+.new-badge{
+    background:linear-gradient(135deg,#c9a86a,#b8934f);
+    color:#fff;
+    font-weight:700;
+    box-shadow:0 8px 20px rgba(201,168,106,.3);
+}
+
+/* fallback عمومی برای بج‌های گرد درصدی (احتمالاً discount-badge یا مشابه) */
+.lux-card [class*="badge"],
+.card-image [class*="badge"]{
+    box-shadow:0 6px 16px rgba(0,0,0,.2);
+}
+
+/* دکمه قلب علاقه‌مندی */
+.heart-btn{
+    transition:.3s;
+}
+.heart-btn:hover{
+    background:#c9a86a;
+    color:#fff;
+    transform:scale(1.1) rotate(8deg);
+}
+
+/* برند و عنوان محصول */
+.brand-row{
+    font-weight:600;
+    color:#a08a5f;
+}
+
+.card-content h3{
+    transition:.25s;
+}
+.lux-card:hover .card-content h3{
+    color:#c9a86a;
+}
+
+/* قیمت */
+.new-price{
+    background:linear-gradient(90deg,#111,#3a3a3a);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+/* دکمه مشاهده محصول */
+.card-content button,
+.lux-card a.view-btn,
+.lux-card button{
+    position:relative;
+    overflow:hidden;
+    background:#111;
+    color:#fff;
+    border:1px solid #111;
+    transition:.35s;
+    z-index:1;
+}
+.card-content button::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg,#c9a86a,#b8934f);
+    transform:translateX(-100%);
+    transition:.4s;
+    z-index:-1;
+}
+.card-content button:hover::before{
+    transform:translateX(0);
+}
+.card-content button:hover{
+    border-color:#c9a86a;
+    color:#111;
+}
+
+/* ============ موبایل: انیمیشن سبک‌تر و بدون تاخیر زیاد ============ */
+@media(max-width:768px){
+    .lux-card{
+        animation-duration:.4s;
+    }
+    .lux-card:hover{
+        transform:none;
+    }
+}
