@@ -390,13 +390,122 @@ if (product.discount && product.discount > 0) {
 const fs = require("fs");
 const path = require("path");
 
+async function deleteProductImage(req, res){
+
+    try{
+
+        const id = Number(req.params.id);
+
+        const image =
+        await prisma.productImage.findUnique({
+
+            where:{ id }
+
+        });
+
+        if(!image){
+
+            return res.status(404).json({
+
+                success:false,
+                message:"تصویر پیدا نشد"
+
+            });
+
+        }
+
+        const filePath =
+        path.join(
+
+            __dirname,
+            "..",
+            image.image
+
+        );
+
+        if(fs.existsSync(filePath)){
+
+            fs.unlinkSync(filePath);
+
+        }
+
+        await prisma.productImage.delete({
+
+            where:{ id }
+
+        });
+
+        // اگر عکس حذف شده، عکس اصلی محصول بوده باشد
+const product = await prisma.product.findUnique({
+
+    where: {
+        id: image.productId
+    }
+
+});
+
+if (product && product.image === image.image) {
+
+    const firstImage = await prisma.productImage.findFirst({
+
+        where: {
+            productId: image.productId
+        },
+
+        orderBy: {
+            sort: "asc"
+        }
+
+    });
+
+    await prisma.product.update({
+
+        where: {
+            id: image.productId
+        },
+
+        data: {
+
+            image: firstImage
+                ? firstImage.image
+                : null
+
+        }
+
+    });
+
+}
+        res.json({
+
+            success:true
+
+        });
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        res.status(500).json({
+
+            success:false,
+            message:"خطا در حذف تصویر"
+
+        });
+
+    }
+
+}
+
+// حذف محصول
 async function deleteProduct(req, res) {
 
     try {
 
         const id = Number(req.params.id);
 
-        // حذف تمام تصاویر محصول
+        // حذف تصاویر محصول
         await prisma.productImage.deleteMany({
             where: {
                 productId: id
@@ -427,10 +536,12 @@ async function deleteProduct(req, res) {
     }
 
 }
+
 module.exports = {
     getProducts,
     createProduct,
     updateProduct,
     deleteProduct,
+    deleteProductImage,
     fixCategories
 };
