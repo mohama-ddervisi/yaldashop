@@ -1096,3 +1096,112 @@ width:100%;
         transform:none;
     }
 }
+/* ============ HEADER AREA: خفن‌تر ============ */
+
+.products-top,
+.products-header{
+    position:relative;
+    background:#fff;
+    border-radius:24px;
+    padding:32px 36px;
+    box-shadow:0 10px 40px rgba(0,0,0,.05);
+    border:1px solid #f1ede4;
+    overflow:hidden;
+}
+
+.products-top::before,
+.products-header::before{
+    content:"";
+    position:absolute;
+    top:0;
+    right:0;
+    width:180px;
+    height:180px;
+    background:radial-gradient(circle,rgba(201,168,106,.12),transparent 70%);
+    pointer-events:none;
+}
+
+.products-breadcrumb{
+    background:#faf8f4;
+    display:inline-flex;
+    padding:8px 16px;
+    border-radius:999px;
+    margin-bottom:20px !important;
+}
+
+.products-top h1,
+.products-header h1{
+    font-size:clamp(2.2rem,4vw,3.4rem) !important;
+    background:linear-gradient(90deg,#111,#3a3a3a);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.products-top h1::after,
+.products-header h1::after{
+    width:80px;
+    height:4px;
+}
+
+/* دراپ‌داون مرتب‌سازی - خفن‌تر */
+.products-sort{
+    position:relative;
+}
+
+.products-sort select{
+    -webkit-appearance:none;
+    appearance:none;
+    width:230px !important;
+    height:56px !important;
+    border-radius:16px !important;
+    border:2px solid #e8dfc9 !important;
+    background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath fill='%23c9a86a' d='M7 9L0 1.6 1.6 0 7 5.8 12.4 0 14 1.6z'/%3E%3C/svg%3E") no-repeat left 20px center !important;
+    font-weight:700;
+    font-size:1rem !important;
+    padding:0 45px 0 20px !important;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+    transition:.3s;
+}
+
+.products-sort select:hover{
+    border-color:#c9a86a !important;
+    box-shadow:0 12px 35px rgba(201,168,106,.2);
+    transform:translateY(-2px);
+}
+
+.products-sort select:focus{
+    outline:none;
+    border-color:#c9a86a !important;
+    box-shadow:0 0 0 4px rgba(201,168,106,.15);
+}
+
+/* ============ آیکون قلب: جای درست و واضح ============ */
+
+.wishlist-btn{
+    top:14px !important;
+    left:14px !important;
+    right:auto !important;
+    width:40px !important;
+    height:40px !important;
+    background:rgba(255,255,255,.9) !important;
+    border-radius:50% !important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 6px 18px rgba(0,0,0,.15);
+    backdrop-filter:blur(4px);
+}
+
+.wishlist-btn .wishlist-icon{
+    width:18px !important;
+    height:18px !important;
+}
+
+.wishlist-btn:hover{
+    background:#c9a86a !important;
+}
+
+.wishlist-btn:hover .wishlist-icon{
+    filter:brightness(0) invert(1);
+}
