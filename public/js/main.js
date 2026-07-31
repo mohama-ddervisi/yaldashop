@@ -224,44 +224,46 @@ const categories = document.getElementById("categories");
 
 let isAnimating = false;
 
-showcaseBtn.addEventListener("click", () => {
+if (showcaseBtn && categories) {
 
-    if (isAnimating) return;
+    showcaseBtn.addEventListener("click", () => {
 
-    isAnimating = true;
+        if (isAnimating) return;
 
-    categories.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+        isAnimating = true;
 
-    setTimeout(() => {
-
-        // رفتن تا انتهای اسکرول
-        categories.scrollTo({
-            left: categories.scrollWidth,
-            behavior: "smooth"
+        categories.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
         });
 
         setTimeout(() => {
 
-            // برگشت به اول
             categories.scrollTo({
-                left: 0,
+                left: categories.scrollWidth,
                 behavior: "smooth"
             });
 
             setTimeout(() => {
 
-                isAnimating = false;
+                categories.scrollTo({
+                    left: 0,
+                    behavior: "smooth"
+                });
 
-            }, 900);
+                setTimeout(() => {
 
-        }, 1200);
+                    isAnimating = false;
 
-    }, 700);
+                }, 900);
 
-});
+            }, 1200);
+
+        }, 700);
+
+    });
+
+}
 
 const searchBtn = document.getElementById("search-btn");
 const searchOverlay = document.getElementById("search-overlay");
