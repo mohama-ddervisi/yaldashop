@@ -432,6 +432,5 @@ module.exports = {
     createProduct,
     updateProduct,
     deleteProduct,
-    deleteProductImage,
     fixCategories
 };
