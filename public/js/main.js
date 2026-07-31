@@ -360,3 +360,26 @@ updateHero();
 });
 
 });
+// Back Button
+(() => {
+
+    if (window.location.pathname === "/") return;
+
+    const backBtn = document.createElement("button");
+
+    backBtn.className = "back-page-btn";
+    backBtn.innerHTML = "✕";
+
+    backBtn.onclick = () => {
+
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            window.location.href = "/";
+        }
+
+    };
+
+    document.body.appendChild(backBtn);
+
+})();
