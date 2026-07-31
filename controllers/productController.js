@@ -7,7 +7,7 @@ async function getProducts(req, res) {
         const { category, q } = req.query;
 
         const where = {};
-
+        where.isActive = true;
         const categoryMap = {
             serving: "ظروف پذیرایی",
             cups: "لیوان و فنجان",
@@ -515,17 +515,38 @@ async function deleteProduct(req, res) {
 
         const id = Number(req.params.id);
 
-        const updated = await prisma.product.update({
+       async function deleteProduct(req, res) {
+    try {
+        const id = Number(req.params.id);
 
+        // اول تصاویر مرتبط را حذف کن
+        await prisma.productImage.deleteMany({
+            where: {
+                productId: id
+            }
+        });
+
+        // بعد خود محصول را حذف کن
+        await prisma.product.delete({
             where: {
                 id
-            },
-
-            data: {
-                isActive: false
             }
-
         });
+
+        res.json({
+            success: true,
+            message: "محصول با موفقیت حذف شد."
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            success: false,
+            message: "خطا در حذف محصول"
+        });
+    }
+}
 
         console.log(updated);
 
