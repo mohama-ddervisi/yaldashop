@@ -4178,7 +4178,12 @@ gap:10px;
 z-index:30;
 
 }
-
+.hero-dots,
+.hero-pagination,
+.swiper-pagination,
+.splide__pagination {
+    display: none !important;
+}
 .hero-dot{
 
 width:8px;
