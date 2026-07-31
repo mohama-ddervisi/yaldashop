@@ -427,3 +427,11 @@ async function deleteProduct(req, res) {
     }
 
 }
+module.exports = {
+    getProducts,
+    createProduct,
+    updateProduct,
+    deleteProduct,
+    deleteProductImage,
+    fixCategories
+};
