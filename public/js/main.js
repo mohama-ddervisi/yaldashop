@@ -383,5 +383,9 @@ updateHero();
     };
 
     document.body.appendChild(backBtn);
+setTimeout(() => {
 
+    backBtn.classList.add("show");
+
+}, 3000);
 })();
