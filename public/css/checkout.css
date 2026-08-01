@@ -395,3 +395,176 @@ margin:auto;
 }
 
 }
+/* ============ جلوگیری از زوم خودکار روی فوکوس اینپوت (موبایل) ============ */
+
+.checkout-form input,
+.checkout-form textarea,
+.checkout-form select,
+.checkout-sidebar input{
+    font-size:16px !important;
+}
+
+@media(max-width:768px){
+    .checkout-form input,
+    .checkout-form textarea,
+    .checkout-form select,
+    .checkout-sidebar input{
+        font-size:16px !important;
+    }
+}
+/* ============ CHECKOUT PAGE: Modern Luxury Redesign ============ */
+
+body{
+    background:#faf8f4 !important;
+}
+
+.checkout-container{
+    gap:24px !important;
+}
+
+/* فیلدهای فرم */
+.checkout-form{
+    background:#fff;
+    border-radius:24px;
+    padding:36px;
+    box-shadow:0 10px 40px rgba(0,0,0,.05);
+    border:1px solid #f1ede4;
+}
+
+.checkout-form h2,
+.checkout-form h3{
+    position:relative;
+    display:inline-block;
+    margin-bottom:28px !important;
+    font-weight:800;
+}
+
+.checkout-form h2::after,
+.checkout-form h3::after{
+    content:"";
+    position:absolute;
+    bottom:-8px;
+    right:0;
+    width:50px;
+    height:3px;
+    background:linear-gradient(90deg,#c9a86a,transparent);
+    border-radius:10px;
+}
+
+.checkout-form input,
+.checkout-form textarea{
+    width:100%;
+    border:1.5px solid #eee5d3;
+    border-radius:14px;
+    padding:14px 16px;
+    margin-bottom:16px;
+    background:#fdfcf9;
+    transition:.25s;
+    color:#222;
+}
+
+.checkout-form input:focus,
+.checkout-form textarea:focus{
+    outline:none;
+    border-color:#c9a86a;
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(201,168,106,.12);
+}
+
+.checkout-form input::placeholder,
+.checkout-form textarea::placeholder{
+    color:#b8ab8f;
+}
+
+/* سایدبار خلاصه سفارش */
+.checkout-sidebar{
+    background:#fff !important;
+    border-radius:24px !important;
+    padding:32px !important;
+    box-shadow:0 10px 40px rgba(0,0,0,.06) !important;
+    border:1px solid #f1ede4;
+}
+
+.checkout-sidebar h2,
+.checkout-sidebar h3{
+    font-weight:800;
+    margin-bottom:24px;
+}
+
+.checkout-sidebar input{
+    width:100%;
+    border:1.5px solid #eee5d3;
+    border-radius:14px;
+    padding:13px 16px;
+    margin-bottom:14px;
+    background:#fdfcf9;
+    transition:.25s;
+}
+
+.checkout-sidebar input:focus{
+    outline:none;
+    border-color:#c9a86a;
+    box-shadow:0 0 0 4px rgba(201,168,106,.12);
+}
+
+/* دکمه اعمال کد تخفیف */
+.checkout-sidebar button{
+    width:100%;
+    border-radius:14px;
+    padding:13px;
+    background:#111;
+    color:#fff;
+    border:none;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+    margin-bottom:20px;
+}
+
+.checkout-sidebar button:hover{
+    background:#c9a86a;
+    color:#111;
+}
+
+/* دکمه نهایی ثبت سفارش: طلایی و برجسته */
+.checkout-sidebar button:last-of-type,
+.checkout-sidebar .submit-order-btn{
+    background:linear-gradient(135deg,#c9a86a,#b8934f) !important;
+    color:#fff !important;
+    font-size:1.05rem;
+    padding:16px !important;
+    box-shadow:0 15px 35px rgba(201,168,106,.35);
+}
+
+.checkout-sidebar button:last-of-type:hover,
+.checkout-sidebar .submit-order-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 20px 45px rgba(201,168,106,.45);
+}
+
+/* ============ ریسپانسیو ============ */
+
+@media(max-width:992px){
+    .checkout-container{
+        gap:18px !important;
+    }
+    .checkout-form,
+    .checkout-sidebar{
+        padding:24px !important;
+        border-radius:20px !important;
+    }
+}
+
+@media(max-width:768px){
+    .checkout-form,
+    .checkout-sidebar{
+        padding:20px !important;
+        border-radius:18px !important;
+    }
+    .checkout-form h2,
+    .checkout-form h3,
+    .checkout-sidebar h2,
+    .checkout-sidebar h3{
+        font-size:1.2rem;
+    }
+}
