@@ -4823,3 +4823,85 @@ transition:opacity .45s ease;
         padding:6px 11px;
     }
 }
+/* ============ TOAST FINAL FIX: کوچیک، بالای صفحه، قابل کلیک ============ */
+
+#toast{
+    position:fixed !important;
+    top:20px !important;
+    left:50% !important;
+    right:auto !important;
+    bottom:auto !important;
+    transform:translateX(-50%) translateY(-30px) !important;
+    width:max-content !important;
+    height:auto !important;
+    max-width:90% !important;
+    min-width:0 !important;
+    padding:10px 14px !important;
+    margin:0 !important;
+    border-radius:14px !important;
+    background:#1f1b16 !important;
+    box-shadow:0 15px 35px rgba(0,0,0,.3) !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:10px !important;
+    opacity:0 !important;
+    visibility:hidden !important;
+    z-index:999999 !important;
+    pointer-events:none !important;
+    transition:.35s ease !important;
+}
+
+#toast.show{
+    top:20px !important;
+    transform:translateX(-50%) translateY(0) !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+}
+
+#toast-message{
+    display:flex !important;
+    align-items:center !important;
+    gap:10px !important;
+    font-size:12.5px !important;
+    color:#fff !important;
+    white-space:nowrap !important;
+}
+
+.toast-cart-btn{
+    display:inline-block !important;
+    white-space:nowrap !important;
+    background:#c9a86a !important;
+    color:#1f1b16 !important;
+    text-decoration:none !important;
+    font-size:11.5px !important;
+    font-weight:700 !important;
+    padding:6px 12px !important;
+    border-radius:999px !important;
+    position:relative !important;
+    z-index:2 !important;
+    pointer-events:auto !important;
+    cursor:pointer !important;
+    transition:.25s !important;
+    flex-shrink:0 !important;
+}
+
+.toast-cart-btn:hover{
+    background:#b8934f !important;
+}
+
+@media(max-width:500px){
+    #toast{
+        top:14px !important;
+        padding:9px 12px !important;
+    }
+    #toast-message{
+        font-size:11.5px !important;
+        gap:8px !important;
+    }
+    .toast-cart-btn{
+        font-size:10.5px !important;
+        padding:5px 10px !important;
+    }
+}
