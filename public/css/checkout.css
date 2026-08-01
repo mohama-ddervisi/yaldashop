@@ -568,3 +568,46 @@ body{
         font-size:1.2rem;
     }
 }
+/* ============ دکمه بازگشت (X): چون به body اضافه می‌شه، fixed می‌مونه ولی استایل و جا درست می‌شه ============ */
+
+.back-page-btn{
+    position:fixed !important;
+    top:28px !important;
+    left:28px !important;
+    right:auto !important;
+    bottom:auto !important;
+    width:38px !important;
+    height:38px !important;
+    border-radius:50% !important;
+    background:#f5f0e6 !important;
+    color:#8a7451 !important;
+    border:1px solid #eee5d3 !important;
+    font-size:16px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    cursor:pointer;
+    opacity:0;
+    transition:.25s;
+    z-index:99999;
+}
+
+.back-page-btn.show{
+    opacity:1;
+}
+
+.back-page-btn:hover{
+    background:#c9a86a !important;
+    color:#fff !important;
+    transform:rotate(90deg);
+}
+
+@media(max-width:768px){
+    .back-page-btn{
+        top:18px !important;
+        left:18px !important;
+        width:32px !important;
+        height:32px !important;
+        font-size:14px !important;
+    }
+}
