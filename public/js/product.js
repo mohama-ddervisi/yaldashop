@@ -210,7 +210,10 @@ addCartBtn.addEventListener("click", () => {
 
     console.log(getCart());
 
-    showToast("محصول به سبد خرید اضافه شد");
+   showToast(`
+        <span>محصول به سبد خرید اضافه شد</span>
+        <a href="/cart.html" class="toast-cart-btn">رفتن به سبد خرید</a>
+    `);
 
 });
 const wishlistBtn =
