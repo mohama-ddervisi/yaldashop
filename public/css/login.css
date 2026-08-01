@@ -478,3 +478,281 @@ body{
     }
 
 }
+/* ============ LOGIN PAGE: ULTRA LUXURY V2 ============ */
+
+body{
+    background:
+        linear-gradient(120deg, #faf8f4 0%, #f3ecdd 50%, #faf8f4 100%) !important;
+    background-size:200% 200% !important;
+    animation:gradientShift 12s ease infinite;
+    position:relative;
+    overflow:hidden;
+}
+
+@keyframes gradientShift{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    border-radius:50%;
+    filter:blur(60px);
+    z-index:0;
+    pointer-events:none;
+}
+
+body::before{
+    width:400px;
+    height:400px;
+    background:radial-gradient(circle, rgba(201,168,106,.25), transparent 70%);
+    top:-100px;
+    right:-100px;
+}
+
+body::after{
+    width:350px;
+    height:350px;
+    background:radial-gradient(circle, rgba(201,168,106,.18), transparent 70%);
+    bottom:-80px;
+    left:-80px;
+}
+
+.login-page{
+    position:relative;
+    z-index:1;
+}
+
+.login-card{
+    position:relative;
+    background:rgba(255,255,255,.75) !important;
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border-radius:32px !important;
+    border:1px solid rgba(255,255,255,.6);
+    box-shadow:
+        0 30px 80px rgba(20,15,5,.1),
+        0 2px 8px rgba(20,15,5,.04),
+        inset 0 1px 0 rgba(255,255,255,.8) !important;
+    padding:3.5rem 3rem !important;
+    overflow:visible;
+    animation:cardRise .7s cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes cardRise{
+    from{
+        opacity:0;
+        transform:translateY(24px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.login-card::before{
+    content:"";
+    position:absolute;
+    top:-1px;
+    right:15%;
+    left:15%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#c9a86a,transparent);
+}
+
+.login-logo{
+    position:relative;
+    margin-bottom:2.4rem !important;
+}
+
+.login-logo h1{
+    font-size:2.3rem !important;
+    background:linear-gradient(135deg,#111 30%,#5a4a2f 70%,#c9a86a 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    font-weight:900 !important;
+    letter-spacing:.4rem !important;
+}
+
+.login-logo span{
+    color:#c9a86a !important;
+    font-weight:500 !important;
+    letter-spacing:.6rem !important;
+    font-size:.75rem !important;
+    display:block;
+    margin-top:2px;
+}
+
+.login-card h2{
+    font-weight:800 !important;
+    font-size:1.5rem !important;
+    color:#1a1a1a;
+}
+
+.login-card p{
+    line-height:1.9;
+    color:#8a8377 !important;
+}
+
+/* ============ اینپوت‌های مدرن: underline style ============ */
+
+.input-group label{
+    color:#8a7451 !important;
+    font-size:.8rem !important;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    font-weight:700 !important;
+}
+
+.input-group input{
+    background:transparent !important;
+    border:none !important;
+    border-bottom:2px solid #e5dcc8 !important;
+    border-radius:0 !important;
+    padding:0 2px !important;
+    font-size:1.15rem !important;
+    font-weight:600;
+    color:#1a1a1a;
+    transition:.35s;
+}
+
+.input-group input:focus{
+    border-bottom-color:#c9a86a !important;
+    box-shadow:none !important;
+}
+
+.input-group input::placeholder{
+    color:#c4bca6;
+    font-weight:400;
+}
+
+/* ============ دکمه: شیشه‌ای با افکت نور ============ */
+
+.login-btn{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(135deg,#161616,#0a0a0a) !important;
+    border-radius:18px !important;
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.2),
+        0 2px 6px rgba(0,0,0,.1) !important;
+    font-weight:700 !important;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    font-size:.9rem !important;
+}
+
+.login-btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    right:-150%;
+    width:60%;
+    height:100%;
+    background:linear-gradient(
+        115deg,
+        transparent 20%,
+        rgba(255,255,255,.25) 45%,
+        transparent 70%
+    );
+    transform:skewX(-18deg);
+    transition:right .8s cubic-bezier(.16,1,.3,1);
+}
+
+.login-btn:hover::before{
+    right:130%;
+}
+
+.login-btn:hover{
+    transform:translateY(-3px) !important;
+    box-shadow:
+        0 25px 55px rgba(0,0,0,.28),
+        0 2px 8px rgba(201,168,106,.2) !important;
+}
+
+.login-footer a{
+    position:relative;
+    color:#c9a86a !important;
+}
+
+.login-footer a::after{
+    content:"";
+    position:absolute;
+    bottom:-3px;
+    right:0;
+    left:0;
+    height:1.5px;
+    background:#c9a86a;
+    transform:scaleX(0);
+    transition:.3s;
+}
+
+.login-footer a:hover::after{
+    transform:scaleX(1);
+}
+
+/* ============ OTP: خط زیرین مدرن ============ */
+
+.otp-input{
+    background:transparent !important;
+    border:none !important;
+    border-bottom:2.5px solid #e5dcc8 !important;
+    border-radius:0 !important;
+    font-size:1.5rem !important;
+    color:#1a1a1a;
+    transition:.3s;
+}
+
+.otp-input:focus{
+    border-bottom-color:#c9a86a !important;
+}
+
+#resend-code:not(:disabled){
+    background:linear-gradient(135deg,#c9a86a,#a88a55) !important;
+    border:none !important;
+    border-radius:14px !important;
+}
+
+#resend-code:not(:disabled):hover{
+    transform:translateY(-3px);
+    box-shadow:0 20px 40px rgba(201,168,106,.35) !important;
+}
+
+/* ============ ریسپانسیو ============ */
+
+@media(max-width:480px){
+
+    body::before{
+        width:250px;
+        height:250px;
+    }
+    body::after{
+        width:220px;
+        height:220px;
+    }
+
+    .login-card{
+        padding:2.6rem 1.8rem !important;
+        border-radius:26px !important;
+    }
+
+    .login-logo h1{
+        font-size:1.9rem !important;
+        letter-spacing:.3rem !important;
+    }
+
+    .login-card h2{
+        font-size:1.25rem !important;
+    }
+
+    .otp-input{
+        width:2.6rem;
+        height:2.8rem;
+        font-size:1.2rem !important;
+    }
+
+}
