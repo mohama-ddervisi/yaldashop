@@ -1174,3 +1174,60 @@ width:100%;
     }
 
 }
+/* ============ V5: Fix borders + button style + warm color palette ============ */
+
+/* حذف کامل هر بوردر باقی‌مونده روی کارت (حتی از قوانین قدیمی‌تر بالای فایل) */
+.products-grid .product-card,
+.products-grid .product-card *{
+    border:none !important;
+    outline:none !important;
+}
+
+/* دکمه: بوردر گرد و شیک به‌جای فقط متن ساده */
+.products-grid .product-btn{
+    border:1.5px solid #d8cbb0 !important;
+    border-radius:999px !important;
+    padding:9px 20px !important;
+    background:#fff !important;
+    color:#8a7451 !important;
+    transition:.3s;
+}
+
+.products-grid .product-btn:hover{
+    background:#8a7451 !important;
+    border-color:#8a7451 !important;
+    color:#fff !important;
+}
+
+/* رنگ‌بندی گرم‌تر برای متن‌ها */
+.products-grid .product-brand{
+    color:#b8a06d !important;
+}
+
+.products-grid .product-title{
+    color:#3a3128 !important;
+}
+
+.products-grid .new-price{
+    color:#8a6d3b !important;
+    font-weight:700 !important;
+}
+
+.products-grid .old-price{
+    color:#d8c9a8 !important;
+}
+
+/* بک‌گراند عکس هم کمی گرم‌تر بشه */
+.products-grid .product-image-box{
+    background:#f6f2ea !important;
+}
+
+/* موبایل: دکمه با بوردر ثابت (چون همیشه دیده می‌شه) */
+@media(max-width:768px){
+    .products-grid .product-btn{
+        display:inline-block;
+        width:auto !important;
+        padding:8px 18px !important;
+        font-size:.72rem !important;
+    }
+}
