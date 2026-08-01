@@ -4950,3 +4950,115 @@ body > button.back-page-btn:hover{
         font-size:14px !important;
     }
 }
+/* ============ محتوای جدید منوی موبایل ============ */
+
+.mobile-quick-links{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.mobile-quick-item{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    color:#333;
+    font-size:12px;
+    font-weight:600;
+    text-align:center;
+}
+
+.mobile-quick-icon{
+    width:48px;
+    height:48px;
+    border-radius:16px;
+    background:#faf7f0;
+    border:1px solid #eee5d3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.25s;
+}
+
+.mobile-quick-item:hover .mobile-quick-icon{
+    background:#c9a86a;
+}
+
+.mobile-quick-icon img{
+    width:20px;
+    height:20px;
+}
+
+.mobile-promo-banner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    background:linear-gradient(135deg,#2b2420,#3d332c);
+    border-radius:18px;
+    padding:16px 18px;
+    margin-bottom:18px;
+}
+
+.mobile-promo-text{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.mobile-promo-text strong{
+    color:#f0d9a8;
+    font-size:14px;
+}
+
+.mobile-promo-text span{
+    color:#cbbfa8;
+    font-size:11.5px;
+}
+
+.mobile-promo-btn{
+    background:#c9a86a;
+    color:#1f1b16;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:700;
+    padding:9px 16px;
+    border-radius:999px;
+    white-space:nowrap;
+    flex-shrink:0;
+}
+
+.mobile-contact-row{
+    display:flex;
+    gap:10px;
+}
+
+.mobile-contact-item{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:12px;
+    border:1px solid #eee5d3;
+    border-radius:14px;
+    text-decoration:none;
+    color:#555;
+    font-size:12px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.mobile-contact-item:hover{
+    background:#faf7f0;
+    border-color:#c9a86a;
+}
+
+.mobile-contact-item img{
+    width:18px;
+    height:18px;
+}
