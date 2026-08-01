@@ -344,3 +344,137 @@ body{
     letter-spacing:.08rem;
 
 }
+/* ============ LOGIN PAGE: Luxury Redesign ============ */
+
+body{
+    background:
+        radial-gradient(circle at 20% 20%, rgba(201,168,106,.08), transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(201,168,106,.06), transparent 50%),
+        #faf8f4 !important;
+}
+
+.login-card{
+    position:relative;
+    border-radius:28px !important;
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.06),
+        0 5px 20px rgba(201,168,106,.08) !important;
+    border:1px solid #f1ede4;
+    overflow:hidden;
+}
+
+.login-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    right:0;
+    left:0;
+    height:4px;
+    background:linear-gradient(90deg,#c9a86a,#e8d5a8,#c9a86a);
+}
+
+.login-logo h1{
+    background:linear-gradient(90deg,#111,#3a3a3a);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    font-weight:800;
+}
+
+.login-logo span{
+    color:#c9a86a !important;
+    font-weight:600;
+}
+
+.login-card h2{
+    font-weight:800;
+    font-size:1.4rem;
+}
+
+.input-group label{
+    color:#555;
+}
+
+.input-group input{
+    background:#fdfcf9;
+    border:1.5px solid #eee5d3 !important;
+    transition:.25s;
+}
+
+.input-group input:focus{
+    border-color:#c9a86a !important;
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(201,168,106,.12);
+}
+
+.login-btn{
+    background:linear-gradient(135deg,#111,#2b2b2b) !important;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+    font-weight:700;
+    letter-spacing:.3px;
+}
+
+.login-btn:hover{
+    box-shadow:0 20px 45px rgba(0,0,0,.22);
+}
+
+.login-footer a{
+    color:#c9a86a !important;
+    transition:.25s;
+}
+
+.login-footer a:hover{
+    color:#111 !important;
+}
+
+/* ============ OTP boxes ============ */
+
+.otp-input{
+    background:#fdfcf9;
+    border:1.5px solid #eee5d3 !important;
+    transition:.25s;
+}
+
+.otp-input:focus{
+    border-color:#c9a86a !important;
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(201,168,106,.12);
+}
+
+#resend-code:not(:disabled){
+    background:linear-gradient(135deg,#c9a86a,#b8934f) !important;
+    border-color:#c9a86a !important;
+}
+
+#resend-code:not(:disabled):hover{
+    box-shadow:0 .6rem 1.4rem rgba(201,168,106,.35) !important;
+}
+
+.toggle-password{
+    transition:.25s;
+}
+
+.toggle-password:hover{
+    color:#c9a86a !important;
+}
+
+/* ============ ریسپانسیو موبایل ============ */
+
+@media(max-width:480px){
+
+    .login-card{
+        padding:2.2rem 1.6rem !important;
+        border-radius:22px !important;
+    }
+
+    .login-logo h1{
+        font-size:1.7rem;
+    }
+
+    .otp-input{
+        width:2.7rem;
+        height:2.9rem;
+        font-size:1.1rem;
+    }
+
+}
