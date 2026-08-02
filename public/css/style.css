@@ -5062,3 +5062,43 @@ body > button.back-page-btn:hover{
     width:18px;
     height:18px;
 }
+/* ============ رفع تداخل کلاس .features بین بخش صفحه اصلی و برچسب محصول ============ */
+
+section.features{
+    max-width:1400px !important;
+    width:90% !important;
+    margin:40px auto !important;
+    padding:20px !important;
+    background:#fff !important;
+    border-radius:22px !important;
+    box-shadow:0 5px 30px rgba(0,0,0,.05) !important;
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    justify-content:space-between !important;
+    align-items:center !important;
+    gap:15px !important;
+}
+
+@media(max-width:900px){
+    section.features{
+        flex-wrap:wrap !important;
+        justify-content:center !important;
+    }
+}
+
+@media(max-width:768px){
+    section.features{
+        display:grid !important;
+        grid-template-columns:1fr 1fr !important;
+        gap:20px !important;
+        padding:30px !important;
+        width:94% !important;
+    }
+}
+
+@media(max-width:480px){
+    section.features{
+        padding:20px !important;
+        width:92% !important;
+    }
+}
