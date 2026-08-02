@@ -388,4 +388,53 @@ setTimeout(() => {
     backBtn.classList.add("show");
 
 }, 3000);
+
 })();
+/* ============ Stats counter animation on scroll ============ */
+
+const statNumbers = document.querySelectorAll(".stat-number");
+
+if(statNumbers.length){
+
+    const animateNumber = (el) => {
+
+        const target = parseInt(el.dataset.target, 10);
+        const duration = 1600;
+        const startTime = performance.now();
+
+        const step = (now) => {
+
+            const progress = Math.min((now - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(eased * target);
+
+            el.textContent = current.toLocaleString("en-US");
+
+            if(progress < 1){
+                requestAnimationFrame(step);
+            }else{
+                el.textContent = target.toLocaleString("en-US");
+            }
+
+        };
+
+        requestAnimationFrame(step);
+
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+                animateNumber(entry.target);
+                statsObserver.unobserve(entry.target);
+            }
+
+        });
+
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(el => statsObserver.observe(el));
+
+}
