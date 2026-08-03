@@ -52,6 +52,12 @@ model Order {
   userId          Int?
   trackingCode    String?
   shippingCompany String?
+
+  paymentRef      String?
+  paymentTrackId  String?
+  authority       String?
+  paidAt          DateTime?
+
   user            User?       @relation(fields: [userId], references: [id])
   items           OrderItem[]
 }

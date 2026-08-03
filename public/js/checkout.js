@@ -159,21 +159,43 @@ discountPrice
 
 const data = await res.json();
 
-console.log(data);
-
-if (data.success) {
-
-    alert("سفارش با موفقیت ثبت شد.");
-
-    localStorage.removeItem("yalda-cart");
-
-    window.location.href = "/";
-
-} else {
+if (!data.success) {
 
     alert(data.message);
+    return;
 
 }
+
+const payment = await fetch("/payment/request", {
+
+    method: "POST",
+
+    headers: {
+
+        "Content-Type": "application/json"
+
+    },
+
+    body: JSON.stringify({
+
+        orderId: data.order.id
+
+    })
+
+});
+
+const paymentData = await payment.json();
+
+if (!paymentData.success) {
+
+    alert(paymentData.message);
+    return;
+
+}
+
+localStorage.removeItem("yalda-cart");
+
+window.location.href = paymentData.paymentUrl;
 
 }
 applyBtn.onclick = async () => {
