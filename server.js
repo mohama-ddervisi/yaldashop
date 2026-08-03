@@ -38,6 +38,8 @@ const checkoutRoutes = require("./routes/checkoutRoutes");
 const authRoutes = require("./routes/authRoutes");
 const contactRoutes = require("./routes/contactRoutes");
 const userRoutes = require("./routes/userRoutes");
+const paymentRoutes = require("./routes/paymentRoutes");
+
 
 
 
@@ -65,6 +67,7 @@ app.use("/admin/products", adminProductRoutes);
 
 app.use("/discounts", discountRoutes);
 app.use("/checkout", checkoutRoutes);
+app.use("/payment", paymentRoutes);
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });
