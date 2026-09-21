@@ -1,123 +1,116 @@
 const axios = require("axios");
 const prisma = require("../lib/prisma");
 
+const ZIBAL_MERCHANT = process.env.ZIBAL_MERCHANT;
+const ZIBAL_REQUEST_URL = "https://gateway.zibal.ir/v1/request";
+const ZIBAL_VERIFY_URL = "https://gateway.zibal.ir/v1/verify";
+const ZIBAL_START_URL = "https://gateway.zibal.ir/start/";
+const CALLBACK_URL = "https://yaldashoping.ir/payment/callback";
+
 async function requestPayment(req, res) {
-
     try {
-
         const { orderId } = req.body;
 
         const order = await prisma.order.findUnique({
-
-            where: {
-                id: Number(orderId)
-            }
-
+            where: { id: orderId }
         });
 
         if (!order) {
-
-            return res.status(404).json({
-
-                success: false,
-                message: "سفارش پیدا نشد."
-
-            });
-
+            return res.json({ success: false, message: "سفارش پیدا نشد." });
         }
 
-        const response = await axios.post(
-
-            "https://gateway.zibal.ir/v1/request",
-
-            {
-
-                merchant: process.env.ZIBAL_API_KEY,
-
-                amount: order.total,
-
-                callbackUrl: "https://yaldashoping.ir/payment/callback",
-
-                description: `پرداخت سفارش ${order.id}`,
-
-                orderId: String(order.id),
-
-                mobile: order.phone
-
-            }
-
-        );
-
-        if (response.data.result !== 100) {
-
-            return res.status(400).json({
-
-                success: false,
-                message: response.data.message
-
-            });
-
+        if (order.status === "paid") {
+            return res.json({ success: false, message: "این سفارش قبلاً پرداخت شده." });
         }
 
-        await prisma.order.update({
-
-            where: {
-
-                id: order.id
-
-            },
-
-            data: {
-
-                authority: response.data.trackId
-
-            }
-
+        const { data } = await axios.post(ZIBAL_REQUEST_URL, {
+            merchant: ZIBAL_MERCHANT,
+            amount: order.total, // از قبل ریاله، ضرب لازم نیست
+            callbackUrl: CALLBACK_URL,
+            orderId: String(order.id)
         });
 
-        return res.json({
+        if (data.result === 100) {
+            await prisma.order.update({
+                where: { id: order.id },
+                data: { paymentTrackId: String(data.trackId) }
+            });
 
-            success: true,
+            return res.json({
+                success: true,
+                url: ZIBAL_START_URL + data.trackId
+            });
+        } else {
+            return res.json({
+                success: false,
+                message: "خطا در ایجاد تراکنش (کد " + data.result + ")"
+            });
+        }
 
-            paymentUrl:
-                `https://gateway.zibal.ir/start/${response.data.trackId}`
-
-        });
-
+    } catch (err) {
+        console.error("requestPayment error:", err.message);
+        return res.status(500).json({ success: false, message: "خطای سرور در ارتباط با درگاه." });
     }
-
-    catch (err) {
-
-        console.error(err);
-
-        return res.status(500).json({
-
-            success: false,
-
-            message: err.message
-
-        });
-
-    }
-
 }
 
 async function verifyPayment(req, res) {
+    try {
+        const { trackId, success } = req.query;
 
-    res.json({
+        const order = await prisma.order.findFirst({
+            where: { paymentTrackId: String(trackId) }
+        });
 
-        success: true,
+        if (!order) {
+            return res.redirect("/order-failed.html");
+        }
 
-        message: "verifyPayment آماده است."
+        // اگه از قبل واقعاً پرداخت‌شده، دیگه دوباره verify نکن و همیشه موفقیت نشون بده
+        if (order.status === "paid") {
+            return res.redirect(`/order-success.html?orderId=${order.id}`);
+        }
 
-    });
+        if (success !== "1") {
+            // فقط اگه هنوز paid نشده، به failed تغییر بده
+            await prisma.order.updateMany({
+                where: { id: order.id, status: { not: "paid" } },
+                data: { status: "failed" }
+            });
+            return res.redirect("/order-failed.html");
+        }
 
+        const { data } = await axios.post(ZIBAL_VERIFY_URL, {
+            merchant: ZIBAL_MERCHANT,
+            trackId: trackId
+        });
+
+        // هم ۱۰۰ (تایید موفق) هم ۲۰۱ (قبلاً تایید شده) رو موفق حساب کن
+        if (data.result === 100 || data.result === 201) {
+            const updated = await prisma.order.updateMany({
+                where: { id: order.id, status: { not: "paid" } },
+                data: {
+                    status: "paid",
+                    paymentRef: String(data.refNumber || order.paymentRef || ""),
+                    paidAt: order.paidAt || new Date()
+                }
+            });
+            return res.redirect(`/order-success.html?orderId=${order.id}`);
+        } else {
+            // فقط اگه هنوز paid نشده، به failed تغییر بده - هیچ‌وقت یه سفارش موفق رو خراب نکن
+            await prisma.order.updateMany({
+                where: { id: order.id, status: { not: "paid" } },
+                data: { status: "failed" }
+            });
+            return res.redirect("/order-failed.html");
+        }
+
+    } catch (err) {
+        console.error("verifyPayment error:", err.message);
+        return res.redirect("/order-failed.html");
+    }
 }
 
 module.exports = {
-
     requestPayment,
-
     verifyPayment
-
 };
