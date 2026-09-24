@@ -4943,8 +4943,8 @@ body > button.back-page-btn:hover{
 
 @media(max-width:768px){
     body > button.back-page-btn{
-        top:18px !important;
-        left:18px !important;
+        top:120px !important;
+        left:32px !important;
         width:32px !important;
         height:32px !important;
         font-size:14px !important;
