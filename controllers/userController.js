@@ -48,6 +48,8 @@ async function getUsers(req, res){
 
                 createdAt:user.createdAt,
 
+                lastLoginAt:user.lastLoginAt,
+
                 orders:user._count.orders,
 
                 totalSpent

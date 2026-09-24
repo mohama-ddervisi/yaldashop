@@ -23,6 +23,16 @@ const statusMap = {
     cancelled: {
         text: "لغو شده",
         class: "cancelled"
+    },
+
+    paid: {
+        text: "پرداخت شده",
+        class: "confirmed"
+    },
+
+    failed: {
+        text: "پرداخت ناموفق",
+        class: "cancelled"
     }
 
 };
@@ -88,6 +98,11 @@ async function loadOrders() {
 
     orders.forEach(order => {
 
+    const statusInfo = statusMap[order.status] || {
+        text: order.status,
+        class: "pending"
+    };
+
     container.innerHTML += `
 
 <div class="order-card"
@@ -107,9 +122,9 @@ ${new Date(order.createdAt).toLocaleDateString("fa-IR")}
 
 </div>
 
-<div class="order-status ${statusMap[order.status].class}">
+<div class="order-status ${statusInfo.class}">
 
-${statusMap[order.status].text}
+${statusInfo.text}
 
 </div>
 

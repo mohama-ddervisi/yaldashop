@@ -38,6 +38,8 @@ tbody.innerHTML+=`
 
 <td>${new Date(user.createdAt).toLocaleDateString("fa-IR")}</td>
 
+<td>${user.lastLoginAt ? new Date(user.lastLoginAt).toLocaleDateString("fa-IR") + " - " + new Date(user.lastLoginAt).toLocaleTimeString("fa-IR", {hour:"2-digit", minute:"2-digit"}) : "هنوز وارد نشده"}</td>
+
 <td>
 
 <button

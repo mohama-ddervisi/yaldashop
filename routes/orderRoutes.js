@@ -1,5 +1,6 @@
 const { printInvoice } = require("../controllers/invoiceController");
 const authMiddleware = require("../middlewares/authMiddleware");
+const optionalAuthMiddleware = require("../middlewares/optionalAuthMiddleware");
 console.log("AUTH =", authMiddleware);
 const express = require("express");
 
@@ -19,7 +20,7 @@ const {
 
 } = require("../controllers/orderController");
 
-router.post("/", createOrder);
+router.post("/", optionalAuthMiddleware, createOrder);
 
 router.get("/", getOrders);
 

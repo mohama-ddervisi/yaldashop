@@ -5,7 +5,11 @@ const jwt = require("jsonwebtoken");
 const prisma = require("../lib/prisma");
 
 const bcrypt = require("bcrypt");
+const Kavenegar = require("kavenegar");
 
+const sms = Kavenegar.KavenegarApi({
+    apikey: process.env.KAVENEGAR_API_KEY
+});
 function generateCode() {
     return Math.floor(1000 + Math.random() * 9000).toString();
 }
@@ -286,10 +290,33 @@ console.log("STEP 1");
 
         });
 console.log("STEP 5");
-        console.log("========== OTP ==========");
-        console.log("PHONE:", phone);
-        console.log("CODE :", code);
-        console.log("=========================");
+        await new Promise((resolve, reject) => {
+
+    sms.VerifyLookup({
+
+        receptor: phone,
+        token: code,
+        template: "loginotp"
+
+    }, function (response, status) {
+
+        console.log("Kavenegar:", status);
+        console.log("STATUS:", status);
+console.dir(response, { depth: null });
+
+        if (status === 200) {
+
+            resolve();
+
+        } else {
+
+            reject(new Error("ارسال پیامک ناموفق بود"));
+
+        }
+
+    });
+
+});
 
         res.json({
 
@@ -391,7 +418,17 @@ if (!user) {
             password: null
         }
     });
+
 }
+
+user = await prisma.user.update({
+    where: {
+        id: user.id
+    },
+    data: {
+        lastLoginAt: new Date()
+    }
+});
 
 await prisma.verificationCode.update({
     where: {

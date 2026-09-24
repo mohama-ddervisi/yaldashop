@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>پرداخت ناموفق | یلداشاپ</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+        font-family:'Vazirmatn', sans-serif;
+        min-height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background: linear-gradient(135deg, #2b0f0f, #3d1a1a, #1a0d0d);
+    }
+    .card {
+        background: rgba(255,255,255,0.06);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 28px;
+        padding: 50px 40px;
+        max-width: 440px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        animation: popIn 0.6s cubic-bezier(.17,.89,.32,1.28);
+    }
+    @keyframes popIn {
+        from { opacity:0; transform: scale(0.7) translateY(30px); }
+        to { opacity:1; transform: scale(1) translateY(0); }
+    }
+    .x-wrap {
+        width: 110px; height: 110px; margin: 0 auto 25px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff1744, #ff5252);
+        display:flex; align-items:center; justify-content:center;
+        box-shadow: 0 0 0 8px rgba(255,23,68,0.15), 0 10px 30px rgba(255,23,68,0.4);
+        animation: shake 0.6s 0.2s both;
+    }
+    @keyframes shake {
+        0% { transform: scale(0) rotate(0); }
+        50% { transform: scale(1.15) rotate(-10deg); }
+        70% { transform: rotate(10deg); }
+        100% { transform: scale(1) rotate(0); }
+    }
+    .x-wrap svg { width:50px; height:50px; }
+    h1 { color:#fff; font-size:26px; font-weight:900; margin-bottom:10px; }
+    p.sub { color:#e0c7c7; font-size:15px; line-height:1.8; margin-bottom:30px; }
+    .btns { display:flex; flex-direction:column; gap:12px; }
+    a.btn {
+        display:block;
+        padding: 15px;
+        border-radius: 14px;
+        text-decoration:none;
+        font-weight: 700;
+        font-size: 15px;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    a.btn.primary {
+        background: linear-gradient(135deg, #ff1744, #ff5252);
+        color:#fff;
+        box-shadow: 0 8px 25px rgba(255,23,68,0.5);
+    }
+    a.btn.primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(255,23,68,0.6); }
+    a.btn.secondary {
+        background: rgba(255,255,255,0.08);
+        color:#e8dcdc;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    a.btn.secondary:hover { background: rgba(255,255,255,0.14); }
+</style>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+</head>
+<body>
+
+<div class="card">
+    <div class="x-wrap">
+        <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 6L18 18M18 6L6 18" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+    </div>
+    <h1>پرداخت انجام نشد</h1>
+    <p class="sub">متأسفانه تراکنش شما ناموفق بود یا لغو شد.<br>نگران نباشید، هیچ مبلغی از حساب شما کسر نشده است.</p>
+    <div class="btns">
+        <a href="/checkout.html" class="btn primary">تلاش مجدد</a>
+        <a href="/cart.html" class="btn secondary">بازگشت به سبد خرید</a>
+    </div>
+</div>
+
+</body>
+</html>

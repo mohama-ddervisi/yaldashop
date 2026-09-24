@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>فروشگاه محصولات | یلدا شاپ</title>
    <link rel="stylesheet" href="/css/style.css">
    
 
@@ -17,8 +17,96 @@
 <link rel="stylesheet" href="/css/product-page.css">
 
 <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
 </head>
 <body>
+  <header class="header">
+
+    <div class="nav">
+
+        <!-- Left Icons -->
+        <div class="nav-left">
+
+            <div class="profile-box">
+               <a href="/login.html" id="header-profile-link" class="icon">
+                    <img
+                        id="profile-icon"
+                        src="/images/circle-user-regular-full.svg"
+                        class="icon-image">
+                </a>
+            </div>
+
+            <a href="/wishlist.html" class="icon">
+                <img
+                    src="/images/heart-regular-full.svg"
+                    class="icon-image">
+
+                <span id="wishlist-count">0</span>
+            </a>
+
+            <a href="/cart.html" class="icon cart">
+                <img
+                    src="/images/shopping-cart-1135-svgrepo-com.svg"
+                    alt="Cart"
+                    class="icon-image">
+
+                <span id="cart-count">0</span>
+            </a>
+
+        </div>
+        <!-- End nav-left -->
+
+        <!-- Logo -->
+        <div class="logo">
+            <h1>YALDA</h1>
+            <span>SHOP</span>
+        </div>
+
+       <!-- Mobile Bell -->
+        <a href="#" class="mobile-bell icon">
+            <img
+                src="/images/bell-svgrepo-com.svg"
+                class="icon-image">
+        </a>
+
+        <!-- Desktop Right Side: Search + Menu -->
+        <div class="nav-right">
+
+            <div class="nav-search search-box">
+                <input type="text" id="nav-search-input" class="search-input" placeholder="جستجوی محصولات...">
+                <div class="search-results"></div>
+            </div>
+
+            <nav class="menu">
+                <a href="/products.html?category=all">فروشگاه</a>
+               
+                <a href="/about.html">درباره ما</a>
+                <a href="/contact.html">تماس</a>
+            </nav>
+
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <div class="hamburgers">
+
+            <label class="hamburger">
+
+                <input
+                    id="menu-toggle"
+                    type="checkbox">
+
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+</header>
+
     
 <section class="products-page">
 

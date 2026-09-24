@@ -505,6 +505,29 @@ async function deleteProduct(req, res) {
 
         const id = Number(req.params.id);
 
+        // بررسی اینکه آیا این محصول در سفارشی استفاده شده یا نه
+        const orderItemsCount = await prisma.orderItem.count({
+            where: {
+                productId: id
+            }
+        });
+
+        if (orderItemsCount > 0) {
+
+            // چون محصول سابقه سفارش دارد، به جای حذف کامل، غیرفعالش می‌کنیم
+            await prisma.product.update({
+                where: { id },
+                data: { isActive: false }
+            });
+
+            return res.json({
+                success: true,
+                softDeleted: true,
+                message: "این محصول در سفارش‌های قبلی استفاده شده و برای حفظ سابقه سفارش‌ها قابل حذف کامل نیست. به‌جای آن، محصول غیرفعال شد و دیگر در فروشگاه نمایش داده نمی‌شود."
+            });
+
+        }
+
         // حذف تصاویر محصول
         await prisma.productImage.deleteMany({
             where: {
@@ -512,7 +535,7 @@ async function deleteProduct(req, res) {
             }
         });
 
-        // حذف خود محصول
+        // حذف خود محصول (فقط وقتی هیچ سفارشی به آن وصل نباشد)
         await prisma.product.delete({
             where: {
                 id
@@ -521,6 +544,7 @@ async function deleteProduct(req, res) {
 
         res.json({
             success: true,
+            softDeleted: false,
             message: "محصول با موفقیت حذف شد."
         });
 

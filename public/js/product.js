@@ -138,8 +138,29 @@ document.getElementById("product-price").textContent =
 `${product.price} تومان`;
 
 
-document.getElementById("product-stock").textContent =
-`موجودی : ${product.stock}`;
+const stockElement = document.getElementById("product-stock");
+const addCartBtnEl = document.querySelector(".add-cart-btn");
+
+if (product.stock <= 0) {
+
+    stockElement.textContent = "ناموجود";
+    stockElement.classList.add("out");
+
+    if (addCartBtnEl) {
+        addCartBtnEl.disabled = true;
+        addCartBtnEl.textContent = "ناموجود";
+        addCartBtnEl.style.background = "#ccc";
+        addCartBtnEl.style.color = "#777";
+        addCartBtnEl.style.cursor = "not-allowed";
+    }
+
+} else {
+
+    stockElement.textContent = `موجودی : ${product.stock}`;
+    stockElement.classList.remove("out");
+
+}
+
     }
 
     catch(error){
@@ -203,6 +224,16 @@ console.log(currentProduct);
 console.log(quantity);
 
 addCartBtn.addEventListener("click", () => {
+
+    if (currentProduct.stock <= 0) {
+        showToast("این محصول ناموجود است");
+        return;
+    }
+
+    if (quantity > currentProduct.stock) {
+        showToast(`فقط ${currentProduct.stock} عدد از این محصول موجود است`);
+        return;
+    }
 
     addToCart(currentProduct, quantity);
 

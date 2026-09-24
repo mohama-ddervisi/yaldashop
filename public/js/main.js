@@ -228,6 +228,10 @@ if (showcaseBtn && categories) {
 
     showcaseBtn.addEventListener("click", () => {
 
+if (window.innerWidth > 768) {
+            window.location.href = "/products.html?category=all";
+            return;
+        }
         if (isAnimating) return;
 
         isAnimating = true;
@@ -239,17 +243,25 @@ if (showcaseBtn && categories) {
 
         setTimeout(() => {
 
-            categories.scrollTo({
-                left: categories.scrollWidth,
-                behavior: "smooth"
-            });
+            const items = categories.children;
+
+            if (items.length > 0) {
+                items[items.length - 1].scrollIntoView({
+                    behavior: "smooth",
+                    inline: "end",
+                    block: "nearest"
+                });
+            }
 
             setTimeout(() => {
 
-                categories.scrollTo({
-                    left: 0,
-                    behavior: "smooth"
-                });
+                if (items.length > 0) {
+                    items[0].scrollIntoView({
+                        behavior: "smooth",
+                        inline: "start",
+                        block: "nearest"
+                    });
+                }
 
                 setTimeout(() => {
 
@@ -388,4 +400,171 @@ setTimeout(() => {
     backBtn.classList.add("show");
 
 }, 3000);
+})();
+/* ============ Stats counter animation on scroll ============ */
+
+const statNumbers = document.querySelectorAll(".stat-number");
+
+if(statNumbers.length){
+
+    const animateNumber = (el) => {
+
+        const target = parseInt(el.dataset.target, 10);
+        const duration = 1600;
+        const startTime = performance.now();
+
+        const step = (now) => {
+
+            const progress = Math.min((now - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(eased * target);
+
+            el.textContent = current.toLocaleString("en-US");
+
+            if(progress < 1){
+                requestAnimationFrame(step);
+            }else{
+                el.textContent = target.toLocaleString("en-US");
+            }
+
+        };
+
+        requestAnimationFrame(step);
+
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+                animateNumber(entry.target);
+                statsObserver.unobserve(entry.target);
+            }
+
+        });
+
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(el => statsObserver.observe(el));
+
+}
+
+/* ============ Why Us cards: fade-in on scroll ============ */
+
+const whyUsCards = document.querySelectorAll(".why-us-card");
+
+if(whyUsCards.length){
+
+    const whyUsObserver = new IntersectionObserver((entries) => {
+
+        entries.forEach((entry, index) => {
+
+            if(entry.isIntersecting){
+
+                setTimeout(() => {
+                    entry.target.classList.add("in-view");
+                }, index * 120);
+
+                whyUsObserver.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, { threshold: 0.2 });
+
+    whyUsCards.forEach(card => whyUsObserver.observe(card));
+
+}
+
+/* ============ Lifestyle banner: fade-up on scroll ============ */
+
+const lifestyleBannerContent = document.querySelector(".lifestyle-banner-content");
+
+if(lifestyleBannerContent){
+
+    const bannerObserver = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+                entry.target.classList.add("in-view");
+                bannerObserver.unobserve(entry.target);
+            }
+
+        });
+
+    }, { threshold: 0.3 });
+
+    bannerObserver.observe(lifestyleBannerContent);
+
+}
+
+/* ============ Deals section: load discounted products ============ */
+
+(async function loadDeals(){
+
+    const track = document.getElementById("deals-track");
+    const section = document.querySelector(".deals-section");
+
+    if(!track || !section) return;
+
+    try{
+
+        const res = await fetch("/products");
+        const data = await res.json();
+
+        if(!data.success || !data.products) return;
+
+        const deals = data.products.filter(p => p.discount && p.discount > 0 && p.isActive !== false);
+
+        if(deals.length === 0){
+            section.style.display = "none";
+            return;
+        }
+
+        track.innerHTML = deals.map(product => {
+
+            const oldPrice = product.oldPrice || product.price;
+            const newPrice = product.price;
+
+            return `
+                <a href="/product.html?slug=${product.slug}" class="deal-card">
+                    <span class="deal-badge">${product.discount}%-</span>
+                    <img src="${product.image || "/images/nop.jpg"}" alt="${product.name}">
+                    <div class="deal-card-content">
+                        <h4>${product.name}</h4>
+                        <div class="deal-prices">
+                            ${oldPrice > newPrice ? `<span class="deal-old-price">${Number(oldPrice).toLocaleString("fa-IR")}</span>` : ""}
+                            <span class="deal-new-price">${Number(newPrice).toLocaleString("fa-IR")} تومان</span>
+                        </div>
+                    </div>
+                </a>
+            `;
+
+        }).join("");
+
+        const prevBtn = document.getElementById("deals-prev");
+        const nextBtn = document.getElementById("deals-next");
+
+        if(prevBtn && nextBtn){
+
+            nextBtn.addEventListener("click", () => {
+                track.scrollBy({ left: -300, behavior: "smooth" });
+            });
+
+            prevBtn.addEventListener("click", () => {
+                track.scrollBy({ left: 300, behavior: "smooth" });
+            });
+
+        }
+
+    }catch(err){
+
+        console.error("deals load error:", err);
+        section.style.display = "none";
+
+    }
+
 })();

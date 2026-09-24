@@ -156,6 +156,7 @@ document.addEventListener("click", async (e) => {
 <table>
 
 <tr>
+<th>عکس</th>
 <th>محصول</th>
 <th>تعداد</th>
 <th>قیمت</th>
@@ -164,6 +165,12 @@ document.addEventListener("click", async (e) => {
 ${order.items.map(item=>`
 
 <tr>
+
+<td>
+<img src="${item.product.image ? item.product.image : '/images/no-image.png'}"
+     alt="${item.product.name}"
+     style="width:50px;height:50px;object-fit:cover;border-radius:6px;">
+</td>
 
 <td>${item.product.name}</td>
 

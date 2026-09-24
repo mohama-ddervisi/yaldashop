@@ -1,15 +1,16 @@
 
   
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <meta name="enamad" content="64852451" />
-    <title>Document</title>
+    <title>یلدا شاپ | فروشگاه آنلاین ظروف و لوازم آشپزخانه</title>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
     <link
     rel="stylesheet"
-    href="/css/style.css?v=2"
+    href="/css/style.css?v=4"
   >
   <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -80,10 +81,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
             </div>
 
             <nav class="menu">
-                <a href="#">فروشگاه</a>
-                <a href="#">دسته‌بندی‌ها</a>
-                <a href="#">درباره ما</a>
-                <a href="#">تماس</a>
+                <a href="/products.html?category=all">فروشگاه</a>
+               
+                <a href="/about.html">درباره ما</a>
+                <a href="/contact.html">تماس</a>
             </nav>
 
         </div>
@@ -331,80 +332,102 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 </div>
 
-<section class="features">
+<section class="stats-section">
 
-    <div class="feature-item">
+    <div class="stats-grid">
 
-        <div class="feature-content">
-            <h4>ارسال سریع</h4>
-            <p>ارسال در سریع‌ترین زمان</p>
+        <div class="stat-item">
+            <span class="stat-number" data-target="5000">0</span>
+            <span class="stat-plus">+</span>
+            <p>مشتری راضی</p>
         </div>
 
-        <div class="feature-icon">
-            <img
-                src="/images/truck-svgrepo-com.svg"
-                class="feature-icon-image"
-                alt=""
-            >
+        <div class="stat-item">
+            <span class="stat-number" data-target="350">0</span>
+            <span class="stat-plus">+</span>
+            <p>محصول متنوع</p>
         </div>
 
-    </div>
-
-    <div class="feature-divider"></div>
-
-    <div class="feature-item">
-
-        <div class="feature-content">
-            <h4>ضمانت کیفیت</h4>
-            <p>ضمانت اصالت و کیفیت کالا</p>
+        <div class="stat-item">
+            <span class="stat-number" data-target="9">0</span>
+            <p>سال تجربه</p>
         </div>
 
-        <div class="feature-icon">
-            <img
-                src="/images/shield-checkmark-svgrepo-com.svg"
-                class="feature-icon-image"
-                alt=""
-            >
+        <div class="stat-item">
+            <span class="stat-number" data-target="98">0</span>
+            <span class="stat-percent">٪</span>
+            <p>رضایت مشتری</p>
         </div>
 
     </div>
 
-    <div class="feature-divider"></div>
+</section>
+<section class="why-us-section">
 
-    <div class="feature-item">
+    <div class="why-us-header">
+        <h2>چرا یلدا شاپ؟</h2>
+        <p>دلایلی که مشتریان ما را انتخاب می‌کنند</p>
+    </div>
 
-        <div class="feature-content">
-            <h4>پشتیبانی ۲۴/۷</h4>
-            <p>پشتیبانی مستقیم در تمام روزها</p>
+    <div class="why-us-grid">
+
+        <div class="why-us-card">
+            <div class="why-us-icon">
+                <img src="/images/truck-svgrepo-com.svg" alt="">
+            </div>
+            <h3>ارسال سریع</h3>
+            <p>ارسال به سریع‌ترین زمان ممکن به سراسر کشور</p>
         </div>
 
-        <div class="feature-icon">
-            <img
-                src="/images/support-svgrepo-com.svg"
-                class="feature-icon-image"
-                alt=""
-            >
+        <div class="why-us-card">
+            <div class="why-us-icon">
+                <img src="/images/shield-checkmark-svgrepo-com.svg" alt="">
+            </div>
+            <h3>ضمانت اصالت</h3>
+            <p>تمامی محصولات دارای ضمانت اصالت و کیفیت</p>
+        </div>
+
+        <div class="why-us-card">
+            <div class="why-us-icon">
+                <img src="/images/support-svgrepo-com.svg" alt="">
+            </div>
+            <h3>پشتیبانی ۲۴/۷</h3>
+            <p>تیم پشتیبانی همیشه پاسخگوی شماست</p>
+        </div>
+
+        <div class="why-us-card">
+            <div class="why-us-icon">
+                <img src="/images/lock-closed-svgrepo-com.svg" alt="">
+            </div>
+            <h3>پرداخت امن</h3>
+            <p>پرداخت آنلاین با بالاترین سطح امنیت</p>
         </div>
 
     </div>
 
-    <div class="feature-divider"></div>
+</section>
+<section class="deals-section">
 
-    <div class="feature-item">
-
-        <div class="feature-content">
-            <h4>پرداخت امن</h4>
-            <p>پرداخت آنلاین با امنیت بالا</p>
+    <div class="deals-header">
+        <h2>تخفیف‌های ویژه</h2>
+        <div class="deals-nav">
+            <button id="deals-prev" class="deals-nav-btn">‹</button>
+            <button id="deals-next" class="deals-nav-btn">›</button>
         </div>
+    </div>
 
-        <div class="feature-icon">
-            <img
-                src="/images/lock-closed-svgrepo-com.svg"
-                class="feature-icon-image"
-                alt=""
-            >
-        </div>
+    <div id="deals-track" class="deals-track"></div>
 
+</section>
+<section class="lifestyle-banner">
+
+    <div class="lifestyle-banner-overlay"></div>
+
+    <div class="lifestyle-banner-content">
+        <span class="lifestyle-banner-tag">یلدا شاپ</span>
+        <h2>هر وعده غذایی، یک جشن کوچک</h2>
+        <p>با ظروف زیبا، لحظه‌های ساده زندگی را به خاطره تبدیل کنید</p>
+        <a href="/products.html?category=all" class="lifestyle-banner-btn">مشاهده محصولات</a>
     </div>
 
 </section>
@@ -473,10 +496,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 <a href="https://www.instagram.com/yalda.shop0267?igsh=MWlxMThseGE1OWs1bw%3D%3D&utm_source=qr" aria-label="instagram">
                     <img src="/images/instagram-svgrepo-com (1).svg" alt="instagram">
                 </a>
-                <a href="@yaldashoping" aria-label="telegram">
+                <a href="https://t.me/yaldashoping" target="_blank"" aria-label="telegram">
                     <img src="/images/telegram-svgrepo-com (1).svg" alt="telegram">
                 </a>
-                <a href="+98 938 402 0267" aria-label="whatsapp">
+                <a href="https://wa.me/989384020267" target="_blank"" aria-label="whatsapp">
                     <img src="/images/whatsapp-svgrepo-com (1).svg" alt="whatsapp">
                 </a>
             </div>
@@ -484,26 +507,25 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
         <div class="footer-col">
             <h4>دسترسی سریع</h4>
-            <a href="#">خانه</a>
-            <a href="#">فروشگاه</a>
-            <a href="#">دسته‌بندی‌ها</a>
-            <a href="#">درباره ما</a>
-            <a href="#">تماس با ما</a>
+            <a href="/">خانه</a>
+<a href="/products.html?category=all">فروشگاه</a>
+<a href="/about.html">درباره ما</a>
+<a href="/contact.html">تماس با ما</a>
         </div>
 
         <div class="footer-col">
             <h4>راهنمای مشتری</h4>
-            <a href="#">سوالات متداول</a>
-            <a href="#">حریم خصوصی</a>
-            <a href="#">شرایط و قوانین</a>
-            <a href="#">پیگیری سفارش</a>
-            <a href="#">پشتیبانی</a>
+            <a href="/faq.html">سوالات متداول</a>
+            <a href="/privacy.html">حریم خصوصی</a>
+            <a href="/terms.html">شرایط و قوانین</a>
+            <a href="/orders.html">پیگیری سفارش</a>
+            <a href="/contact.html">پشتیبانی</a>
         </div>
 
         <div class="footer-col">
             <h4>اطلاعات تماس</h4>
-            <p>021 22 45 67</p>
-            <p>info@yaldashop.ir</p>
+            <p>0938 40 20 267</p>
+            
 
             <div class="trust-badge">
                 <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=765826&Code=0hqycZE64HMvtNjcf1ba8uJ06hivuzfX">

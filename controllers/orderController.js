@@ -83,6 +83,18 @@ async function createOrder(req, res) {
 
             }
 
+            if (product.stock < item.quantity) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message: `متاسفانه موجودی محصول "${product.name}" کافی نیست. موجودی فعلی: ${product.stock}`
+
+                });
+
+            }
+
             total += product.price * item.quantity;
 
         }
@@ -215,41 +227,7 @@ console.log("REQ USER =", req.user);
 
     });
 
-    for (const item of items) {
-
-        const product = products.find(
-
-            p => p.slug === item.slug
-
-        );
-
-        await tx.product.update({
-
-            where: {
-
-                id: product.id
-
-            },
-
-            data: {
-
-                stock: {
-
-                    decrement: item.quantity
-
-                },
-
-                soldCount: {
-
-                    increment: item.quantity
-
-                }
-
-            }
-
-        });
-
-    }
+    
 
     if (discountCode) {
 
@@ -403,6 +381,10 @@ async function getOrders(req, res) {
 
         const orders = await prisma.order.findMany({
 
+            where: {
+                status: { not: "pending" }
+            },
+
             include: {
 
                 items: {
@@ -488,10 +470,33 @@ async function getMyOrders(req, res) {
 
     try {
 
+        const user = await prisma.user.findUnique({
+            where: { id: req.user.id }
+        });
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "کاربر پیدا نشد"
+            });
+        }
+
+        // سفارش‌های قدیمی که با همین شماره موبایل ثبت شدن ولی به هیچ اکانتی وصل نیستن رو به این اکانت وصل کن
+        await prisma.order.updateMany({
+            where: {
+                userId: null,
+                phone: user.phone
+            },
+            data: {
+                userId: user.id
+            }
+        });
+
         const orders = await prisma.order.findMany({
 
             where: {
-                userId: req.user.id
+                userId: req.user.id,
+                status: { not: "pending" }
             },
 
             include: {

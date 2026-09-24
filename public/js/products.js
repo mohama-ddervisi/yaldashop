@@ -1,4 +1,4 @@
- let allProducts = [];
+let allProducts = [];
 let filtersRendered = false;
 
 const params = new URLSearchParams(window.location.search);
@@ -59,10 +59,6 @@ let products = [...allProducts];
             );
 
         }
-
-       
-
-      
 
         // Sort
 
@@ -132,7 +128,7 @@ if(productsCount){
 
 container.innerHTML += `
 
-<div class="product-card">
+<div class="product-card ${product.stock <= 0 ? "out-of-stock" : ""}">
 
     ${product.discount ? `
     <div class="discount-badge">
@@ -163,6 +159,12 @@ alt="wishlist">
         alt="${product.name}"
         class="product-image">
 
+        ${product.stock <= 0 ? `
+        <div class="out-of-stock-cover">
+            <span class="out-of-stock-text">ناموجود</span>
+        </div>
+        ` : ""}
+
     </a>
 
     <div class="product-content">
@@ -178,8 +180,7 @@ alt="wishlist">
             ${product.name}
 
         </h3>
-       
-     
+
         <div class="product-prices">
 
             ${
@@ -205,10 +206,10 @@ alt="wishlist">
 
         <button
         class="product-btn"
-        
-        onclick="goProduct('${product.slug}')">
+        ${product.stock <= 0 ? "disabled" : ""}
+        onclick="${product.stock <= 0 ? "" : `goProduct('${product.slug}')`}">
 
-            مشاهده محصول
+            ${product.stock <= 0 ? "ناموجود" : "مشاهده محصول"}
 
         </button>
 
@@ -326,8 +327,6 @@ function goProduct(slug){
 
 }
 
-
-
 // مرتب سازی
 
 const sortSelect =
@@ -338,4 +337,3 @@ if(sortSelect){
     sortSelect.addEventListener("change",loadProducts);
 
 }
-

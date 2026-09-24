@@ -1,3 +1,4 @@
+const paymentRoutes = require("./routes/paymentRoutes");
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
@@ -12,6 +13,12 @@ const io = new Server(server, {
     cors: {
         origin: "*"
     }
+});
+
+app.use((req, res, next) => {
+    res.set("Cache-Control", "no-store, no-cache, must-revalidate");
+    res.set("Pragma", "no-cache");
+    next();
 });
 
 app.set("io", io);
@@ -44,7 +51,35 @@ const userRoutes = require("./routes/userRoutes");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+
+
+app.use(express.static("public", {
+    setHeaders: (res, filePath) => {
+
+        if (filePath.endsWith(".html")) {
+
+            // صفحات HTML هیچ‌وقت کش نشن (همیشه آخرین نسخه لود بشه)
+            res.set("Cache-Control", "no-store, no-cache, must-revalidate");
+            res.set("Pragma", "no-cache");
+            res.set("Expires", "0");
+
+        } else if (
+            filePath.endsWith(".css") ||
+            filePath.endsWith(".js")
+        ) {
+
+            // فایل‌های CSS/JS برای مدت کوتاه کش بشن (۵ دقیقه)
+            res.set("Cache-Control", "public, max-age=300");
+
+        } else {
+
+            // عکس‌ها و فونت‌ها برای مدت طولانی‌تر کش بشن (۱ روز)
+            res.set("Cache-Control", "public, max-age=86400");
+
+        }
+
+    }
+}));
 
 app.use("/uploads", express.static("uploads"));
 app.use("/products", productRoutes);
@@ -54,7 +89,7 @@ app.use("/auth", authRoutes);
 app.use("/contact", contactRoutes);
 app.use("/users", userRoutes);
 const path = require("path");
-
+app.use("/payment", paymentRoutes);
 app.use("/admin/products", (req, res, next) => {
     console.log("SERVER:", req.method, req.url);
     next();

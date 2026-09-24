@@ -1,0 +1,33 @@
+
+/* ============ یکسان‌سازی نهایی و قطعی سایز آیکون‌های هدر ============ */
+@media(min-width:769px){
+header .nav-left{
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+header .nav-left .profile-box{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+}
+
+header .nav-left > a.icon,
+header .nav-left .profile-box a.icon{
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+}
+
+header .nav-left .icon-image{
+    width: 22px !important;
+    height: 22px !important;
+    object-fit: contain !important;
+}
+}
