@@ -219,7 +219,9 @@ console.log("REQ USER =", req.user);
 
                 quantity: item.quantity,
 
-                price: product.price
+                price: product.price,
+
+                colorName: item.colorName || null
 
             };
 

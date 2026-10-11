@@ -17,11 +17,11 @@ function saveCart(cart){
 
 }
 
-function addToCart(product, quantity = 1){
+function addToCart(product, quantity = 1, colorName = null){
 
     const cart = getCart();
 
-    const existing = cart.find(item => item.slug === product.slug);
+    const existing = cart.find(item => item.slug === product.slug && (item.colorName || "") === (colorName || ""));
 
     if(existing){
 
@@ -39,7 +39,9 @@ function addToCart(product, quantity = 1){
 
             image: product.image,
 
-            quantity: quantity
+            quantity: quantity,
+
+            colorName: colorName
 
         });
 
@@ -49,11 +51,11 @@ function addToCart(product, quantity = 1){
 
 }
 
-function removeFromCart(slug){
+function removeFromCart(slug, colorName = null){
 
     let cart = getCart();
 
-    cart = cart.filter(item => item.slug !== slug);
+    cart = cart.filter(item => !(item.slug === slug && (item.colorName || "") === (colorName || "")));
 
     saveCart(cart);
 
@@ -64,11 +66,11 @@ function clearCart(){
     localStorage.removeItem(CART_KEY);
 
 }
-function updateQuantity(slug, quantity){
+function updateQuantity(slug, quantity, colorName = null){
 
     const cart = getCart();
 
-    const item = cart.find(p => p.slug === slug);
+    const item = cart.find(p => p.slug === slug && (p.colorName || "") === (colorName || ""));
 
     if(item){
 

@@ -148,6 +148,8 @@ document.getElementById("mobile-close");
 
 function openMenu(){
 
+    if(!mobileMenu || !mobileOverlay) return;
+
     mobileMenu.classList.add("active");
 
     mobileOverlay.classList.add("active");
@@ -159,6 +161,8 @@ function openMenu(){
 }
 
 function closeMenu(){
+
+    if(!mobileMenu || !mobileOverlay) return;
 
     mobileMenu.classList.remove("active");
 
@@ -328,6 +332,8 @@ const heroDesc=document.getElementById("hero-desc");
 const heroDots=document.querySelectorAll(".hero-dot");
 
 function updateHero(){
+
+if(!heroImg || !heroTitle || !heroDesc) return;
 
 heroImg.style.opacity=0;
 

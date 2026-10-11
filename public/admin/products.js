@@ -109,6 +109,8 @@ openBtn.addEventListener("click",()=>{
     document.getElementById("product-form").reset();
 
     document.getElementById("isActive").checked = true;
+    document.getElementById("colors-list").innerHTML = "";
+    colorRowCount = 0;
 
     modal.classList.add("active");
 
@@ -193,6 +195,7 @@ const method = editingId
     ? "PUT"
     : "POST";
 
+formData.append("colors", JSON.stringify(getColorsFromForm()));
 const res = await fetch(url, {
 
     method,
@@ -305,6 +308,13 @@ product.images.forEach(image=>{
     `;
 
 });
+
+    document.getElementById("colors-list").innerHTML = "";
+    colorRowCount = 0;
+
+    (product.colors || []).forEach(color => {
+        addColorRow(color);
+    });
 
     modal.classList.add("active");
 
@@ -510,3 +520,121 @@ async function deleteImage(id) {
 
 }
 window.deleteImage = deleteImage;
+let colorRowCount = 0;
+
+function addColorRow(data = {}) {
+
+    colorRowCount++;
+    const rowId = `color-row-${colorRowCount}`;
+
+    const list = document.getElementById("colors-list");
+
+    const div = document.createElement("div");
+    div.className = "color-row";
+    div.id = rowId;
+    div.style.display = "flex";
+    div.style.gap = "8px";
+    div.style.marginBottom = "8px";
+    div.style.alignItems = "center";
+
+    div.innerHTML = `
+        <input
+            type="text"
+            placeholder="نام رنگ (مثلاً قرمز)"
+            class="color-name-input"
+            value="${data.name || ""}">
+
+        <input
+            type="color"
+            class="color-hex-input"
+            value="${data.hexCode || "#000000"}">
+
+        <input
+            type="number"
+            placeholder="قیمت اختصاصی (اختیاری)"
+            class="color-price-input"
+            value="${data.priceOverride || ""}">
+
+        <button
+            type="button"
+            onclick="document.getElementById('${rowId}').remove()">
+            حذف
+        </button>
+    `;
+
+    list.appendChild(div);
+
+
+    const nameInput = div.querySelector(".color-name-input");
+    const hexInput = div.querySelector(".color-hex-input");
+
+    const colorNameMap = {
+        "قرمز":"#ff0000","آبی":"#0000ff","سبز":"#00aa00","زرد":"#ffd700",
+        "مشکی":"#000000","سیاه":"#000000","سفید":"#ffffff","نارنجی":"#ff8c00",
+        "بنفش":"#8a2be2","صورتی":"#ff69b4","قهوه‌ای":"#8b4513","قهوه ای":"#8b4513",
+        "طلایی":"#ffd700","نقره‌ای":"#c0c0c0","نقره ای":"#c0c0c0","خاکستری":"#808080",
+        "کرم":"#fffdd0","آبی روشن":"#87ceeb","آبی تیره":"#00008b","سبز روشن":"#90ee90",
+        "سبز تیره":"#006400","بژ":"#f5f5dc","یاسی":"#c8a2c8","فیروزه‌ای":"#40e0d0",
+        "فیروزه ای":"#40e0d0","گلبهی":"#ffdab9","نیلوفری":"#7c5295","یشمی":"#00a86b",
+        "زرشکی":"#8b0000","سرمه‌ای":"#001f54","سرمه ای":"#001f54","عنابی":"#8b0000",
+        "شرابی":"#722f37","خردلی":"#c8a951","پسته‌ای":"#9dc183","پسته ای":"#9dc183",
+        "کالباسی":"#e32636","یاقوتی":"#e0115f","زمردی":"#50c878","کهربایی":"#ffbf00",
+        "آجری":"#b7410e","دودی":"#848482","استخوانی":"#e3dac9","عسلی":"#ffb300",
+        "هلویی":"#ffdab9","لیمویی":"#dfff4f","آبی آسمانی":"#87ceeb","آبی کاربنی":"#36454f",
+        "آبی نفتی":"#1b1b3a","سبز زیتونی":"#808000","سبز یشمی":"#00a86b","سبز چمنی":"#7cfc00",
+        "صورتی کمرنگ":"#ffd1dc","بنفش کمرنگ":"#dcd0ff","بادمجانی":"#470024","گیلاسی":"#990024",
+        "خاکی":"#c3b091","فیلی":"#e4d4c8","یخی":"#afeeee","توسی":"#8a8a8a",
+        "موشی":"#9a9a9a","شکلاتی":"#7b3f00","کرمی":"#fffdd8","انگوری":"#6f2da8",
+        "ارغوانی":"#8b008b","لاجوردی":"#26619c","تیفانی":"#0abab5","مسی":"#b87333",
+        "برنزی":"#cd7f32","فیروزه":"#30d5c8","آبی یخی":"#a1caf1","خاکستری روشن":"#d3d3d3",
+        "خاکستری تیره":"#404040","قرمز تیره":"#8b0000","قرمز روشن":"#ff6666",
+        "زرد روشن":"#fff176","زرد تیره":"#c9a227","نارنجی تیره":"#cc5500",
+        "صورتی تیره":"#c2185b","بنفش تیره":"#4b0082","قهوه‌ای روشن":"#c19a6b",
+        "قهوه ای روشن":"#c19a6b","قهوه‌ای تیره":"#4b2e1e","قهوه ای تیره":"#4b2e1e"
+    };
+
+    nameInput.addEventListener("blur", () => {
+
+        const typed = nameInput.value.trim().replace(/ي/g,"ی").replace(/ك/g,"ک");
+
+        if (colorNameMap[typed]) {
+
+            hexInput.value = colorNameMap[typed];
+            hexInput.style.outline = "";
+
+        } else if (typed) {
+
+            hexInput.style.outline = "2px solid red";
+
+        }
+
+    });
+}
+
+document.getElementById("add-color-btn")
+    .addEventListener("click", () => addColorRow());
+
+function getColorsFromForm() {
+
+    const rows = document.querySelectorAll(".color-row");
+
+    const colors = [];
+
+    rows.forEach(row => {
+
+        const name = row.querySelector(".color-name-input").value.trim();
+        const hexCode = row.querySelector(".color-hex-input").value;
+        const priceOverride = row.querySelector(".color-price-input").value;
+
+        if (name) {
+            colors.push({
+                name,
+                hexCode,
+                priceOverride: priceOverride || null
+            });
+        }
+
+    });
+
+    return colors;
+}

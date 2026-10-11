@@ -11,6 +11,7 @@ new URLSearchParams(
 const slug =
 params.get("slug");
 let currentProduct = null;
+let selectedColor = null;
 async function loadProduct() {
 
     try {
@@ -161,6 +162,66 @@ if (product.stock <= 0) {
 
 }
 
+        const colorsContainer = document.getElementById("product-colors");
+
+        if (colorsContainer) {
+
+            colorsContainer.innerHTML = "";
+
+            if (product.colors && product.colors.length) {
+
+                product.colors.forEach((color, index) => {
+
+                    const swatch = document.createElement("div");
+
+                    swatch.className = "color-swatch";
+                    swatch.style.width = "32px";
+                    swatch.style.height = "32px";
+                    swatch.style.borderRadius = "50%";
+                    swatch.style.display = "inline-block";
+                    swatch.style.margin = "4px";
+                    swatch.style.cursor = "pointer";
+                    swatch.style.border = "2px solid #ddd";
+                    swatch.style.background = color.hexCode || "#ccc";
+                    swatch.title = color.name;
+                    swatch.dataset.name = color.name;
+
+                    if (index === 0) {
+
+                        swatch.style.border = "2px solid #000";
+                        selectedColor = color.name;
+
+                        if (color.priceOverride) {
+                            document.getElementById("product-price").textContent =
+                            `${color.priceOverride} تومان`;
+                        }
+
+                    }
+
+                    swatch.addEventListener("click", () => {
+
+                        document.querySelectorAll(".color-swatch").forEach(s => {
+                            s.style.border = "2px solid #ddd";
+                        });
+
+                        swatch.style.border = "2px solid #000";
+                        selectedColor = color.name;
+
+                        const priceToShow = color.priceOverride || product.price;
+
+                        document.getElementById("product-price").textContent =
+                        `${priceToShow} تومان`;
+
+                    });
+
+                    colorsContainer.appendChild(swatch);
+
+                });
+
+            }
+
+        }
+
     }
 
     catch(error){
@@ -235,7 +296,7 @@ addCartBtn.addEventListener("click", () => {
         return;
     }
 
-    addToCart(currentProduct, quantity);
+    addToCart(currentProduct, quantity, selectedColor);
 
     updateCartBadge();
 

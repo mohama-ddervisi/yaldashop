@@ -1,4 +1,4 @@
-let allProducts = [];
+let pageAllProducts = [];
 let filtersRendered = false;
 
 const params = new URLSearchParams(window.location.search);
@@ -36,9 +36,9 @@ const response = await fetch(url);
 
 const data = await response.json();
 
-allProducts = data.products;
+pageAllProducts = data.products;
 
-let products = [...allProducts];
+let products = [...pageAllProducts];
 
         // Search
 
@@ -231,7 +231,7 @@ wishlistButtons.forEach(btn=>{
         btn.dataset.slug;
 
         const product =
-        allProducts.find(p=>p.slug===slug);
+        pageAllProducts.find(p=>p.slug===slug);
 
         if(!product) return;
 

@@ -27,6 +27,7 @@ model Product {
   soldCount   Int            @default(0)
   orderItems  OrderItem[]
   images      ProductImage[]
+  colors      ProductColor[]
 }
 
 model ProductImage {
@@ -66,10 +67,20 @@ model OrderItem {
   price     Int
   orderId   Int
   productId Int
+  colorName String?
   order     Order   @relation(fields: [orderId], references: [id])
   product   Product @relation(fields: [productId], references: [id])
 }
 
+
+model ProductColor {
+  id            Int      @id @default(autoincrement())
+  name          String
+  hexCode       String?
+  priceOverride Float?
+  productId     Int
+  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
 model Discount {
   id          Int       @id @default(autoincrement())
   code        String    @unique

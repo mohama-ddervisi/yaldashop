@@ -30,6 +30,7 @@ class="cart-image"
 <h3>
 
 ${item.name}
+${item.colorName ? `<span class="cart-color-tag"> - رنگ: ${item.colorName}</span>` : ""}
 
 </h3>
 
@@ -46,6 +47,7 @@ ${Number(item.price).toLocaleString()} تومان
 <button
 class="minus"
 data-slug="${item.slug}"
+data-color="${item.colorName || ""}"
 >
 
 −
@@ -61,6 +63,7 @@ ${item.quantity}
 <button
 class="plus"
 data-slug="${item.slug}"
+data-color="${item.colorName || ""}"
 >
 
 +
@@ -72,6 +75,7 @@ data-slug="${item.slug}"
 <button
 class="remove-btn"
 data-slug="${item.slug}"
+data-color="${item.colorName || ""}"
 >
 
 حذف
@@ -91,6 +95,15 @@ data-slug="${item.slug}"
 
 }
 
+function findCartItem(cart, slug, colorName){
+
+    return cart.find(p =>
+        p.slug === slug &&
+        (p.colorName || "") === (colorName || "")
+    );
+
+}
+
 function bindEvents(){
 
     document.querySelectorAll(".plus").forEach(btn=>{
@@ -100,15 +113,19 @@ function bindEvents(){
             const slug =
             btn.dataset.slug;
 
+            const colorName =
+            btn.dataset.color;
+
             const cart =
             getCart();
 
             const item =
-            cart.find(p=>p.slug===slug);
+            findCartItem(cart, slug, colorName);
 
             updateQuantity(
                 slug,
-                item.quantity+1
+                item.quantity+1,
+                colorName
             );
 
             renderCart();
@@ -124,17 +141,21 @@ function bindEvents(){
             const slug =
             btn.dataset.slug;
 
+            const colorName =
+            btn.dataset.color;
+
             const cart =
             getCart();
 
             const item =
-            cart.find(p=>p.slug===slug);
+            findCartItem(cart, slug, colorName);
 
             if(item.quantity>1){
 
                 updateQuantity(
                     slug,
-                    item.quantity-1
+                    item.quantity-1,
+                    colorName
                 );
 
                 renderCart();
@@ -150,7 +171,8 @@ function bindEvents(){
         btn.onclick = ()=>{
 
             removeFromCart(
-                btn.dataset.slug
+                btn.dataset.slug,
+                btn.dataset.color
             );
 
             renderCart();

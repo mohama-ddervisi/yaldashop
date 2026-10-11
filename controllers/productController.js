@@ -46,7 +46,8 @@ async function getProducts(req, res) {
 const products = await prisma.product.findMany({
     where,
     include: {
-        images: true
+        images: true,
+        colors: true
     },
     orderBy: {
         id: "desc"
@@ -204,6 +205,25 @@ if (req.files?.length) {
     });
 
 }
+
+if (req.body.colors) {
+    try {
+        await prisma.productColor.deleteMany({ where: { productId: id } });
+        const colors = JSON.parse(req.body.colors);
+        if (Array.isArray(colors) && colors.length) {
+            await prisma.productColor.createMany({
+                data: colors.map(c => ({
+                    name: c.name,
+                    hexCode: c.hexCode || null,
+                    priceOverride: c.priceOverride ? Number(c.priceOverride) : null,
+                    productId: id
+                }))
+            });
+        }
+    } catch (e) {
+        console.error("خطا در آپدیت رنگ‌ها:", e);
+    }
+}
 const hadDiscountBefore = oldProduct?.discount && oldProduct.discount > 0;
         const hasDiscountNow = product.discount && product.discount > 0;
 
@@ -345,8 +365,27 @@ if (req.files?.length) {
 
         }))
 
+
     });
 
+}
+
+if (req.body.colors) {
+    try {
+        const colors = JSON.parse(req.body.colors);
+        if (Array.isArray(colors) && colors.length) {
+            await prisma.productColor.createMany({
+                data: colors.map(c => ({
+                    name: c.name,
+                    hexCode: c.hexCode || null,
+                    priceOverride: c.priceOverride ? Number(c.priceOverride) : null,
+                    productId: product.id
+                }))
+            });
+        }
+    } catch (e) {
+        console.error("خطا در ذخیره رنگ‌ها:", e);
+    }
 }
 if (product.discount && product.discount > 0) {
 

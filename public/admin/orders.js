@@ -172,7 +172,7 @@ ${order.items.map(item=>`
      style="width:50px;height:50px;object-fit:cover;border-radius:6px;">
 </td>
 
-<td>${item.product.name}</td>
+<td>${item.product.name}${item.colorName ? `<br><small>رنگ: ${item.colorName}</small>` : ""}</td>
 
 <td>${item.quantity}</td>
 

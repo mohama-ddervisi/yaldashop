@@ -52,7 +52,7 @@ function renderCheckout(){
 
 <div class="cart-name">
 
-${item.name}
+${item.name}${item.colorName ? `<br><small>رنگ: ${item.colorName}</small>` : ""}
 
 </div>
 
@@ -130,7 +130,7 @@ async function submitOrder(){
 
             slug:item.slug,
 
-            quantity:item.quantity
+            quantity:item.quantity, colorName:item.colorName || null
 
         })),
        discountCode:
